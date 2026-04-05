@@ -32,9 +32,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.rdbDrought = new System.Windows.Forms.RadioButton();
             this.rdbNoDrought = new System.Windows.Forms.RadioButton();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.btnSaveWaterQuality = new System.Windows.Forms.Button();
             this.btnMenuQuality = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
+            this.btnExitWaterQuality = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
@@ -83,17 +83,17 @@
             this.rdbNoDrought.Text = "No Drought";
             this.rdbNoDrought.UseVisualStyleBackColor = true;
             // 
-            // btnSave
+            // btnSaveWaterQuality
             // 
-            this.btnSave.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSave.Location = new System.Drawing.Point(383, 479);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(175, 90);
-            this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "SAVE";
-            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSaveWaterQuality.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnSaveWaterQuality.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveWaterQuality.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSaveWaterQuality.Location = new System.Drawing.Point(383, 479);
+            this.btnSaveWaterQuality.Name = "btnSaveWaterQuality";
+            this.btnSaveWaterQuality.Size = new System.Drawing.Size(175, 90);
+            this.btnSaveWaterQuality.TabIndex = 4;
+            this.btnSaveWaterQuality.Text = "SAVE";
+            this.btnSaveWaterQuality.UseVisualStyleBackColor = false;
             // 
             // btnMenuQuality
             // 
@@ -107,17 +107,17 @@
             this.btnMenuQuality.Text = "Scot Water";
             this.btnMenuQuality.UseVisualStyleBackColor = false;
             // 
-            // btnExit
+            // btnExitWaterQuality
             // 
-            this.btnExit.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnExit.Location = new System.Drawing.Point(12, 614);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(175, 90);
-            this.btnExit.TabIndex = 7;
-            this.btnExit.Text = "EXIT";
-            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExitWaterQuality.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnExitWaterQuality.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExitWaterQuality.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnExitWaterQuality.Location = new System.Drawing.Point(12, 614);
+            this.btnExitWaterQuality.Name = "btnExitWaterQuality";
+            this.btnExitWaterQuality.Size = new System.Drawing.Size(175, 90);
+            this.btnExitWaterQuality.TabIndex = 7;
+            this.btnExitWaterQuality.Text = "EXIT";
+            this.btnExitWaterQuality.UseVisualStyleBackColor = false;
             // 
             // groupBox1
             // 
@@ -149,10 +149,10 @@
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(984, 761);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnExitWaterQuality);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnMenuQuality);
-            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnSaveWaterQuality);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dupLocation);
             this.Name = "frmWaterQuality";
@@ -171,10 +171,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton rdbDrought;
         private System.Windows.Forms.RadioButton rdbNoDrought;
-        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnSaveWaterQuality;
         private System.Windows.Forms.Button btnMenuQuality;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnExitWaterQuality;
         private System.Windows.Forms.GroupBox groupBox1;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Scott_Water_App
 {
-    partial class Register_New_Business
+    partial class frmRegisterBusiness
     {
         /// <summary>
         /// Required designer variable.
@@ -229,7 +229,7 @@
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
             // 
-            // Register_New_Business
+            // frmRegisterBusiness
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -253,7 +253,7 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnMenu);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "Register_New_Business";
+            this.Name = "frmRegisterBusiness";
             this.Text = "Register_New_Business";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

@@ -1,6 +1,6 @@
 ﻿namespace Scott_Water_App
 {
-    partial class frmBusiness
+    partial class frmBusinessView
     {
         /// <summary>
         /// Required designer variable.
@@ -114,10 +114,10 @@
             // 
             this.dudSearchBusiness.Location = new System.Drawing.Point(417, 180);
             this.dudSearchBusiness.Name = "dudSearchBusiness";
-            this.dudSearchBusiness.Size = new System.Drawing.Size(372, 26);
+            this.dudSearchBusiness.Size = new System.Drawing.Size(372, 20);
             this.dudSearchBusiness.TabIndex = 6;
             // 
-            // frmBusiness
+            // frmBusinessView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -131,8 +131,8 @@
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.dgvBusiness);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "frmBusiness";
-            this.Text = "Business";
+            this.Name = "frmBusinessView";
+            this.Text = "Business View";
             ((System.ComponentModel.ISupportInitialize)(this.dgvBusiness)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

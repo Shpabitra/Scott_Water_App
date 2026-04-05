@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Scott_Water_App
 {
-    public partial class Register_New_Business : Form
+    public partial class frmRegisterBusiness : Form
     {
-        public Register_New_Business()
+        public frmRegisterBusiness()
         {
             InitializeComponent();
         }
