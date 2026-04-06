@@ -24,6 +24,26 @@ namespace Scott_Water_App.Models
         {
             Database.SetInitializer(new ScotWaterDatabaseInitialiser());
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            // Configure the relationships between entities
+            modelBuilder.Entity<User>()
+                .HasRequired(u => u.Readings)
+                .WithMany()
+                .HasForeignKey(u => u.BusinessID)
+                .WillCascadeOnDelete(false); // Prevent cascade delete to avoid deleting related readings when a user is deleted
+           
+            //Turn off cascade delete fo user business relationships.
+            modelBuilder.Entity<User>()
+                .HasRequired(u => u.Businesses)
+                .WithMany()
+                .HasForeignKey(u => u.BusinessID)
+                .WillCascadeOnDelete(false); // Prevent cascade delete to avoid deleting related businesses when a user is deleted
+           
+            base.OnModelCreating(modelBuilder);
+        }
     }//End of ScotWaterContext class
 
     public class ScotWaterDatabaseInitialiser : DropCreateDatabaseAlways<ScotWaterContext>
