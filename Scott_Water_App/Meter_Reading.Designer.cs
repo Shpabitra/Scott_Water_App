@@ -142,6 +142,7 @@
             this.btnGenerateBill.TabIndex = 8;
             this.btnGenerateBill.Text = "Generate Bill";
             this.btnGenerateBill.UseVisualStyleBackColor = false;
+            this.btnGenerateBill.Click += new System.EventHandler(this.btnGenerateBill_Click);
             // 
             // dudBusinessName
             // 
@@ -211,14 +212,14 @@
             // 
             this.nudWaterUsage.Location = new System.Drawing.Point(383, 416);
             this.nudWaterUsage.Name = "nudWaterUsage";
-            this.nudWaterUsage.Size = new System.Drawing.Size(214, 26);
+            this.nudWaterUsage.Size = new System.Drawing.Size(214, 20);
             this.nudWaterUsage.TabIndex = 17;
             // 
             // nudRecycle
             // 
             this.nudRecycle.Location = new System.Drawing.Point(383, 481);
             this.nudRecycle.Name = "nudRecycle";
-            this.nudRecycle.Size = new System.Drawing.Size(214, 26);
+            this.nudRecycle.Size = new System.Drawing.Size(214, 20);
             this.nudRecycle.TabIndex = 18;
             // 
             // frmMeterReading
@@ -246,6 +247,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmMeterReading";
             this.Text = "Meter Reading";
+            this.Load += new System.EventHandler(this.frmMeterReading_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWaterUsage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRecycle)).EndInit();

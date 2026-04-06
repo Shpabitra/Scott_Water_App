@@ -1,6 +1,6 @@
 ﻿namespace Scott_Water_App
 {
-    partial class Invoice
+    partial class frmInvoice
     {
         /// <summary>
         /// Required designer variable.
@@ -50,7 +50,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.lblBasicPerUnit = new System.Windows.Forms.Label();
+            this.lblTier1Unit = new System.Windows.Forms.Label();
             this.lblMidRangePerunit = new System.Windows.Forms.Label();
             this.lblPremiumPerUnit = new System.Windows.Forms.Label();
             this.lblBasic = new System.Windows.Forms.Label();
@@ -203,13 +203,12 @@
             this.listView1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(388, 305);
+            this.listView1.Location = new System.Drawing.Point(394, 283);
             this.listView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(838, 653);
             this.listView1.TabIndex = 12;
             this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // label9
             // 
@@ -330,17 +329,17 @@
             this.label18.TabIndex = 22;
             this.label18.Text = "5001+";
             // 
-            // lblBasicPerUnit
+            // lblTier1Unit
             // 
-            this.lblBasicPerUnit.AutoSize = true;
-            this.lblBasicPerUnit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.lblBasicPerUnit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBasicPerUnit.Location = new System.Drawing.Point(960, 415);
-            this.lblBasicPerUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBasicPerUnit.Name = "lblBasicPerUnit";
-            this.lblBasicPerUnit.Size = new System.Drawing.Size(40, 20);
-            this.lblBasicPerUnit.TabIndex = 23;
-            this.lblBasicPerUnit.Text = "0.32";
+            this.lblTier1Unit.AutoSize = true;
+            this.lblTier1Unit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblTier1Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTier1Unit.Location = new System.Drawing.Point(960, 415);
+            this.lblTier1Unit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTier1Unit.Name = "lblTier1Unit";
+            this.lblTier1Unit.Size = new System.Drawing.Size(40, 20);
+            this.lblTier1Unit.TabIndex = 23;
+            this.lblTier1Unit.Text = "0.32";
             // 
             // lblMidRangePerunit
             // 
@@ -507,7 +506,7 @@
             this.lblInvoiceNo.Location = new System.Drawing.Point(1149, 192);
             this.lblInvoiceNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInvoiceNo.Name = "lblInvoiceNo";
-            this.lblInvoiceNo.Size = new System.Drawing.Size(0, 20);
+            this.lblInvoiceNo.Size = new System.Drawing.Size(0, 13);
             this.lblInvoiceNo.TabIndex = 37;
             // 
             // lblInvoiceDate
@@ -517,7 +516,7 @@
             this.lblInvoiceDate.Location = new System.Drawing.Point(1185, 265);
             this.lblInvoiceDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInvoiceDate.Name = "lblInvoiceDate";
-            this.lblInvoiceDate.Size = new System.Drawing.Size(0, 20);
+            this.lblInvoiceDate.Size = new System.Drawing.Size(0, 13);
             this.lblInvoiceDate.TabIndex = 38;
             // 
             // label6
@@ -543,7 +542,7 @@
             this.label7.TabIndex = 40;
             this.label7.Text = "It has been a pleasure doing business with you. Thank You.";
             // 
-            // Invoice
+            // frmInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -566,7 +565,7 @@
             this.Controls.Add(this.lblBasic);
             this.Controls.Add(this.lblPremiumPerUnit);
             this.Controls.Add(this.lblMidRangePerunit);
-            this.Controls.Add(this.lblBasicPerUnit);
+            this.Controls.Add(this.lblTier1Unit);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
@@ -591,8 +590,9 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnMenu);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "Invoice";
+            this.Name = "frmInvoice";
             this.Text = "Invoice";
+            this.Load += new System.EventHandler(this.frmInvoice_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -624,7 +624,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label lblBasicPerUnit;
+        private System.Windows.Forms.Label lblTier1Unit;
         private System.Windows.Forms.Label lblMidRangePerunit;
         private System.Windows.Forms.Label lblPremiumPerUnit;
         private System.Windows.Forms.Label lblBasic;

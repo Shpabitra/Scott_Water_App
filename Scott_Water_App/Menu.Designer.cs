@@ -118,6 +118,7 @@
             this.btnMeterReading.TabIndex = 7;
             this.btnMeterReading.Text = "Meter Reading";
             this.btnMeterReading.UseVisualStyleBackColor = false;
+            this.btnMeterReading.Click += new System.EventHandler(this.btnMeterReading_Click);
             // 
             // btnExit
             // 

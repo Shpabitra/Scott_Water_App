@@ -16,5 +16,12 @@ namespace Scott_Water_App
         {
             InitializeComponent();
         }
+
+        private void btnMeterReading_Click(object sender, EventArgs e)
+        {
+            frmMeterReading meterReadingForm = new frmMeterReading();
+            meterReadingForm.Show();
+            this.Hide();
+        }
     }
 }
