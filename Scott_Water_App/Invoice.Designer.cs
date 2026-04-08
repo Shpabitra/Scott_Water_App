@@ -39,7 +39,6 @@
             this.lblBusinessName = new System.Windows.Forms.Label();
             this.lblBusinessAddress = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.label9 = new System.Windows.Forms.Label();
             this.lblWaterUsage = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -51,16 +50,15 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.lblTier1Unit = new System.Windows.Forms.Label();
-            this.lblMidRangePerunit = new System.Windows.Forms.Label();
-            this.lblPremiumPerUnit = new System.Windows.Forms.Label();
-            this.lblBasic = new System.Windows.Forms.Label();
-            this.lblMidrange = new System.Windows.Forms.Label();
-            this.lblPremium = new System.Windows.Forms.Label();
+            this.lblTier2unit = new System.Windows.Forms.Label();
+            this.lblTier3Unit = new System.Windows.Forms.Label();
+            this.lblTier1 = new System.Windows.Forms.Label();
+            this.lblTier2 = new System.Windows.Forms.Label();
+            this.lblTier3 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.lblRecycle = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
             this.lblRecycleTotal = new System.Windows.Forms.Label();
-            this.lblSubTotalbeforeRecycle = new System.Windows.Forms.Label();
+            this.lblTotalBeforeRecycle = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -69,6 +67,12 @@
             this.lblInvoiceDate = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblVAT = new System.Windows.Forms.Label();
+            this.lblFinalTotal = new System.Windows.Forms.Label();
+            this.lblTotalBeforeVAT = new System.Windows.Forms.Label();
+            this.lblInvoiceNumber = new System.Windows.Forms.Label();
+            this.lblInvoiceIssuedDate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,10 +94,10 @@
             this.btnExit.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnExit.Location = new System.Drawing.Point(13, 934);
+            this.btnExit.Location = new System.Drawing.Point(13, 749);
             this.btnExit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(262, 100);
+            this.btnExit.Size = new System.Drawing.Size(175, 90);
             this.btnExit.TabIndex = 1;
             this.btnExit.Text = "EXIT";
             this.btnExit.UseVisualStyleBackColor = false;
@@ -103,10 +107,10 @@
             this.button3.BackColor = System.Drawing.Color.DodgerBlue;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(816, 969);
+            this.button3.Location = new System.Drawing.Point(593, 805);
             this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(478, 100);
+            this.button3.Size = new System.Drawing.Size(175, 90);
             this.button3.TabIndex = 2;
             this.button3.Text = "Email To Business";
             this.button3.UseVisualStyleBackColor = false;
@@ -115,7 +119,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(960, 217);
+            this.label1.Location = new System.Drawing.Point(692, 196);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 20);
@@ -127,7 +131,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(894, 254);
+            this.label2.Location = new System.Drawing.Point(624, 234);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(158, 20);
@@ -198,24 +202,12 @@
             this.label8.TabIndex = 11;
             this.label8.Text = "Date Range: ";
             // 
-            // listView1
-            // 
-            this.listView1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(394, 283);
-            this.listView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(838, 653);
-            this.listView1.TabIndex = 12;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(418, 432);
+            this.label9.Location = new System.Drawing.Point(378, 405);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(103, 20);
@@ -227,7 +219,7 @@
             this.lblWaterUsage.AutoSize = true;
             this.lblWaterUsage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.lblWaterUsage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWaterUsage.Location = new System.Drawing.Point(418, 495);
+            this.lblWaterUsage.Location = new System.Drawing.Point(426, 453);
             this.lblWaterUsage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWaterUsage.Name = "lblWaterUsage";
             this.lblWaterUsage.Size = new System.Drawing.Size(0, 20);
@@ -238,19 +230,19 @@
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(891, 760);
+            this.label11.Location = new System.Drawing.Point(691, 614);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(77, 20);
+            this.label11.Size = new System.Drawing.Size(44, 20);
             this.label11.TabIndex = 15;
-            this.label11.Text = "Sub Total";
+            this.label11.Text = "Total";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(450, 689);
+            this.label12.Location = new System.Drawing.Point(615, 565);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 20);
@@ -262,7 +254,7 @@
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(810, 337);
+            this.label13.Location = new System.Drawing.Point(567, 311);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(46, 20);
@@ -274,7 +266,7 @@
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(938, 337);
+            this.label14.Location = new System.Drawing.Point(647, 311);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(121, 20);
@@ -286,7 +278,7 @@
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(1138, 337);
+            this.label15.Location = new System.Drawing.Point(815, 311);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(44, 20);
@@ -298,7 +290,7 @@
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(795, 415);
+            this.label16.Location = new System.Drawing.Point(554, 359);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(59, 20);
@@ -310,7 +302,7 @@
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(795, 475);
+            this.label17.Location = new System.Drawing.Point(535, 405);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(86, 20);
@@ -322,7 +314,7 @@
             this.label18.AutoSize = true;
             this.label18.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(795, 548);
+            this.label18.Location = new System.Drawing.Point(559, 453);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(54, 20);
@@ -334,133 +326,121 @@
             this.lblTier1Unit.AutoSize = true;
             this.lblTier1Unit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.lblTier1Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTier1Unit.Location = new System.Drawing.Point(960, 415);
+            this.lblTier1Unit.Location = new System.Drawing.Point(706, 359);
             this.lblTier1Unit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTier1Unit.Name = "lblTier1Unit";
             this.lblTier1Unit.Size = new System.Drawing.Size(40, 20);
             this.lblTier1Unit.TabIndex = 23;
             this.lblTier1Unit.Text = "0.32";
             // 
-            // lblMidRangePerunit
+            // lblTier2unit
             // 
-            this.lblMidRangePerunit.AutoSize = true;
-            this.lblMidRangePerunit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.lblMidRangePerunit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMidRangePerunit.Location = new System.Drawing.Point(960, 475);
-            this.lblMidRangePerunit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMidRangePerunit.Name = "lblMidRangePerunit";
-            this.lblMidRangePerunit.Size = new System.Drawing.Size(40, 20);
-            this.lblMidRangePerunit.TabIndex = 24;
-            this.lblMidRangePerunit.Text = "0.56";
+            this.lblTier2unit.AutoSize = true;
+            this.lblTier2unit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblTier2unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTier2unit.Location = new System.Drawing.Point(706, 405);
+            this.lblTier2unit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTier2unit.Name = "lblTier2unit";
+            this.lblTier2unit.Size = new System.Drawing.Size(40, 20);
+            this.lblTier2unit.TabIndex = 24;
+            this.lblTier2unit.Text = "0.56";
             // 
-            // lblPremiumPerUnit
+            // lblTier3Unit
             // 
-            this.lblPremiumPerUnit.AutoSize = true;
-            this.lblPremiumPerUnit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.lblPremiumPerUnit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPremiumPerUnit.Location = new System.Drawing.Point(960, 548);
-            this.lblPremiumPerUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPremiumPerUnit.Name = "lblPremiumPerUnit";
-            this.lblPremiumPerUnit.Size = new System.Drawing.Size(40, 20);
-            this.lblPremiumPerUnit.TabIndex = 25;
-            this.lblPremiumPerUnit.Text = "1.16";
+            this.lblTier3Unit.AutoSize = true;
+            this.lblTier3Unit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblTier3Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTier3Unit.Location = new System.Drawing.Point(706, 453);
+            this.lblTier3Unit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTier3Unit.Name = "lblTier3Unit";
+            this.lblTier3Unit.Size = new System.Drawing.Size(40, 20);
+            this.lblTier3Unit.TabIndex = 25;
+            this.lblTier3Unit.Text = "1.16";
             // 
-            // lblBasic
+            // lblTier1
             // 
-            this.lblBasic.AutoSize = true;
-            this.lblBasic.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.lblBasic.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBasic.Location = new System.Drawing.Point(1114, 415);
-            this.lblBasic.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBasic.Name = "lblBasic";
-            this.lblBasic.Size = new System.Drawing.Size(0, 20);
-            this.lblBasic.TabIndex = 26;
+            this.lblTier1.AutoSize = true;
+            this.lblTier1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblTier1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTier1.Location = new System.Drawing.Point(830, 359);
+            this.lblTier1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTier1.Name = "lblTier1";
+            this.lblTier1.Size = new System.Drawing.Size(0, 20);
+            this.lblTier1.TabIndex = 26;
             // 
-            // lblMidrange
+            // lblTier2
             // 
-            this.lblMidrange.AutoSize = true;
-            this.lblMidrange.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.lblMidrange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMidrange.Location = new System.Drawing.Point(1114, 475);
-            this.lblMidrange.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMidrange.Name = "lblMidrange";
-            this.lblMidrange.Size = new System.Drawing.Size(0, 20);
-            this.lblMidrange.TabIndex = 27;
+            this.lblTier2.AutoSize = true;
+            this.lblTier2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblTier2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTier2.Location = new System.Drawing.Point(831, 405);
+            this.lblTier2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTier2.Name = "lblTier2";
+            this.lblTier2.Size = new System.Drawing.Size(0, 20);
+            this.lblTier2.TabIndex = 27;
             // 
-            // lblPremium
+            // lblTier3
             // 
-            this.lblPremium.AutoSize = true;
-            this.lblPremium.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.lblPremium.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPremium.Location = new System.Drawing.Point(1114, 548);
-            this.lblPremium.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPremium.Name = "lblPremium";
-            this.lblPremium.Size = new System.Drawing.Size(0, 20);
-            this.lblPremium.TabIndex = 28;
+            this.lblTier3.AutoSize = true;
+            this.lblTier3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblTier3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTier3.Location = new System.Drawing.Point(815, 453);
+            this.lblTier3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTier3.Name = "lblTier3";
+            this.lblTier3.Size = new System.Drawing.Size(0, 20);
+            this.lblTier3.TabIndex = 28;
             // 
             // label25
             // 
             this.label25.AutoSize = true;
             this.label25.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(766, 612);
+            this.label25.Location = new System.Drawing.Point(575, 515);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(189, 20);
+            this.label25.Size = new System.Drawing.Size(160, 20);
             this.label25.TabIndex = 29;
-            this.label25.Text = "Sub Total Before Recycle";
+            this.label25.Text = " Total Before Recycle";
             // 
             // lblRecycle
             // 
             this.lblRecycle.AutoSize = true;
             this.lblRecycle.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.lblRecycle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecycle.Location = new System.Drawing.Point(795, 689);
+            this.lblRecycle.Location = new System.Drawing.Point(752, 565);
             this.lblRecycle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRecycle.Name = "lblRecycle";
             this.lblRecycle.Size = new System.Drawing.Size(0, 20);
             this.lblRecycle.TabIndex = 30;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(938, 689);
-            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(60, 20);
-            this.label27.TabIndex = 31;
-            this.label27.Text = "label27";
             // 
             // lblRecycleTotal
             // 
             this.lblRecycleTotal.AutoSize = true;
             this.lblRecycleTotal.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.lblRecycleTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecycleTotal.Location = new System.Drawing.Point(1104, 689);
+            this.lblRecycleTotal.Location = new System.Drawing.Point(826, 565);
             this.lblRecycleTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRecycleTotal.Name = "lblRecycleTotal";
             this.lblRecycleTotal.Size = new System.Drawing.Size(0, 20);
             this.lblRecycleTotal.TabIndex = 32;
             // 
-            // lblSubTotalbeforeRecycle
+            // lblTotalBeforeRecycle
             // 
-            this.lblSubTotalbeforeRecycle.AutoSize = true;
-            this.lblSubTotalbeforeRecycle.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.lblSubTotalbeforeRecycle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubTotalbeforeRecycle.Location = new System.Drawing.Point(1104, 612);
-            this.lblSubTotalbeforeRecycle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSubTotalbeforeRecycle.Name = "lblSubTotalbeforeRecycle";
-            this.lblSubTotalbeforeRecycle.Size = new System.Drawing.Size(0, 20);
-            this.lblSubTotalbeforeRecycle.TabIndex = 33;
+            this.lblTotalBeforeRecycle.AutoSize = true;
+            this.lblTotalBeforeRecycle.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblTotalBeforeRecycle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalBeforeRecycle.Location = new System.Drawing.Point(826, 515);
+            this.lblTotalBeforeRecycle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotalBeforeRecycle.Name = "lblTotalBeforeRecycle";
+            this.lblTotalBeforeRecycle.Size = new System.Drawing.Size(0, 20);
+            this.lblTotalBeforeRecycle.TabIndex = 33;
             // 
             // label30
             // 
             this.label30.AutoSize = true;
             this.label30.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(894, 823);
+            this.label30.Location = new System.Drawing.Point(670, 677);
             this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(76, 20);
@@ -472,17 +452,17 @@
             this.label31.AutoSize = true;
             this.label31.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(894, 871);
+            this.label31.Location = new System.Drawing.Point(670, 732);
             this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(44, 20);
+            this.label31.Size = new System.Drawing.Size(82, 20);
             this.label31.TabIndex = 35;
-            this.label31.Text = "Total";
+            this.label31.Text = "Final Total";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Scott_Water_App.Properties.Resources.Scot_Water_App_Logo;
-            this.pictureBox1.Location = new System.Drawing.Point(1144, 18);
+            this.pictureBox1.Location = new System.Drawing.Point(799, 8);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(150, 146);
@@ -503,7 +483,7 @@
             // lblInvoiceNo
             // 
             this.lblInvoiceNo.AutoSize = true;
-            this.lblInvoiceNo.Location = new System.Drawing.Point(1149, 192);
+            this.lblInvoiceNo.Location = new System.Drawing.Point(1115, 224);
             this.lblInvoiceNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInvoiceNo.Name = "lblInvoiceNo";
             this.lblInvoiceNo.Size = new System.Drawing.Size(0, 13);
@@ -513,7 +493,7 @@
             // 
             this.lblInvoiceDate.AutoSize = true;
             this.lblInvoiceDate.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.lblInvoiceDate.Location = new System.Drawing.Point(1185, 265);
+            this.lblInvoiceDate.Location = new System.Drawing.Point(1139, 254);
             this.lblInvoiceDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInvoiceDate.Name = "lblInvoiceDate";
             this.lblInvoiceDate.Size = new System.Drawing.Size(0, 13);
@@ -523,7 +503,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(63, 785);
+            this.label6.Location = new System.Drawing.Point(57, 642);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(174, 80);
@@ -542,29 +522,81 @@
             this.label7.TabIndex = 40;
             this.label7.Text = "It has been a pleasure doing business with you. Thank You.";
             // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(832, 732);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(0, 13);
+            this.lblTotal.TabIndex = 43;
+            // 
+            // lblVAT
+            // 
+            this.lblVAT.AutoSize = true;
+            this.lblVAT.Location = new System.Drawing.Point(816, 677);
+            this.lblVAT.Name = "lblVAT";
+            this.lblVAT.Size = new System.Drawing.Size(0, 13);
+            this.lblVAT.TabIndex = 42;
+            // 
+            // lblFinalTotal
+            // 
+            this.lblFinalTotal.Location = new System.Drawing.Point(0, 0);
+            this.lblFinalTotal.Name = "lblFinalTotal";
+            this.lblFinalTotal.Size = new System.Drawing.Size(100, 23);
+            this.lblFinalTotal.TabIndex = 45;
+            // 
+            // lblTotalBeforeVAT
+            // 
+            this.lblTotalBeforeVAT.AutoSize = true;
+            this.lblTotalBeforeVAT.Location = new System.Drawing.Point(815, 619);
+            this.lblTotalBeforeVAT.Name = "lblTotalBeforeVAT";
+            this.lblTotalBeforeVAT.Size = new System.Drawing.Size(0, 13);
+            this.lblTotalBeforeVAT.TabIndex = 44;
+            // 
+            // lblInvoiceNumber
+            // 
+            this.lblInvoiceNumber.AutoSize = true;
+            this.lblInvoiceNumber.Location = new System.Drawing.Point(819, 202);
+            this.lblInvoiceNumber.Name = "lblInvoiceNumber";
+            this.lblInvoiceNumber.Size = new System.Drawing.Size(0, 13);
+            this.lblInvoiceNumber.TabIndex = 46;
+            // 
+            // lblInvoiceIssuedDate
+            // 
+            this.lblInvoiceIssuedDate.AutoSize = true;
+            this.lblInvoiceIssuedDate.Location = new System.Drawing.Point(789, 239);
+            this.lblInvoiceIssuedDate.Name = "lblInvoiceIssuedDate";
+            this.lblInvoiceIssuedDate.Size = new System.Drawing.Size(0, 13);
+            this.lblInvoiceIssuedDate.TabIndex = 47;
+            // 
             // frmInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1326, 1061);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
+            this.ClientSize = new System.Drawing.Size(984, 979);
+            this.Controls.Add(this.lblInvoiceIssuedDate);
+            this.Controls.Add(this.lblInvoiceNumber);
+            this.Controls.Add(this.lblTotalBeforeVAT);
+            this.Controls.Add(this.lblTotal);
+            this.Controls.Add(this.lblVAT);
+            this.Controls.Add(this.lblFinalTotal);
             this.Controls.Add(this.lblInvoiceDate);
             this.Controls.Add(this.lblInvoiceNo);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.lblDateRange);
             this.Controls.Add(this.label31);
             this.Controls.Add(this.label30);
-            this.Controls.Add(this.lblSubTotalbeforeRecycle);
+            this.Controls.Add(this.lblTotalBeforeRecycle);
             this.Controls.Add(this.lblRecycleTotal);
-            this.Controls.Add(this.label27);
             this.Controls.Add(this.lblRecycle);
             this.Controls.Add(this.label25);
-            this.Controls.Add(this.lblPremium);
-            this.Controls.Add(this.lblMidrange);
-            this.Controls.Add(this.lblBasic);
-            this.Controls.Add(this.lblPremiumPerUnit);
-            this.Controls.Add(this.lblMidRangePerunit);
+            this.Controls.Add(this.lblTier3);
+            this.Controls.Add(this.lblTier2);
+            this.Controls.Add(this.lblTier1);
+            this.Controls.Add(this.lblTier3Unit);
+            this.Controls.Add(this.lblTier2unit);
             this.Controls.Add(this.lblTier1Unit);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
@@ -576,7 +608,6 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.lblWaterUsage);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.listView1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.lblBusinessAddress);
             this.Controls.Add(this.lblBusinessName);
@@ -590,6 +621,8 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnMenu);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmInvoice";
             this.Text = "Invoice";
             this.Load += new System.EventHandler(this.frmInvoice_Load);
@@ -613,7 +646,6 @@
         private System.Windows.Forms.Label lblBusinessName;
         private System.Windows.Forms.Label lblBusinessAddress;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblWaterUsage;
         private System.Windows.Forms.Label label11;
@@ -625,16 +657,15 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label lblTier1Unit;
-        private System.Windows.Forms.Label lblMidRangePerunit;
-        private System.Windows.Forms.Label lblPremiumPerUnit;
-        private System.Windows.Forms.Label lblBasic;
-        private System.Windows.Forms.Label lblMidrange;
-        private System.Windows.Forms.Label lblPremium;
+        private System.Windows.Forms.Label lblTier2unit;
+        private System.Windows.Forms.Label lblTier3Unit;
+        private System.Windows.Forms.Label lblTier1;
+        private System.Windows.Forms.Label lblTier2;
+        private System.Windows.Forms.Label lblTier3;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label lblRecycle;
-        private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label lblRecycleTotal;
-        private System.Windows.Forms.Label lblSubTotalbeforeRecycle;
+        private System.Windows.Forms.Label lblTotalBeforeRecycle;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label lblDateRange;
@@ -642,5 +673,11 @@
         private System.Windows.Forms.Label lblInvoiceDate;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Label lblVAT;
+        private System.Windows.Forms.Label lblFinalTotal;
+        private System.Windows.Forms.Label lblTotalBeforeVAT;
+        private System.Windows.Forms.Label lblInvoiceNumber;
+        private System.Windows.Forms.Label lblInvoiceIssuedDate;
     }
 }

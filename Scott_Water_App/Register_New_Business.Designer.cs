@@ -253,6 +253,8 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnMenu);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmRegisterBusiness";
             this.Text = "Register_New_Business";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

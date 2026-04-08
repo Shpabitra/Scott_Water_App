@@ -245,6 +245,8 @@
             this.Controls.Add(this.btnExitMeterReading);
             this.Controls.Add(this.btnMenuMeterReading);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMeterReading";
             this.Text = "Meter Reading";
             this.Load += new System.EventHandler(this.frmMeterReading_Load);

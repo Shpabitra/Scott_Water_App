@@ -25,20 +25,46 @@ namespace Scott_Water_App
 
         private void btnGenerateBill_Click(object sender, EventArgs e)
         {
+
             //Create the object
             InvoiceCalculation invoice = new InvoiceCalculation();
 
-            //Assign values from the textboxes inputs
-            invoice.UsageUnits = double.Parse(nudWaterUsage.Text);
-            invoice.RecycledUnits = double.Parse(nudRecycle.Text);
+            using (var db = new ScotWaterContext())
+            {
+                // Find the selected business in the database
+                //string selectedBusiness = dudBusinessName.SelectedItem.ToString();
+                var biz = db.Businesses.FirstOrDefault(b => b.BusinessName == dudBusinessName.Text);
+                if (biz != null)
+                {
+                    //fill the invoice object with the business data and date range
+                    invoice.BusinessName = biz.BusinessName;
+                    invoice.BusinessAddress = $"{biz.BusinessCity}, {biz.BusinessPostcode}";
+                    invoice.DateRange = $"{dtpStartDate.Value.ToShortDateString()} - {dtpEndDate.Value.ToShortDateString()}";
 
-            //run the math
-            invoice.CalculateInvoice();
+                    //Assign values from the textboxes inputs
+                    invoice.UsageUnits = (double)nudWaterUsage.Value;
+                    invoice.RecycledUnits = (double)nudRecycle.Value;
 
-            //open the invoice form and pass my invoice object to it
-            frmInvoice frm = new frmInvoice(invoice);
-            frm.ShowDialog();
-            this.Hide();
+                    //run the calculation
+                    invoice.CalculateInvoice();
+
+                    //open the invoice form and pass my invoice object to it
+                    frmInvoice frm = new frmInvoice(invoice);
+                    frm.ShowDialog();
+                    this.Hide();
+
+                }
+                else
+                {
+                    MessageBox.Show("Please select a valid business");
+                }
+
+
+
+               
+           
+
+           
         }
     }
 }
