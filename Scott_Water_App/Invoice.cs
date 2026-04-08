@@ -72,6 +72,6 @@ namespace Scott_Water_App
             //lblTotalBeforeVAT.Text = _bill.TotalBeforeVAT.ToString("C");
             //lblVAT.Text = _bill.VAT.ToString("C");
             //lblTotal.Text = _bill.Total.ToString("C");
-        }
+        
     }
 }
