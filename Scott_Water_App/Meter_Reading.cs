@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Scott_Water_App.Models;
+using System.Data.Entity;//data entuity framework
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq.Expressions;
 
 namespace Scott_Water_App
 {
@@ -20,14 +24,32 @@ namespace Scott_Water_App
 
         private void frmMeterReading_Load(object sender, EventArgs e)
         {
-            using(var db = new ScotWaterContext())
+            try
             {
-                // Load business names from the database and bind to the dropdown
-                var businessNames = db.Businesses.Select(b => b.BusinessName).ToList();
-                dudBusinessName.Items.Clear();
-                dudBusinessName.Items.AddRange(businessNames);
-            }
+                using (var db = new ScotWaterContext())
+                {
+                    // Load business names from the database and bind to the dropdown
+                    var businessNames = db.Businesses.Select(b => b.BusinessName).ToList();
+                    dudBusinessName.Items.Clear();
+                    //dudBusinessName.Items.AddRange(businessNames);
 
+                    //add the business names to the dropdown
+                    foreach (var name in businessNames)
+                    {
+                        dudBusinessName.Items.Add(name);
+                    }
+
+                    // set the first item as default if the list is not empty
+                    if (dudBusinessName.Items.Count > 0)
+                    {
+                        dudBusinessName.SelectedIndex = 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading business names: {ex.Message}");
+            }
         }
 
         private void btnGenerateBill_Click(object sender, EventArgs e)
@@ -68,10 +90,9 @@ namespace Scott_Water_App
 
 
 
-               
-           
 
-           
+
+            }
         }
     }
 }

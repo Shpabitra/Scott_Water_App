@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Scott_Water_App.Models;
+using System.Data.Entity;//data entyty framework
 
 namespace Scott_Water_App
 {

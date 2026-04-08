@@ -56,7 +56,7 @@ namespace Scott_Water_App.Models
 
 
             {
-                Tier3Cost = remaining > 0 ? remaining * 1.16 : 0;
+                Tier3Cost = remaining * 1.16;
             }
            
 

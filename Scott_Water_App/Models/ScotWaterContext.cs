@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Scott_Water_App.Models;
 
 namespace Scott_Water_App.Models
 {
@@ -19,11 +20,16 @@ namespace Scott_Water_App.Models
 
         //Users reprents the meters within the database
         public DbSet<Readings> Meters { get; set; }
+        
 
         public ScotWaterContext() : base("ScotWaterConnection")
         {
             Database.SetInitializer(new ScotWaterDatabaseInitialiser());
         }
+
+       
+            // Seed initial data if necessary
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
