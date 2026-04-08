@@ -33,14 +33,20 @@ namespace Scott_Water_App
 
         public void DisplayBill()
         {
+            //map the properties to the label 
+            lblBusinessName.Text = _bill.BusinessName;
+            lblBusinessAddress.Text = _bill.BusinessAddress;
+            lblDateRange.Text = _bill.DateRange;
+            lblInvoiceNumber.Text = _bill.InvoiceNumber;
+            lblInvoiceIssuedDate.Text = _bill.IssueDate;
             //Assign the values to the list view items
             //use "C" to format numbers as currency
-           lblTier1.Text = _bill.Tier1Cost.ToString("C");
+            lblTier1.Text = _bill.Tier1Cost.ToString("C");
             lblTier2.Text = _bill.Tier2Cost.ToString("C");
             lblTier3.Text = _bill.Tier3Cost.ToString("C");
             lblTotalBeforeRecycle.Text = _bill.TotalBeforeRecycle.ToString("C");
 
-            lblRecycle.Text = _bill.Recycled.ToString("C");
+            lblRecycleUnit.Text = _bill.RecycleTotal.ToString("C");
             lblTotalBeforeVAT.Text = _bill.TotalBeforeVAT.ToString("C");
             lblVAT.Text = _bill.VAT.ToString("C");
             lblTotal.Text = _bill.Total.ToString("C");
@@ -48,24 +54,24 @@ namespace Scott_Water_App
 
         }
 
-        private void frmInvoice_Load(object sender, EventArgs e)
-        {
-            //map the properties to the label 
-            lblBusinessName.Text = _bill.BusinessName;
-            lblBusinessAddress.Text = _bill.BusinessAddress;
-            lblDateRange.Text = _bill.DateRange;
-            lblInvoiceNo.Text = _bill.InvoiceNumber;
-            lblInvoiceIssuedDate.Text = _bill.IssueDate;
+        //private void frmInvoice_Load(object sender, EventArgs e)
+        //{
+        //    //map the properties to the label 
+        //    lblBusinessName.Text = _bill.BusinessName;
+        //    lblBusinessAddress.Text = _bill.BusinessAddress;
+        //    lblDateRange.Text = _bill.DateRange;
+        //    lblInvoiceNo.Text = _bill.InvoiceNumber;
+        //    lblInvoiceIssuedDate.Text = _bill.IssueDate;
 
             //Financials 
-            lblTier1.Text = _bill.Tier1Cost.ToString("C");
-            lblTier2.Text = _bill.Tier2Cost.ToString("C");
-            lblTier3.Text = _bill.Tier3Cost.ToString("C");
-            lblTotalBeforeRecycle.Text = _bill.TotalBeforeRecycle.ToString("C");
-            lblRecycle.Text = _bill.Recycled.ToString("C");
-            lblTotalBeforeVAT.Text = _bill.TotalBeforeVAT.ToString("C");
-            lblVAT.Text = _bill.VAT.ToString("C");
-            lblTotal.Text = _bill.Total.ToString("C");
+            //lblTier1.Text = _bill.Tier1Cost.ToString("C");
+            //lblTier2.Text = _bill.Tier2Cost.ToString("C");
+            //lblTier3.Text = _bill.Tier3Cost.ToString("C");
+            //lblTotalBeforeRecycle.Text = _bill.TotalBeforeRecycle.ToString("C");
+            //lblRecycleUnit.Text = _bill.RecycleTotal.ToString("C");
+            //lblTotalBeforeVAT.Text = _bill.TotalBeforeVAT.ToString("C");
+            //lblVAT.Text = _bill.VAT.ToString("C");
+            //lblTotal.Text = _bill.Total.ToString("C");
         }
     }
 }

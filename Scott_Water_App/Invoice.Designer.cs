@@ -56,7 +56,7 @@
             this.lblTier2 = new System.Windows.Forms.Label();
             this.lblTier3 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.lblRecycle = new System.Windows.Forms.Label();
+            this.lblRecycleUnit = new System.Windows.Forms.Label();
             this.lblRecycleTotal = new System.Windows.Forms.Label();
             this.lblTotalBeforeRecycle = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
@@ -73,6 +73,7 @@
             this.lblTotalBeforeVAT = new System.Windows.Forms.Label();
             this.lblInvoiceNumber = new System.Windows.Forms.Label();
             this.lblInvoiceIssuedDate = new System.Windows.Forms.Label();
+            this.lblRecyclePerUnit = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -242,7 +243,7 @@
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(615, 565);
+            this.label12.Location = new System.Drawing.Point(397, 551);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 20);
@@ -402,16 +403,16 @@
             this.label25.TabIndex = 29;
             this.label25.Text = " Total Before Recycle";
             // 
-            // lblRecycle
+            // lblRecycleUnit
             // 
-            this.lblRecycle.AutoSize = true;
-            this.lblRecycle.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.lblRecycle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecycle.Location = new System.Drawing.Point(752, 565);
-            this.lblRecycle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblRecycle.Name = "lblRecycle";
-            this.lblRecycle.Size = new System.Drawing.Size(0, 20);
-            this.lblRecycle.TabIndex = 30;
+            this.lblRecycleUnit.AutoSize = true;
+            this.lblRecycleUnit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblRecycleUnit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecycleUnit.Location = new System.Drawing.Point(575, 565);
+            this.lblRecycleUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRecycleUnit.Name = "lblRecycleUnit";
+            this.lblRecycleUnit.Size = new System.Drawing.Size(0, 20);
+            this.lblRecycleUnit.TabIndex = 30;
             // 
             // lblRecycleTotal
             // 
@@ -569,12 +570,22 @@
             this.lblInvoiceIssuedDate.Size = new System.Drawing.Size(0, 13);
             this.lblInvoiceIssuedDate.TabIndex = 47;
             // 
+            // lblRecyclePerUnit
+            // 
+            this.lblRecyclePerUnit.AutoSize = true;
+            this.lblRecyclePerUnit.Location = new System.Drawing.Point(696, 557);
+            this.lblRecyclePerUnit.Name = "lblRecyclePerUnit";
+            this.lblRecyclePerUnit.Size = new System.Drawing.Size(28, 13);
+            this.lblRecyclePerUnit.TabIndex = 48;
+            this.lblRecyclePerUnit.Text = "0.10";
+            // 
             // frmInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(984, 979);
+            this.Controls.Add(this.lblRecyclePerUnit);
             this.Controls.Add(this.lblInvoiceIssuedDate);
             this.Controls.Add(this.lblInvoiceNumber);
             this.Controls.Add(this.lblTotalBeforeVAT);
@@ -590,7 +601,7 @@
             this.Controls.Add(this.label30);
             this.Controls.Add(this.lblTotalBeforeRecycle);
             this.Controls.Add(this.lblRecycleTotal);
-            this.Controls.Add(this.lblRecycle);
+            this.Controls.Add(this.lblRecycleUnit);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.lblTier3);
             this.Controls.Add(this.lblTier2);
@@ -625,7 +636,7 @@
             this.MinimizeBox = false;
             this.Name = "frmInvoice";
             this.Text = "Invoice";
-            this.Load += new System.EventHandler(this.frmInvoice_Load);
+            
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -663,7 +674,7 @@
         private System.Windows.Forms.Label lblTier2;
         private System.Windows.Forms.Label lblTier3;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label lblRecycle;
+        private System.Windows.Forms.Label lblRecycleUnit;
         private System.Windows.Forms.Label lblRecycleTotal;
         private System.Windows.Forms.Label lblTotalBeforeRecycle;
         private System.Windows.Forms.Label label30;
@@ -679,5 +690,6 @@
         private System.Windows.Forms.Label lblTotalBeforeVAT;
         private System.Windows.Forms.Label lblInvoiceNumber;
         private System.Windows.Forms.Label lblInvoiceIssuedDate;
+        private System.Windows.Forms.Label lblRecyclePerUnit;
     }
 }

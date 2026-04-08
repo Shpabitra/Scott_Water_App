@@ -18,7 +18,9 @@ namespace Scott_Water_App.Models
         public double Tier2Cost { get; set; } // 1001-5000 units @ 0.72
         public double Tier3Cost { get; set; } // 5001+ units @ 1.16
         public double TotalBeforeRecycle { get; set; }
-        public double Recycled { get; set; } // 0.10 credit per recycled unit
+        public double RecycleUnit { get; set; }
+        public double RecyclePerUnit { get; set; }
+        public double RecycleTotal { get; set; } // 0.10 credit per recycled unit
         public double TotalBeforeVAT{ get; set; }
         public double VAT{ get; set; } // 20% VAT
         
@@ -35,19 +37,23 @@ namespace Scott_Water_App.Models
         {
 
             // Calculate tiered costs based on usage
-          double remaining = UsageUnits;
+          double remaining = this.UsageUnits;
 
             //tier 1: 0-1000
             double t1 = Math.Min(remaining, 1000);
-            Tier1Cost = t1 * 0.32;
+            this.Tier1Cost = t1 * 0.32;
             remaining -= t1;
 
             //tier 2: 1001 - 5000
             if (remaining > 0)
             {
                 double t2 = Math.Min(remaining, 4000); // 1001-5000 means max 4000 units in tier 2
-                Tier2Cost = t2 * 0.72;
+                this.Tier2Cost = t2 * 0.72;
                 remaining -= t2;
+            }
+            else
+            {
+                this.Tier2Cost = 0;
             }
 
 
@@ -56,20 +62,20 @@ namespace Scott_Water_App.Models
 
 
             {
-                Tier3Cost = remaining * 1.16;
+               this.Tier3Cost = remaining >0 ? remaining * 1.16 :0;
             }
            
 
-            TotalBeforeRecycle = Tier1Cost + Tier2Cost + Tier3Cost;
-            Recycled = RecycledUnits * 0.10; // credit for recycled units
+            this.TotalBeforeRecycle = Tier1Cost + Tier2Cost + Tier3Cost;
+            this.RecycleTotal= this.RecycledUnits * 0.10; // credit for recycled units
 
-            TotalBeforeVAT = TotalBeforeRecycle - Recycled; // apply recycled credit before VAT
-            VAT = TotalBeforeVAT * 0.20; // 20% VAT
-            Total = TotalBeforeVAT + VAT; // add VAT to get final total
+            this.TotalBeforeVAT = Math.Max(0, TotalBeforeRecycle - RecycleTotal); // apply recycled credit before VAT
+           this.VAT = TotalBeforeVAT * 0.20; // 20% VAT
+            this.Total = TotalBeforeVAT + VAT; // add VAT to get final total
 
             //Generate Unique Invoice Number
             Random rnd = new Random();
-            this.InvoiceNumber = "INV-" + rnd.Next(100000, 999999).ToString(); // Example: INV-123456
+            this.InvoiceNumber = "INV-" + DateTime.Now.Ticks.ToString().Substring(10); // Example: INV-123456
             this.IssueDate = DateTime.Now.ToShortDateString(); // Set issue date to current date
         }
 
