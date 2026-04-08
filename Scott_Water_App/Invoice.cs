@@ -47,7 +47,7 @@ namespace Scott_Water_App
 
         private void frmInvoice_Load(object sender, EventArgs e)
         {
-            //map the properties tot he label 
+            //map the properties to the label 
             lblBusinessName.Text = _bill.BusinessName;
             lblBusinessAddress.Text = _bill.BusinessAddress;
             lblDateRange.Text = _bill.DateRange;

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 
 namespace Scott_Water_App.Models
 {
@@ -50,6 +53,8 @@ namespace Scott_Water_App.Models
 
             //tier 3: 5001+
             if (remaining > 0)
+
+
             {
                 Tier3Cost = remaining > 0 ? remaining * 1.16 : 0;
             }

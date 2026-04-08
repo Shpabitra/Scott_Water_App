@@ -20,6 +20,13 @@ namespace Scott_Water_App
 
         private void frmMeterReading_Load(object sender, EventArgs e)
         {
+            using(var db = new ScotWaterContext())
+            {
+                // Load business names from the database and bind to the dropdown
+                var businessNames = db.Businesses.Select(b => b.BusinessName).ToList();
+                dudBusinessName.Items.Clear();
+                dudBusinessName.Items.AddRange(businessNames);
+            }
 
         }
 
