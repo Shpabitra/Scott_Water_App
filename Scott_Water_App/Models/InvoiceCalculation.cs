@@ -14,9 +14,7 @@ namespace Scott_Water_App.Models
         //to hold the invoice calculation details for a given meter reading
         public double UsageUnits { get; set; }
         public double RecycledUnits { get; set; }
-        //public double Upto1000Units { get; set; } = 1000;
-        //public double Upto5000Units { get; set; } = 4000; // 1001-5000 means max 4000 units in tier 2
-        //public double Above5000Units { get; set; } // calculated as remaining units after tier 1 and tier 2
+        
         public double Tier1UnitsUsed { get; set; } 
         public double Tier2UnitsUsed { get; set; }
         public double Tier3UnitsUsed { get; set; }

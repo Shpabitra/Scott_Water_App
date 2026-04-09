@@ -57,9 +57,9 @@ namespace Scott_Water_App
             lblInvoiceIssuedDate.Text = _bill.IssueDate;
             //Assign the values to the list view items
             //use "C" to format numbers as currency
-            lblUpto1000.Text = _bill.Upto1000Units.ToString();
-            lblUpto5000.Text = _bill.Upto5000Units.ToString();
-            lblOver5001.Text = _bill.Above5000Units.ToString();
+            lblTier1Unit.Text = _bill.Tier1UnitsUsed.ToString("N0");
+            lblTier2Unit.Text = _bill.Tier2UnitsUsed.ToString("N0");
+            lblTier3Unit.Text = _bill.Tier3UnitsUsed.ToString("N0");
             lblCpu1.Text = _bill.Tier1Rate.ToString("C");
             lblCpu2.Text = _bill.Tier2Rate.ToString("C");
             lblCpu3.Text = _bill.Tier3Rate.ToString("C");

@@ -46,9 +46,9 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.lblUpto1000 = new System.Windows.Forms.Label();
-            this.lblUpto5000 = new System.Windows.Forms.Label();
-            this.lblOver5001 = new System.Windows.Forms.Label();
+            this.lblTier1Unit = new System.Windows.Forms.Label();
+            this.lblTier2Unit = new System.Windows.Forms.Label();
+            this.lblTier3Unit = new System.Windows.Forms.Label();
             this.lblCpu1 = new System.Windows.Forms.Label();
             this.lblCpu2 = new System.Windows.Forms.Label();
             this.lblCpu3 = new System.Windows.Forms.Label();
@@ -288,38 +288,38 @@
             this.label15.TabIndex = 19;
             this.label15.Text = "Total";
             // 
-            // lblUpto1000
+            // lblTier1Unit
             // 
-            this.lblUpto1000.AutoSize = true;
-            this.lblUpto1000.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.lblUpto1000.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpto1000.Location = new System.Drawing.Point(554, 359);
-            this.lblUpto1000.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblUpto1000.Name = "lblUpto1000";
-            this.lblUpto1000.Size = new System.Drawing.Size(0, 20);
-            this.lblUpto1000.TabIndex = 20;
+            this.lblTier1Unit.AutoSize = true;
+            this.lblTier1Unit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblTier1Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTier1Unit.Location = new System.Drawing.Point(554, 359);
+            this.lblTier1Unit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTier1Unit.Name = "lblTier1Unit";
+            this.lblTier1Unit.Size = new System.Drawing.Size(0, 20);
+            this.lblTier1Unit.TabIndex = 20;
             // 
-            // lblUpto5000
+            // lblTier2Unit
             // 
-            this.lblUpto5000.AutoSize = true;
-            this.lblUpto5000.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.lblUpto5000.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpto5000.Location = new System.Drawing.Point(535, 405);
-            this.lblUpto5000.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblUpto5000.Name = "lblUpto5000";
-            this.lblUpto5000.Size = new System.Drawing.Size(0, 20);
-            this.lblUpto5000.TabIndex = 21;
+            this.lblTier2Unit.AutoSize = true;
+            this.lblTier2Unit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblTier2Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTier2Unit.Location = new System.Drawing.Point(535, 405);
+            this.lblTier2Unit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTier2Unit.Name = "lblTier2Unit";
+            this.lblTier2Unit.Size = new System.Drawing.Size(0, 20);
+            this.lblTier2Unit.TabIndex = 21;
             // 
-            // lblOver5001
+            // lblTier3Unit
             // 
-            this.lblOver5001.AutoSize = true;
-            this.lblOver5001.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.lblOver5001.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOver5001.Location = new System.Drawing.Point(559, 453);
-            this.lblOver5001.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblOver5001.Name = "lblOver5001";
-            this.lblOver5001.Size = new System.Drawing.Size(0, 20);
-            this.lblOver5001.TabIndex = 22;
+            this.lblTier3Unit.AutoSize = true;
+            this.lblTier3Unit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblTier3Unit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTier3Unit.Location = new System.Drawing.Point(559, 453);
+            this.lblTier3Unit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTier3Unit.Name = "lblTier3Unit";
+            this.lblTier3Unit.Size = new System.Drawing.Size(0, 20);
+            this.lblTier3Unit.TabIndex = 22;
             // 
             // lblCpu1
             // 
@@ -628,9 +628,9 @@
             this.Controls.Add(this.lblCpu3);
             this.Controls.Add(this.lblCpu2);
             this.Controls.Add(this.lblCpu1);
-            this.Controls.Add(this.lblOver5001);
-            this.Controls.Add(this.lblUpto5000);
-            this.Controls.Add(this.lblUpto1000);
+            this.Controls.Add(this.lblTier3Unit);
+            this.Controls.Add(this.lblTier2Unit);
+            this.Controls.Add(this.lblTier1Unit);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
@@ -682,9 +682,9 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label lblUpto1000;
-        private System.Windows.Forms.Label lblUpto5000;
-        private System.Windows.Forms.Label lblOver5001;
+        private System.Windows.Forms.Label lblTier1Unit;
+        private System.Windows.Forms.Label lblTier2Unit;
+        private System.Windows.Forms.Label lblTier3Unit;
         private System.Windows.Forms.Label lblCpu1;
         private System.Windows.Forms.Label lblCpu2;
         private System.Windows.Forms.Label lblCpu3;
