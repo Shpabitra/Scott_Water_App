@@ -33,6 +33,9 @@ namespace Scott_Water_App
 
         public void DisplayBill()
         {
+            //Assign the units
+            lblWaterUsageUnit.Text = _bill.UsageUnits.ToString();
+            lblRecycleUnit.Text = _bill.RecycledUnits.ToString();
             //map the properties to the label 
             lblBusinessName.Text = _bill.BusinessName;
             lblBusinessAddress.Text = _bill.BusinessAddress;
@@ -46,12 +49,24 @@ namespace Scott_Water_App
             lblTier3.Text = _bill.Tier3Cost.ToString("C");
             lblTotalBeforeRecycle.Text = _bill.TotalBeforeRecycle.ToString("C");
 
-            lblRecycleUnit.Text = _bill.RecycleTotal.ToString("C");
+            lblRecycleTotal.Text = _bill.RecycleTotal.ToString("C");
             lblTotalBeforeVAT.Text = _bill.TotalBeforeVAT.ToString("C");
             lblVAT.Text = _bill.VAT.ToString("C");
             lblTotal.Text = _bill.Total.ToString("C");
 
 
+        }
+
+        private void btnBacktoMeterReading_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to go back? Your current invoice will be lost.", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+
+                frmMeterReading meterReadingForm = new frmMeterReading();
+                meterReadingForm.Show(); // Show the Meter Reading form
+                this.Close(); // Close the current Invoice form
+            }
         }
 
         //private void frmInvoice_Load(object sender, EventArgs e)
@@ -63,15 +78,15 @@ namespace Scott_Water_App
         //    lblInvoiceNo.Text = _bill.InvoiceNumber;
         //    lblInvoiceIssuedDate.Text = _bill.IssueDate;
 
-            //Financials 
-            //lblTier1.Text = _bill.Tier1Cost.ToString("C");
-            //lblTier2.Text = _bill.Tier2Cost.ToString("C");
-            //lblTier3.Text = _bill.Tier3Cost.ToString("C");
-            //lblTotalBeforeRecycle.Text = _bill.TotalBeforeRecycle.ToString("C");
-            //lblRecycleUnit.Text = _bill.RecycleTotal.ToString("C");
-            //lblTotalBeforeVAT.Text = _bill.TotalBeforeVAT.ToString("C");
-            //lblVAT.Text = _bill.VAT.ToString("C");
-            //lblTotal.Text = _bill.Total.ToString("C");
-        
+        //Financials 
+        //lblTier1.Text = _bill.Tier1Cost.ToString("C");
+        //lblTier2.Text = _bill.Tier2Cost.ToString("C");
+        //lblTier3.Text = _bill.Tier3Cost.ToString("C");
+        //lblTotalBeforeRecycle.Text = _bill.TotalBeforeRecycle.ToString("C");
+        //lblRecycleUnit.Text = _bill.RecycleTotal.ToString("C");
+        //lblTotalBeforeVAT.Text = _bill.TotalBeforeVAT.ToString("C");
+        //lblVAT.Text = _bill.VAT.ToString("C");
+        //lblTotal.Text = _bill.Total.ToString("C");
+
     }
 }

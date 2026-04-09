@@ -40,7 +40,7 @@
             this.lblBusinessAddress = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.lblWaterUsage = new System.Windows.Forms.Label();
+            this.lblWaterUsageUnit = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -74,6 +74,8 @@
             this.lblInvoiceNumber = new System.Windows.Forms.Label();
             this.lblInvoiceIssuedDate = new System.Windows.Forms.Label();
             this.lblRecyclePerUnit = new System.Windows.Forms.Label();
+            this.btnBacktoMeterReading = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -215,16 +217,16 @@
             this.label9.TabIndex = 13;
             this.label9.Text = "Water Usage";
             // 
-            // lblWaterUsage
+            // lblWaterUsageUnit
             // 
-            this.lblWaterUsage.AutoSize = true;
-            this.lblWaterUsage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.lblWaterUsage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWaterUsage.Location = new System.Drawing.Point(426, 453);
-            this.lblWaterUsage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblWaterUsage.Name = "lblWaterUsage";
-            this.lblWaterUsage.Size = new System.Drawing.Size(0, 20);
-            this.lblWaterUsage.TabIndex = 14;
+            this.lblWaterUsageUnit.AutoSize = true;
+            this.lblWaterUsageUnit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lblWaterUsageUnit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWaterUsageUnit.Location = new System.Drawing.Point(426, 453);
+            this.lblWaterUsageUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblWaterUsageUnit.Name = "lblWaterUsageUnit";
+            this.lblWaterUsageUnit.Size = new System.Drawing.Size(0, 20);
+            this.lblWaterUsageUnit.TabIndex = 14;
             // 
             // label11
             // 
@@ -579,12 +581,36 @@
             this.lblRecyclePerUnit.TabIndex = 48;
             this.lblRecyclePerUnit.Text = "0.10";
             // 
+            // btnBacktoMeterReading
+            // 
+            this.btnBacktoMeterReading.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnBacktoMeterReading.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBacktoMeterReading.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnBacktoMeterReading.Location = new System.Drawing.Point(336, 805);
+            this.btnBacktoMeterReading.Name = "btnBacktoMeterReading";
+            this.btnBacktoMeterReading.Size = new System.Drawing.Size(250, 90);
+            this.btnBacktoMeterReading.TabIndex = 49;
+            this.btnBacktoMeterReading.Text = "Back To Meter Reading";
+            this.btnBacktoMeterReading.UseVisualStyleBackColor = false;
+            this.btnBacktoMeterReading.Click += new System.EventHandler(this.btnBacktoMeterReading_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(668, 949);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 50;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // frmInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(984, 979);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnBacktoMeterReading);
             this.Controls.Add(this.lblRecyclePerUnit);
             this.Controls.Add(this.lblInvoiceIssuedDate);
             this.Controls.Add(this.lblInvoiceNumber);
@@ -617,7 +643,7 @@
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.lblWaterUsage);
+            this.Controls.Add(this.lblWaterUsageUnit);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.lblBusinessAddress);
@@ -636,7 +662,6 @@
             this.MinimizeBox = false;
             this.Name = "frmInvoice";
             this.Text = "Invoice";
-            
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -658,7 +683,7 @@
         private System.Windows.Forms.Label lblBusinessAddress;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label lblWaterUsage;
+        private System.Windows.Forms.Label lblWaterUsageUnit;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
@@ -691,5 +716,7 @@
         private System.Windows.Forms.Label lblInvoiceNumber;
         private System.Windows.Forms.Label lblInvoiceIssuedDate;
         private System.Windows.Forms.Label lblRecyclePerUnit;
+        private System.Windows.Forms.Button btnBacktoMeterReading;
+        private System.Windows.Forms.Button button2;
     }
 }

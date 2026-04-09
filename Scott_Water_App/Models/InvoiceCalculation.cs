@@ -62,16 +62,19 @@ namespace Scott_Water_App.Models
 
 
             {
-               this.Tier3Cost = remaining >0 ? remaining * 1.16 :0;
+               this.Tier3Cost = remaining  * 1.16;
             }
-           
+           else
+            {
+                this.Tier3Cost = 0;
+            }
 
-            this.TotalBeforeRecycle = Tier1Cost + Tier2Cost + Tier3Cost;
+                this.TotalBeforeRecycle = this.Tier1Cost + this.Tier2Cost + this.Tier3Cost;
             this.RecycleTotal= this.RecycledUnits * 0.10; // credit for recycled units
 
-            this.TotalBeforeVAT = Math.Max(0, TotalBeforeRecycle - RecycleTotal); // apply recycled credit before VAT
+            this.TotalBeforeVAT = Math.Max(0, this.TotalBeforeRecycle - RecycleTotal); // apply recycled credit before VAT
            this.VAT = TotalBeforeVAT * 0.20; // 20% VAT
-            this.Total = TotalBeforeVAT + VAT; // add VAT to get final total
+            this.Total = this.TotalBeforeVAT + this.VAT; // add VAT to get final total
 
             //Generate Unique Invoice Number
             Random rnd = new Random();

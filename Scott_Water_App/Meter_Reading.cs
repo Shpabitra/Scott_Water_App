@@ -58,6 +58,10 @@ namespace Scott_Water_App
             //Create the object
             InvoiceCalculation invoice = new InvoiceCalculation();
 
+         //   //pull from the numeric up down controls and assign to the invoice object
+         //info.UsageUnits = (double)nudWaterUsage.Value;
+         //   info.RecycleUnits = (double)nudRecycle.Value;
+
             using (var db = new ScotWaterContext())
             {
                 // Find the selected business in the database
