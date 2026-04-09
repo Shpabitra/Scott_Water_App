@@ -14,9 +14,12 @@ namespace Scott_Water_App.Models
         //to hold the invoice calculation details for a given meter reading
         public double UsageUnits { get; set; }
         public double RecycledUnits { get; set; }
-        public double Upto1000Units { get; set; } = 1000;
-        public double Upto5000Units { get; set; } = 4000; // 1001-5000 means max 4000 units in tier 2
-        public double Above5000Units { get; set; } // calculated as remaining units after tier 1 and tier 2
+        //public double Upto1000Units { get; set; } = 1000;
+        //public double Upto5000Units { get; set; } = 4000; // 1001-5000 means max 4000 units in tier 2
+        //public double Above5000Units { get; set; } // calculated as remaining units after tier 1 and tier 2
+        public double Tier1UnitsUsed { get; set; } 
+        public double Tier2UnitsUsed { get; set; }
+        public double Tier3UnitsUsed { get; set; }
         public double Tier1Rate { get; set; } = 0.32;
         public double Tier2Rate { get; set; } = 0.72;
         public double Tier3Rate { get; set; } = 1.16;
@@ -46,16 +49,17 @@ namespace Scott_Water_App.Models
           double remaining = this.UsageUnits;
 
             //tier 1: 0-1000
-            double t1 = Math.Min(remaining, 1000);
-            this.Tier1Cost = t1 * 0.32;
-            remaining -= t1;
+           this.Tier1UnitsUsed = Math.Min(remaining, 1000);
+            this.Tier1Cost = this.Tier1UnitsUsed * this.Tier1Rate;
+            remaining -= this.Tier1UnitsUsed;
 
             //tier 2: 1001 - 5000
+            this.Tier2UnitsUsed = 0;
             if (remaining > 0)
             {
-                double t2 = Math.Min(remaining, 4000); // 1001-5000 means max 4000 units in tier 2
-                this.Tier2Cost = t2 * 0.72;
-                remaining -= t2;
+                this.Tier2UnitsUsed = Math.Min(remaining, 4000); // 1001-5000 means max 4000 units in tier 2
+                this.Tier2Cost = this.Tier2UnitsUsed * this.Tier2Rate;
+                remaining -= this.Tier2UnitsUsed;
             }
             else
             {
@@ -64,11 +68,11 @@ namespace Scott_Water_App.Models
 
 
             //tier 3: 5001+
+                this.Tier3UnitsUsed = 0;
             if (remaining > 0)
-
-
             {
-               this.Tier3Cost = remaining  * 1.16;
+                this.Tier3UnitsUsed = remaining;
+                this.Tier3Cost = this.Tier3UnitsUsed * this.Tier3Rate;
             }
            else
             {
@@ -76,7 +80,8 @@ namespace Scott_Water_App.Models
             }
 
                 this.TotalBeforeRecycle = this.Tier1Cost + this.Tier2Cost + this.Tier3Cost;
-            this.RecycleTotal= this.RecycledUnits * 0.10; // credit for recycled units
+            this.RecyclePerUnit = 0.10; // credit per recycled unit
+            this.RecycleTotal= this.RecycledUnits * this.RecyclePerUnit; // credit for recycled units
 
             this.TotalBeforeVAT = Math.Max(0, this.TotalBeforeRecycle - RecycleTotal); // apply recycled credit before VAT
            this.VAT = TotalBeforeVAT * 0.20; // 20% VAT

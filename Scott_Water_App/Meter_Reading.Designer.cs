@@ -211,6 +211,11 @@
             // nudWaterUsage
             // 
             this.nudWaterUsage.Location = new System.Drawing.Point(383, 416);
+            this.nudWaterUsage.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
             this.nudWaterUsage.Name = "nudWaterUsage";
             this.nudWaterUsage.Size = new System.Drawing.Size(214, 20);
             this.nudWaterUsage.TabIndex = 17;

@@ -571,9 +571,8 @@
             this.lblRecyclePerUnit.AutoSize = true;
             this.lblRecyclePerUnit.Location = new System.Drawing.Point(696, 557);
             this.lblRecyclePerUnit.Name = "lblRecyclePerUnit";
-            this.lblRecyclePerUnit.Size = new System.Drawing.Size(28, 13);
+            this.lblRecyclePerUnit.Size = new System.Drawing.Size(0, 13);
             this.lblRecyclePerUnit.TabIndex = 48;
-            this.lblRecyclePerUnit.Text = "0.10";
             // 
             // btnBacktoMeterReading
             // 

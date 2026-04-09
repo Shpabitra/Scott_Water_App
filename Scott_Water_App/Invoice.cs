@@ -34,28 +34,21 @@ namespace Scott_Water_App
         public void DisplayBill()
         {
             //use the total usage passed from the first form
-            double remaining = _bill.UsageUnits;
-
-            //tier1 (0-1000)--
-            double t1 = Math.Min(remaining, 1000);
-            lblUpto1000.Text = t1.ToString();
             lblTier1.Text = _bill.Tier1Cost.ToString("C");
-           // remaining -= t1; //subtract the 1000 units from the remaining usage for the next tier calculation
+           
 
             //Tier 2 (1001-5000)--
-            double t2 = Math.Min(Math.Max(remaining - 1000, 0), 4000);
-            lblUpto5000.Text = t2.ToString();
+          
             lblTier2.Text = _bill.Tier2Cost.ToString("C");
            // remaining -= t2; //substract 4000 units from the remaining usage for the next tier calculation
 
             //Tier 3 (5001+)--
-            double t3 = Math.Max(remaining - 5000, 0);
-            lblOver5001.Text = t3.ToString();
+            
             lblTier3.Text = _bill.Tier3Cost.ToString("C");
 
             //Assign the units
-            lblTotalUsageUnit.Text = _bill.UsageUnits.ToString();
-            lblRecycleUnit.Text = _bill.RecycledUnits.ToString();
+            lblTotalUsageUnit.Text = _bill.UsageUnits.ToString("N0");
+            lblRecycleUnit.Text = _bill.RecycledUnits.ToString("N0");
             //map the properties to the label 
             lblBusinessName.Text = _bill.BusinessName;
             lblBusinessAddress.Text = _bill.BusinessAddress;
@@ -74,6 +67,7 @@ namespace Scott_Water_App
             //lblTier2.Text = _bill.Tier2Cost.ToString("C");
             //lblTier3.Text = _bill.Tier3Cost.ToString("C");
             lblTotalBeforeRecycle.Text = _bill.TotalBeforeRecycle.ToString("C");
+            lblRecyclePerUnit.Text = _bill.RecyclePerUnit.ToString("C");
 
             lblRecycleTotal.Text = _bill.RecycleTotal.ToString("C");
             lblTotalBeforeVAT.Text = _bill.TotalBeforeVAT.ToString("C");
