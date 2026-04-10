@@ -97,6 +97,7 @@
     <Compile Include="Models\Readings.cs" />
     <Compile Include="Models\ScotWaterContext.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\WaterLevel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register_New_Business.cs">

@@ -72,11 +72,10 @@ namespace Scott_Water_App
                     //fill the invoice object with the business data and date range
                     invoice.BusinessName = biz.BusinessName;
                     invoice.BusinessAddress = $"{biz.BusinessCity}, {biz.BusinessPostcode}";
-                    invoice.DateRange = $"{dtpStartDate.Value.ToShortDateString()} - {dtpEndDate.Value.ToShortDateString()}";
-
+                    invoice.DateRange = dtpReadingDate.Value.ToString("MMMM yyyy");
                     //Assign values from the textboxes inputs
-                    invoice.UsageUnits = (double)nudWaterUsage.Value;
-                    invoice.RecycledUnits = (double)nudRecycle.Value;
+                    invoice.UsageUnits = (double)nudUsageUnits.Value;
+                    invoice.RecycledUnits = (double)nudRecycleUnits.Value;
 
                     //run the calculation
                     invoice.CalculateInvoice();
@@ -95,6 +94,25 @@ namespace Scott_Water_App
 
 
 
+
+            }
+        }
+
+        private double GetReserveLevel()
+        {
+            using (var db = new ScotWaterContext())
+            {
+                var reserve = db.WaterLevel
+                    .OrderByDescending(r => r.Id)
+                    .FirstOrDefault();
+
+                if (reserve != null)
+                {
+                    return reserve.ReservePercentage;
+
+
+                }
+                return 100;
 
             }
         }

@@ -39,8 +39,11 @@
             this.btnMenuWaterLevel = new System.Windows.Forms.Button();
             this.btn = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.nudReserve = new System.Windows.Forms.NumericUpDown();
+            this.lblStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tkblevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudReserve)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -60,6 +63,7 @@
             this.tkblevel.Name = "tkblevel";
             this.tkblevel.Size = new System.Drawing.Size(405, 45);
             this.tkblevel.TabIndex = 2;
+            this.tkblevel.Scroll += new System.EventHandler(this.tkblevel_Scroll);
             // 
             // label2
             // 
@@ -94,11 +98,11 @@
             // 
             this.lblPercentage.AutoSize = true;
             this.lblPercentage.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPercentage.Location = new System.Drawing.Point(171, 293);
+            this.lblPercentage.Location = new System.Drawing.Point(171, 291);
             this.lblPercentage.Name = "lblPercentage";
-            this.lblPercentage.Size = new System.Drawing.Size(307, 37);
+            this.lblPercentage.Size = new System.Drawing.Size(341, 37);
             this.lblPercentage.TabIndex = 6;
-            this.lblPercentage.Text = "Current Level: 50%";
+            this.lblPercentage.Text = "Reserve Percentage: ";
             // 
             // lblWarning
             // 
@@ -106,9 +110,9 @@
             this.lblWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWarning.Location = new System.Drawing.Point(243, 348);
             this.lblWarning.Name = "lblWarning";
-            this.lblWarning.Size = new System.Drawing.Size(598, 37);
+            this.lblWarning.Size = new System.Drawing.Size(170, 37);
             this.lblWarning.TabIndex = 7;
-            this.lblWarning.Text = "STATUS: NORMAL, ForeColor: Green";
+            this.lblWarning.Text = "STATUS: ";
             // 
             // btnSaveWaterLevel
             // 
@@ -120,6 +124,7 @@
             this.btnSaveWaterLevel.TabIndex = 8;
             this.btnSaveWaterLevel.Text = "SAVE";
             this.btnSaveWaterLevel.UseVisualStyleBackColor = false;
+            this.btnSaveWaterLevel.Click += new System.EventHandler(this.btnSaveWaterLevel_Click);
             // 
             // btnMenuWaterLevel
             // 
@@ -154,12 +159,31 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+            // nudReserve
+            // 
+            this.nudReserve.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudReserve.Location = new System.Drawing.Point(519, 301);
+            this.nudReserve.Name = "nudReserve";
+            this.nudReserve.Size = new System.Drawing.Size(120, 31);
+            this.nudReserve.TabIndex = 11;
+            this.nudReserve.ValueChanged += new System.EventHandler(this.nudReserve_ValueChanged);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(413, 358);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(0, 13);
+            this.lblStatus.TabIndex = 12;
+            // 
             // frmWaterLevel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(984, 761);
+            this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.nudReserve);
             this.Controls.Add(this.btn);
             this.Controls.Add(this.btnMenuWaterLevel);
             this.Controls.Add(this.btnSaveWaterLevel);
@@ -177,6 +201,7 @@
             this.Load += new System.EventHandler(this.frmWaterLevel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tkblevel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudReserve)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,5 +220,7 @@
         private System.Windows.Forms.Button btnSaveWaterLevel;
         private System.Windows.Forms.Button btnMenuWaterLevel;
         private System.Windows.Forms.Button btn;
+        private System.Windows.Forms.NumericUpDown nudReserve;
+        private System.Windows.Forms.Label lblStatus;
     }
 }

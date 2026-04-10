@@ -18,6 +18,9 @@ namespace Scott_Water_App.Models
         public string BusinessContactNumber { get; set; } //Business Contact Number
         public string BusinessCity { get; set; } //Location of Business
         public string BusinessPostcode { get; set; } //Business Postcode
+        public string ContactPerson { get; set; } //Contact Person
+        public string RegistrationDate { get; set; } //Registration Date
+        public string Status { get; set; } //Status of the business (active/inactive)
 
         [ForeignKey("Readings")]
         public int MeterID { get; set; }

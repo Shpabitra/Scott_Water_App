@@ -20,7 +20,8 @@ namespace Scott_Water_App.Models
 
         //Users reprents the meters within the database
         public DbSet<Readings> Meters { get; set; }
-        
+        public DbSet<WaterLevel> WaterLevel { get; set; }
+
 
         public ScotWaterContext() : base("ScotWaterConnection")
         {
