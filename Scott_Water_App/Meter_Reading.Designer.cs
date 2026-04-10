@@ -42,13 +42,11 @@
             this.nudRecycleUnits = new System.Windows.Forms.NumericUpDown();
             this.btnSaveReading = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.nudReserveLevel = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudUsageUnits)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRecycleUnits)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudReserveLevel)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMenuMeterReading
@@ -114,7 +112,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(54, 387);
+            this.label5.Location = new System.Drawing.Point(54, 385);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(333, 37);
@@ -166,21 +164,23 @@
             // 
             // nudUsageUnits
             // 
-            this.nudUsageUnits.Location = new System.Drawing.Point(383, 345);
+            this.nudUsageUnits.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudUsageUnits.Location = new System.Drawing.Point(383, 328);
             this.nudUsageUnits.Maximum = new decimal(new int[] {
             10000000,
             0,
             0,
             0});
             this.nudUsageUnits.Name = "nudUsageUnits";
-            this.nudUsageUnits.Size = new System.Drawing.Size(214, 20);
+            this.nudUsageUnits.Size = new System.Drawing.Size(214, 38);
             this.nudUsageUnits.TabIndex = 17;
             // 
             // nudRecycleUnits
             // 
-            this.nudRecycleUnits.Location = new System.Drawing.Point(383, 403);
+            this.nudRecycleUnits.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudRecycleUnits.Location = new System.Drawing.Point(383, 384);
             this.nudRecycleUnits.Name = "nudRecycleUnits";
-            this.nudRecycleUnits.Size = new System.Drawing.Size(214, 20);
+            this.nudRecycleUnits.Size = new System.Drawing.Size(214, 38);
             this.nudRecycleUnits.TabIndex = 18;
             // 
             // btnSaveReading
@@ -194,6 +194,7 @@
             this.btnSaveReading.TabIndex = 19;
             this.btnSaveReading.Text = "Save Reading";
             this.btnSaveReading.UseVisualStyleBackColor = false;
+            this.btnSaveReading.Click += new System.EventHandler(this.btnSaveReading_Click);
             // 
             // label3
             // 
@@ -205,45 +206,13 @@
             this.label3.TabIndex = 20;
             this.label3.Text = "Current Reserve Level:";
             // 
-            // label6
+            // nudReserveLevel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(225, 480);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(158, 31);
-            this.label6.TabIndex = 21;
-            this.label6.Text = "Rate Type:";
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.ForeColor = System.Drawing.Color.Black;
-            this.progressBar1.Location = new System.Drawing.Point(383, 444);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(214, 23);
-            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar1.TabIndex = 22;
-            this.progressBar1.Value = 22;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(389, 480);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(184, 31);
-            this.label7.TabIndex = 23;
-            this.label7.Text = "Low Reserve";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(603, 444);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(58, 25);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "22%";
+            this.nudReserveLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudReserveLevel.Location = new System.Drawing.Point(383, 436);
+            this.nudReserveLevel.Name = "nudReserveLevel";
+            this.nudReserveLevel.Size = new System.Drawing.Size(214, 38);
+            this.nudReserveLevel.TabIndex = 24;
             // 
             // frmMeterReading
             // 
@@ -251,10 +220,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(984, 761);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.nudReserveLevel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnSaveReading);
             this.Controls.Add(this.nudRecycleUnits);
@@ -278,6 +244,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudUsageUnits)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRecycleUnits)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudReserveLevel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,9 +266,6 @@
         private System.Windows.Forms.NumericUpDown nudRecycleUnits;
         private System.Windows.Forms.Button btnSaveReading;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown nudReserveLevel;
     }
 }

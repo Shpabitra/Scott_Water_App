@@ -12,7 +12,7 @@ namespace Scott_Water_App.Models
     public class Businesses
     {
         [Key]
-        public int BusinessID { get; set; } //Primary Key
+        public double BusinessID { get; set; } //Primary Key
         public string BusinessName { get; set; } //Business Name
         public string BusinessEmail { get; set; } //Business Email
         public string BusinessContactNumber { get; set; } //Business Contact Number
@@ -22,8 +22,6 @@ namespace Scott_Water_App.Models
         public string RegistrationDate { get; set; } //Registration Date
         public string Status { get; set; } //Status of the business (active/inactive)
 
-        [ForeignKey("Readings")]
-        public int MeterID { get; set; }
-        public Readings Readings { get; set; }
+        public virtual ICollection<Readings> Readings { get; set; } // Navigation property to Users
     }
 }

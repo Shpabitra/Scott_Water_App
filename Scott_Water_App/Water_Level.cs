@@ -20,6 +20,28 @@ namespace Scott_Water_App
 
         private void frmWaterLevel_Load(object sender, EventArgs e)
         {
+            try 
+            {
+                using (var db = new Models.ScotWaterContext())
+                {
+                    // Load the most recent water level from the database
+                    var latestWaterLevel = db.WaterLevels.OrderByDescending
+                        (w => w.DateSet).FirstOrDefault();
+
+                    int value = 100;
+                    if (latestWaterLevel != null)
+                    {
+                        value = (int)latestWaterLevel.ReservePercentage;
+                        tkblevel.Value = value;
+                        prbWater.Value = value;
+                        UpdateStatus(value);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading water level: {ex.Message}");
+            }
 
         }
 
@@ -40,7 +62,7 @@ namespace Scott_Water_App
                         DateSet = DateTime.Now
                     };
                     // Add the new water level to the database and save changes
-                    db.WaterLevel.Add(wL);
+                    db.WaterLevels.Add(wL);
                     db.SaveChanges();
                     MessageBox.Show("Water level saved successfully!");
                 }

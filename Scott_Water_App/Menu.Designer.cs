@@ -43,7 +43,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnExitMenu = new System.Windows.Forms.Button();
-            this.btnDailyBillGeneration = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,31 +75,33 @@
             // 
             this.btnReserveLevel.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnReserveLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReserveLevel.Location = new System.Drawing.Point(38, 558);
+            this.btnReserveLevel.Location = new System.Drawing.Point(38, 520);
             this.btnReserveLevel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnReserveLevel.Name = "btnReserveLevel";
             this.btnReserveLevel.Size = new System.Drawing.Size(405, 60);
             this.btnReserveLevel.TabIndex = 4;
             this.btnReserveLevel.Text = "Reserve Level Management";
             this.btnReserveLevel.UseVisualStyleBackColor = false;
+            this.btnReserveLevel.Click += new System.EventHandler(this.btnReserveLevel_Click);
             // 
             // btnCheckQuality
             // 
             this.btnCheckQuality.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnCheckQuality.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCheckQuality.Location = new System.Drawing.Point(38, 478);
+            this.btnCheckQuality.Location = new System.Drawing.Point(38, 435);
             this.btnCheckQuality.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCheckQuality.Name = "btnCheckQuality";
             this.btnCheckQuality.Size = new System.Drawing.Size(405, 60);
             this.btnCheckQuality.TabIndex = 5;
             this.btnCheckQuality.Text = "Check Water Quality";
             this.btnCheckQuality.UseVisualStyleBackColor = false;
+            this.btnCheckQuality.Click += new System.EventHandler(this.btnCheckQuality_Click);
             // 
             // btnInvoice
             // 
             this.btnInvoice.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInvoice.Location = new System.Drawing.Point(38, 315);
+            this.btnInvoice.Location = new System.Drawing.Point(38, 347);
             this.btnInvoice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnInvoice.Name = "btnInvoice";
             this.btnInvoice.Size = new System.Drawing.Size(405, 60);
@@ -112,7 +113,7 @@
             // 
             this.btnMeterReading.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnMeterReading.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMeterReading.Location = new System.Drawing.Point(38, 236);
+            this.btnMeterReading.Location = new System.Drawing.Point(38, 259);
             this.btnMeterReading.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMeterReading.Name = "btnMeterReading";
             this.btnMeterReading.Size = new System.Drawing.Size(405, 60);
@@ -144,6 +145,7 @@
             this.btnViewBusinesses.TabIndex = 9;
             this.btnViewBusinesses.Text = "View Businesses";
             this.btnViewBusinesses.UseVisualStyleBackColor = false;
+            this.btnViewBusinesses.Click += new System.EventHandler(this.btnViewBusinesses_Click);
             // 
             // label1
             // 
@@ -231,24 +233,12 @@
             this.btnExitMenu.Text = "EXIT";
             this.btnExitMenu.UseVisualStyleBackColor = false;
             // 
-            // btnDailyBillGeneration
-            // 
-            this.btnDailyBillGeneration.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnDailyBillGeneration.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDailyBillGeneration.Location = new System.Drawing.Point(38, 393);
-            this.btnDailyBillGeneration.Name = "btnDailyBillGeneration";
-            this.btnDailyBillGeneration.Size = new System.Drawing.Size(405, 60);
-            this.btnDailyBillGeneration.TabIndex = 16;
-            this.btnDailyBillGeneration.Text = "Daily Bill Generation";
-            this.btnDailyBillGeneration.UseVisualStyleBackColor = false;
-            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(984, 761);
-            this.Controls.Add(this.btnDailyBillGeneration);
             this.Controls.Add(this.btnExitMenu);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -293,6 +283,5 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnExitMenu;
-        private System.Windows.Forms.Button btnDailyBillGeneration;
     }
 }

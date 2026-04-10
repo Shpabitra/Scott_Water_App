@@ -45,6 +45,7 @@ namespace Scott_Water_App
                         dudBusinessName.SelectedIndex = 0;
                     }
                 }
+               
             }
             catch (Exception ex)
             {
@@ -52,15 +53,18 @@ namespace Scott_Water_App
             }
         }
 
+       
+
+
         private void btnGenerateBill_Click(object sender, EventArgs e)
         {
 
             //Create the object
             InvoiceCalculation invoice = new InvoiceCalculation();
 
-         //   //pull from the numeric up down controls and assign to the invoice object
-         //info.UsageUnits = (double)nudWaterUsage.Value;
-         //   info.RecycleUnits = (double)nudRecycle.Value;
+            //   //pull from the numeric up down controls and assign to the invoice object
+            //info.UsageUnits = (double)nudWaterUsage.Value;
+            //   info.RecycleUnits = (double)nudRecycle.Value;
 
             using (var db = new ScotWaterContext())
             {
@@ -72,8 +76,10 @@ namespace Scott_Water_App
                     //fill the invoice object with the business data and date range
                     invoice.BusinessName = biz.BusinessName;
                     invoice.BusinessAddress = $"{biz.BusinessCity}, {biz.BusinessPostcode}";
-                    invoice.DateRange = dtpReadingDate.Value.ToString("MMMM yyyy");
+                    invoice.DateRange = dtpReadingDate.Value.ToString("DD MM yy");
                     //Assign values from the textboxes inputs
+                    invoice.ReserveLevel = (double)nudReserveLevel.Value;
+                    invoice.RateType = invoice.ReserveLevel < 25 ? "Low" : "Standard";
                     invoice.UsageUnits = (double)nudUsageUnits.Value;
                     invoice.RecycledUnits = (double)nudRecycleUnits.Value;
 
@@ -98,22 +104,96 @@ namespace Scott_Water_App
             }
         }
 
-        private double GetReserveLevel()
+        //private double GetReserveLevel()
+        //{
+        //    using (var db = new ScotWaterContext())
+        //    {
+        //        var reserve = db.WaterLevels
+
+        //            .OrderByDescending(r => r.Id)
+        //            .FirstOrDefault();
+
+        //        if (reserve != null)
+        //        {
+        //            return reserve.ReservePercentage;
+
+
+        //        }
+        //        return 100;
+
+        //    }
+        //}
+
+        private void btnSaveReading_Click(object sender, EventArgs e)
         {
-            using (var db = new ScotWaterContext())
+            try
             {
-                var reserve = db.WaterLevel
-                    .OrderByDescending(r => r.Id)
-                    .FirstOrDefault();
-
-                if (reserve != null)
+                if (dudBusinessName.SelectedItem == null)
                 {
-                    return reserve.ReservePercentage;
-
-
+                    MessageBox.Show("Please select the busiiness");
+                    return;
                 }
-                return 100;
-
+                using (var db = new ScotWaterContext())
+                {
+                    string selectedBusiness = dudBusinessName.Text.Trim();
+                    var biz = db.Businesses.FirstOrDefault(b => b.BusinessName == selectedBusiness);
+                    if (biz == null)
+                    {
+                        // Save the reading for the selected business
+                        MessageBox.Show("Business not found. Please select a valid business.");
+                        return;
+                    }
+                    //check if a reading already exists for the selected business and date
+                    var existingReading = db.Readings.FirstOrDefault(r =>
+                    r.BusinessID == biz.BusinessID &&
+                    r.ReadingDate == dtpReadingDate.Value.Date);
+                    if (existingReading != null)
+                    {
+                        MessageBox.Show("A reading for the selected business and date.");
+                        return;
+                    }
+                    Readings reading = new Readings
+                    {
+                        BusinessID = biz.BusinessID,
+                        ReadingDate = dtpReadingDate.Value.Date,
+                        UsageUnits = (double)nudUsageUnits.Value,
+                        RecycledUnits = (double)nudRecycleUnits.Value
+                    };
+                    db.Readings.Add(reading);
+                    // Save the reserve level as well
+                    WaterLevel wl = new WaterLevel
+                    {
+                        ReservePercentage = (double)nudReserveLevel.Value,
+                        DateSet = DateTime.Now
+                    };
+                    db.WaterLevels.Add(wl);
+                    db.SaveChanges();
+                    MessageBox.Show("Reading saved successfully.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving reading: {ex.Message}");
+            }
+        }
+        private void SaveReserveLevel(double reserveLevel)
+        {
+            try
+            {
+                using (var db = new ScotWaterContext())
+                {
+                    WaterLevel wl = new WaterLevel
+                    {
+                        ReservePercentage = reserveLevel,
+                        DateSet = DateTime.Now
+                    };
+                    db.WaterLevels.Add(wl);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving reserve level: {ex.Message}");
             }
         }
     }

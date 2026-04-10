@@ -55,6 +55,8 @@ namespace Scott_Water_App
             lblDateRange.Text = _bill.DateRange;
             lblInvoiceNumber.Text = _bill.InvoiceNumber;
             lblInvoiceIssuedDate.Text = _bill.IssueDate;
+            lblReserveLevel.Text = _bill.ReserveLevel.ToString("N0") + "%";
+            lblRateType.Text = _bill.RateType;
             //Assign the values to the list view items
             //use "C" to format numbers as currency
             lblTier1Unit.Text = _bill.Tier1UnitsUsed.ToString("N0");

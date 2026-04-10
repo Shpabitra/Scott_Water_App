@@ -27,5 +27,26 @@ namespace Scott_Water_App
             meterReadingForm.Show();
             this.Hide();
         }
+
+        private void btnReserveLevel_Click(object sender, EventArgs e)
+        {
+            frmWaterLevel waterLevelForm = new frmWaterLevel();
+            waterLevelForm.Show();
+            this.Hide();
+        }
+
+        private void btnViewBusinesses_Click(object sender, EventArgs e)
+        {
+            frmBusinessView businessViewForm = new frmBusinessView();
+            businessViewForm.Show();
+            this.Hide();
+        }
+
+        private void btnCheckQuality_Click(object sender, EventArgs e)
+        {
+            frmWaterQuality waterQualityForm = new frmWaterQuality();
+            waterQualityForm.Show();
+            this.Hide();
+        }
     }
 }
