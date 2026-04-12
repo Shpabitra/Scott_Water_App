@@ -83,6 +83,7 @@
             this.lblCpu3 = new System.Windows.Forms.Label();
             this.lblCpu2 = new System.Windows.Forms.Label();
             this.lblTotalUsageUnit = new System.Windows.Forms.Label();
+            this.lblTotalUsageUnit.Location = new System.Drawing.Point(520, 385);
             this.label13 = new System.Windows.Forms.Label();
             this.Cost = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
