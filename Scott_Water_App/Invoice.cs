@@ -100,12 +100,18 @@ namespace Scott_Water_App
                 Rectangle pageArea = e.MarginBounds;
                 e.Graphics.DrawImage(memoryImage, pageArea); //
             }
+            if(memoryImage == null)
+            {
+                MessageBox.Show("Image is null");
+            }
         }
         private void CaptureInvoicePanel()
         {
-            memoryImage = new Bitmap(panelPrintInvoice.Width, panelPrintInvoice.Height);
-            panelPrintInvoice.DrawToBitmap(memoryImage,
-                new Rectangle(0, 0, panelPrintInvoice.Width, panelPrintInvoice.Height));
+            Bitmap bmp = new Bitmap(this.Width, this.Height);
+            this.DrawToBitmap(bmp, new Rectangle(0, 0, this.Width, this.Height));
+
+            memoryImage = bmp.Clone(panelPrintInvoice.Bounds, bmp.PixelFormat);
+            
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -125,6 +131,16 @@ namespace Scott_Water_App
             {
                 MessageBox.Show("Priint error:" + ex.Message);
             }
+        }
+
+        private void frmInvoice_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelPrintInvoice_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         //private void frmInvoice_Load(object sender, EventArgs e)
