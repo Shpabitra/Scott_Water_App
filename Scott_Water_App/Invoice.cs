@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace Scott_Water_App
     {
         // create a variable to hold the data inside this
         private InvoiceCalculation _bill;
+        private Bitmap memoryImage;
 
             // Update the constructor to accept the invoice data
 
@@ -88,6 +90,40 @@ namespace Scott_Water_App
                 frmMeterReading meterReadingForm = new frmMeterReading();
                 meterReadingForm.Show(); // Show the Meter Reading form
                 this.Close(); // Close the current Invoice form
+            }
+        }
+
+        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            if(memoryImage != null)
+            {
+                Rectangle pageArea = e.MarginBounds;
+                e.Graphics.DrawImage(memoryImage, pageArea); //
+            }
+        }
+        private void CaptureInvoicePanel()
+        {
+            memoryImage = new Bitmap(panelPrintInvoice.Width, panelPrintInvoice.Height);
+            panelPrintInvoice.DrawToBitmap(memoryImage,
+                new Rectangle(0, 0, panelPrintInvoice.Width, panelPrintInvoice.Height));
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+                panelPrintInvoice.Refresh(); // Refresh the panel to ensure all controls are up to date
+                panelPrintInvoice.Update(); // Update the panel to ensure all controls are up to date
+
+                CaptureInvoicePanel();
+                printPreviewDialog1.Document = printDocument1;
+                printPreviewDialog1.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Priint error:" + ex.Message);
             }
         }
 
