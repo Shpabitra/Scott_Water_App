@@ -12,6 +12,8 @@ using Scott_Water_App.Models;
 using System.Data.Entity;//data entyty framework
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 
 namespace Scott_Water_App
 {
@@ -20,10 +22,11 @@ namespace Scott_Water_App
         // create a variable to hold the data inside this
         private InvoiceCalculation _bill;
         private Bitmap memoryImage;
+        private Invoices invoices;
 
-            // Update the constructor to accept the invoice data
+        // Update the constructor to accept the invoice data
 
-           
+
         public frmInvoice(InvoiceCalculation invoice)
         {
             InitializeComponent();
@@ -129,7 +132,7 @@ namespace Scott_Water_App
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Priint error:" + ex.Message);
+                MessageBox.Show("Print error:" + ex.Message);
             }
         }
 
@@ -156,36 +159,42 @@ namespace Scott_Water_App
                         return; // Exit the method if the business is not found
                     }
 
-                    Invoices invoices = new Invoices
-                    { 
-                        BusinessID = business.BusinessID,
-                        InvoiceNumber = _bill.InvoiceNumber,
-                        BusinessName = _bill.BusinessName,
-                        BusinessAddress = _bill.BusinessAddress,
-                        DateRange = _bill.DateRange,
-                        InvoiceDate = _bill.InvoiceDate,
-                        RateType = _bill.RateType,
-                        ReserveLevel = _bill.ReserveLevel.ToString("NO"),
-                        UsageUnits = _bill.UsageUnits,
-                        RecycledUnits = _bill.RecycledUnits,
-                        Tier1UnitsUsed = _bill.Tier1UnitsUsed.ToString("NO"),
-                        Tier2UnitsUsed = _bill.Tier2UnitsUsed.ToString("NO"),
-                        Tier3UnitsUsed = _bill.Tier3UnitsUsed.ToString("NO"),
-                        Tier1Rate = _bill.Tier1Rate.ToString("NO"),
-                        Tier2Rate = _bill.Tier2Rate.ToString("NO"),
-                        Tier3Rate = _bill.Tier3Rate.ToString("NO"),
-                        Tier1Cost = _bill.Tier1Cost.ToString("NO"),
-                        Tier2Cost = _bill.Tier2Cost.ToString("NO"),
-                        Tier3Cost = _bill.Tier3Cost.ToString("NO"),
-                        TotalBeforeRecycle = _bill.TotalBeforeRecycle.ToString("NO"),
-                        RecyclePerUnit = _bill.RecyclePerUnit.ToString("NO"),
-                        RecycleTotal = _bill.RecycleTotal.ToString("NO"),
-                        TotalBeforeVAT = _bill.TotalBeforeVAT.ToString("NO"),
-                        VAT = _bill.VAT.ToString("NO"),
-                        Total = _bill.Total.ToString("NO")
-                    };
+                    var invoice = new Invoices();
+
+                    invoice.BusinessID = business.BusinessID;
+                    invoice.InvoiceNumber = _bill.InvoiceNumber;
+                    invoice.BusinessName = _bill.BusinessName;
+                    invoice.BusinessAddress = _bill.BusinessAddress;
+                    invoice.DateRange = _bill.DateRange;
+                    invoice.InvoiceDate = _bill.InvoiceDate;
+                    invoice.RateType = _bill.RateType;
+                    invoice.ReserveLevel = _bill.ReserveLevel.ToString("NO");
+                    invoice.TotalUsageUnits = _bill.UsageUnits;
+                    invoice.RecycledUnits = _bill.RecycledUnits;
+                    invoice.Tier1Unitsused = _bill.Tier1UnitsUsed.ToString("NO");
+                    invoice.Tier2Unitsused = _bill.Tier2UnitsUsed.ToString("NO");
+                    invoice.Tier3Unitsused = _bill.Tier3UnitsUsed.ToString("NO");
+                    invoice.Tier1Rate = _bill.Tier1Rate.ToString("NO");
+                    invoice.Tier2Rate = _bill.Tier2Rate.ToString("NO");
+                    invoice.Tier3Rate = _bill.Tier3Rate.ToString("NO");
+                    invoice.Tier1Cost = _bill.Tier1Cost.ToString("NO");
+                    invoice.Tier2Cost = _bill.Tier2Cost.ToString("NO");
+                    invoice.Tier3Cost = _bill.Tier3Cost.ToString("NO");
+                    invoice.TotalBeforeRecycle = _bill.TotalBeforeRecycle.ToString("NO");
+                    invoice.RecyclePerUnit = _bill.RecyclePerUnit.ToString("NO");
+                    invoice.RecycleTotal = _bill.RecycleTotal.ToString("NO");
+                    invoice.TotalBeforeVAT = _bill.TotalBeforeVAT.ToString("NO");
+                    invoice.VAT = _bill.VAT.ToString("NO");
+                    invoice.Total = _bill.Total.ToString("NO");
+
+                    if(invoice== null)
+                    {
+                        MessageBox.Show("Invoice data is null.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Exit the method if the invoice data is null
+                    }
+
                     // Add the new invoice entity to the database context and save changes
-                    db.Invoices.Add(invoices);
+                    db.Invoices.Add(invoice);
                     db.SaveChanges();
                     MessageBox.Show("Invoice saved to database successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -203,7 +212,7 @@ namespace Scott_Water_App
                 {
                     errorMessage += "\n\n Inner Exception 2: " + ex.InnerException.InnerException.Message;
                 }
-                MessageBox.Show("Error saving invoice to database: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error saving invoice to database:\n\n " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

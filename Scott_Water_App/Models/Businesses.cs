@@ -12,7 +12,7 @@ namespace Scott_Water_App.Models
     public class Businesses
     {
         [Key]
-        public double BusinessID { get; set; } //Primary Key
+        public int BusinessID { get; set; } //Primary Key
         public string BusinessName { get; set; } //Business Name
         public string BusinessEmail { get; set; } //Business Email
         public string BusinessContactNumber { get; set; } //Business Contact Number

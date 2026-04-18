@@ -13,7 +13,7 @@ namespace Scott_Water_App.Models
     {
         [Key]
         public int MeterID { get; set; }   // changed to int to match FK types
-        public double BusinessID { get; set; } // added to link to Businesses table
+        public int BusinessID { get; set; } // added to link to Businesses table
 
         [ForeignKey("BusinessID")]
         public virtual Businesses Businesses { get; set; } // navigation property to Businesses
