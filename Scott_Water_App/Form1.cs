@@ -14,6 +14,7 @@ namespace Scott_Water_App
 {
     public partial class frmLogin : Form
     {
+        private int failedLoginAttempts = 0; // to track failed login attempts
         public frmLogin()
         {
             InitializeComponent();
@@ -31,6 +32,12 @@ namespace Scott_Water_App
                 MessageBox.Show("Please enter both email and password.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            //stop if already locked
+            if(failedLoginAttempts >= 3)
+            {
+                MessageBox.Show("Incorrect login attempts 3 times. Please Contact Administration.", "Account Locked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            } 
 
             using (var db = new ScotWaterContext())
             {
@@ -61,6 +68,11 @@ namespace Scott_Water_App
             }
             
 
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

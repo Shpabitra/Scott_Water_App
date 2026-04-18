@@ -143,6 +143,11 @@ namespace Scott_Water_App
 
         }
 
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
         //private void frmInvoice_Load(object sender, EventArgs e)
         //{
         //    //map the properties to the label 
