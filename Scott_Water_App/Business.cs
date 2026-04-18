@@ -16,5 +16,12 @@ namespace Scott_Water_App
         {
             InitializeComponent();
         }
+
+        private void lblLinkRegisterBusiness_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmRegisterBusiness registerBusiness = new frmRegisterBusiness();
+            registerBusiness.Show();
+            this.Hide();
+        }
     }
 }

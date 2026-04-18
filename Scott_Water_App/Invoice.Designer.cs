@@ -214,6 +214,7 @@
             this.btnSaveToDataBase.TabIndex = 50;
             this.btnSaveToDataBase.Text = "Save To Data ";
             this.btnSaveToDataBase.UseVisualStyleBackColor = false;
+            this.btnSaveToDataBase.Click += new System.EventHandler(this.btnSaveToDataBase_Click);
             // 
             // printDocument1
             // 
@@ -299,7 +300,7 @@
             this.panelPrintInvoice.Name = "panelPrintInvoice";
             this.panelPrintInvoice.Size = new System.Drawing.Size(960, 767);
             this.panelPrintInvoice.TabIndex = 58;
-            this.panelPrintInvoice.Paint += new System.Windows.Forms.PaintEventHandler(this.panelPrintInvoice_Paint);
+          
             // 
             // label14
             // 

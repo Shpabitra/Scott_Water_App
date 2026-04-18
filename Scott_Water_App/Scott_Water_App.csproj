@@ -94,6 +94,7 @@
     </Compile>
     <Compile Include="Models\Businesses.cs" />
     <Compile Include="Models\InvoiceCalculation.cs" />
+    <Compile Include="Models\Invoices.cs" />
     <Compile Include="Models\Readings.cs" />
     <Compile Include="Models\ScotWaterContext.cs" />
     <Compile Include="Models\User.cs" />

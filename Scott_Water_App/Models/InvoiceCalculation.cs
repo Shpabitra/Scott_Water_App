@@ -40,6 +40,7 @@ namespace Scott_Water_App.Models
         public string DateRange { get; set; }
         public string InvoiceNumber { get; set; }
         public string IssueDate { get; set; }
+        public DateTime InvoiceDate { get; internal set; }
 
         //logic to calculate everything automatically
         public void CalculateInvoice()

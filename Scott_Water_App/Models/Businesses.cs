@@ -23,5 +23,6 @@ namespace Scott_Water_App.Models
         public string Status { get; set; } //Status of the business (active/inactive)
 
         public virtual ICollection<Readings> Readings { get; set; } // Navigation property to Users
+        public virtual ICollection<Invoices> Invoices { get; set; } // Navigation property to Invoices
     }
 }

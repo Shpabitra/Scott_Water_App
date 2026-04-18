@@ -48,5 +48,17 @@ namespace Scott_Water_App
             waterQualityForm.Show();
             this.Hide();
         }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            frmRegisterBusiness registerBusinessForm = new frmRegisterBusiness();
+            registerBusinessForm.Show();
+            this.Hide();
+        }
+
+        private void btnExitMenu_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
