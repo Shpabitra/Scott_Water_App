@@ -87,5 +87,10 @@ namespace Scott_Water_App
 
 
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
