@@ -38,8 +38,8 @@ namespace Scott_Water_App
             TxtEmail.Text = data.Email;
             txtContactPerson.Text = data.ContactPerson;
             textBox1.Text = data.MeterId;
-            textBox2.Text = data.RegistrationDate;
-            textBox3.Text = data.Status;
+            txtRegistrationDate.Text = data.RegistrationDate;
+            txtStatus.Text = data.Status;
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
@@ -79,8 +79,8 @@ namespace Scott_Water_App
                 txtTelephone.Text.Trim(),
                 TxtEmail.Text.Trim(),
                 txtContactPerson.Text.Trim(),
-                textBox2.Text.Trim(),
-                textBox3.Text.Trim());
+                txtRegistrationDate.Text.Trim(),
+                txtStatus.Text.Trim());
 
             MessageBox.Show($"All inputs are valid and email is available {inputEmail}. Business object created for: {business.BusinessName}", "Validation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //write into database

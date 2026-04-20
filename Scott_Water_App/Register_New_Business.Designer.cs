@@ -49,10 +49,10 @@
             this.txtBusinessID = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.lblRegistrationDate = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.txtRegistrationDate = new System.Windows.Forms.TextBox();
+            this.txtStatus = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -288,47 +288,47 @@
             this.textBox1.Size = new System.Drawing.Size(806, 56);
             this.textBox1.TabIndex = 20;
             // 
-            // label10
+            // lblRegistrationDate
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(362, 988);
-            this.label10.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(478, 63);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "Registration Date:";
+            this.lblRegistrationDate.AutoSize = true;
+            this.lblRegistrationDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegistrationDate.Location = new System.Drawing.Point(362, 988);
+            this.lblRegistrationDate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblRegistrationDate.Name = "lblRegistrationDate";
+            this.lblRegistrationDate.Size = new System.Drawing.Size(478, 63);
+            this.lblRegistrationDate.TabIndex = 21;
+            this.lblRegistrationDate.Text = "Registration Date:";
             // 
-            // label11
+            // lblStatus
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(650, 1076);
-            this.label11.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(202, 63);
-            this.label11.TabIndex = 22;
-            this.label11.Text = "Status:";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(650, 1076);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(202, 63);
+            this.lblStatus.TabIndex = 22;
+            this.lblStatus.Text = "Status:";
             // 
-            // textBox2
+            // txtRegistrationDate
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(876, 1004);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(6);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(806, 56);
-            this.textBox2.TabIndex = 23;
+            this.txtRegistrationDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRegistrationDate.Location = new System.Drawing.Point(876, 1004);
+            this.txtRegistrationDate.Margin = new System.Windows.Forms.Padding(6);
+            this.txtRegistrationDate.Multiline = true;
+            this.txtRegistrationDate.Name = "txtRegistrationDate";
+            this.txtRegistrationDate.Size = new System.Drawing.Size(806, 56);
+            this.txtRegistrationDate.TabIndex = 23;
             // 
-            // textBox3
+            // txtStatus
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(876, 1076);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(6);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(806, 56);
-            this.textBox3.TabIndex = 24;
+            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStatus.Location = new System.Drawing.Point(876, 1076);
+            this.txtStatus.Margin = new System.Windows.Forms.Padding(6);
+            this.txtStatus.Multiline = true;
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(806, 56);
+            this.txtStatus.TabIndex = 24;
             // 
             // frmRegisterBusiness
             // 
@@ -336,10 +336,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1968, 1522);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtStatus);
+            this.Controls.Add(this.txtRegistrationDate);
+            this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.lblRegistrationDate);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtBusinessID);
@@ -395,9 +395,9 @@
         private System.Windows.Forms.TextBox txtBusinessID;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label lblRegistrationDate;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.TextBox txtRegistrationDate;
+        private System.Windows.Forms.TextBox txtStatus;
     }
 }
