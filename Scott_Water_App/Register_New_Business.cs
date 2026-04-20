@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,8 +43,37 @@ namespace Scott_Water_App
             txtStatus.Text = data.Status;
         }
 
+        private bool inputvalidationResult()
+        {
+            string errorMessage;
+            var isValid = newRegBizFuncs.inputValidation(
+                txtBusinessID.Text.Trim(),
+                txtBusinessName.Text.Trim(),
+                txtAddress.Text.Trim(),
+                txtPostCode.Text.Trim(),
+                txtTelephone.Text.Trim(),
+                TxtEmail.Text.Trim(),
+                txtContactPerson.Text.Trim(),
+                textBox1.Text.Trim(),
+                txtRegistrationDate.Text.Trim(),
+                txtStatus.Text.Trim(),
+                out errorMessage);
+
+            if (!isValid)
+            {
+                MessageBox.Show(errorMessage, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            if (!inputvalidationResult())
+            {
+                return;
+            }
 
             var inputEmail = TxtEmail.Text.Trim();
 
@@ -83,8 +113,13 @@ namespace Scott_Water_App
                 txtStatus.Text.Trim());
 
             MessageBox.Show($"All inputs are valid and email is available {inputEmail}. Business object created for: {business.BusinessName}", "Validation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //write into database
 
+            //validation of inputs and email format
+
+            
+
+            //write into database
+            
 
         }
 
