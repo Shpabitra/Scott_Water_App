@@ -18,6 +18,8 @@ namespace Scott_Water_App
         public frmLogin()
         {
             InitializeComponent();
+            txtUserEmail.Text = "member1@test.com";
+            txtPassword.Text = "1";
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
