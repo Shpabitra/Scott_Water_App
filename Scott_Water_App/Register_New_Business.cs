@@ -16,6 +16,23 @@ namespace Scott_Water_App
         public frmRegisterBusiness()
         {
             InitializeComponent();
+            FillFakeBusinessData();
+        }
+
+        private void FillFakeBusinessData()
+        {
+            var data = newRegBizFuncs.GenerateFakeBusinessData();
+
+            txtBusinessID.Text = data.BusinessId;
+            txtBusinessName.Text = data.BusinessName;
+            txtAddress.Text = data.Address;
+            txtPostCode.Text = data.PostCode;
+            txtTelephone.Text = data.Telephone;
+            TxtEmail.Text = data.Email;
+            txtContactPerson.Text = data.ContactPerson;
+            textBox1.Text = data.MeterId;
+            textBox2.Text = data.RegistrationDate;
+            textBox3.Text = data.Status;
         }
 
         private void btnRegister_Click(object sender, EventArgs e)

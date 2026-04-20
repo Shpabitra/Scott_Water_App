@@ -1,14 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Scott_Water_App.Models;
+using System;
+using System.Net;
 using System.Net.Mail;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Scott_Water_App.Functions
 {
     internal class newRegBizFuncs
     {
+        internal class FakeBusinessData
+        {
+            public string BusinessId { get; set; }
+            public string BusinessName { get; set; }
+            public string Address { get; set; }
+            public string PostCode { get; set; }
+            public string Telephone { get; set; }
+            public string Email { get; set; }
+            public string ContactPerson { get; set; }
+            public string MeterId { get; set; }
+            public string RegistrationDate { get; set; }
+            public string Status { get; set; }
+        }
+
+        public static FakeBusinessData GenerateFakeBusinessData()
+        {
+            var random = new Random();
+
+            string[] businessPrefixes = { "North", "City", "Green", "Prime", "Blue", "River" };
+            string[] businessTypes = { "Traders", "Solutions", "Supplies", "Holdings", "Services", "Group" };
+            string[] streets = { "Argyle Street", "Buchanan Street", "High Street", "George Street", "Clyde Street" };
+            string[] contactFirstNames = { "John", "Emma", "Liam", "Olivia", "Noah", "Ava" };
+            string[] contactLastNames = { "Smith", "Brown", "Wilson", "Taylor", "Campbell", "Stewart" };
+
+            var prefix = businessPrefixes[random.Next(businessPrefixes.Length)];
+            var type = businessTypes[random.Next(businessTypes.Length)];
+            var firstName = contactFirstNames[random.Next(contactFirstNames.Length)];
+            var lastName = contactLastNames[random.Next(contactLastNames.Length)];
+            var street = streets[random.Next(streets.Length)];
+
+            return new FakeBusinessData
+            {
+                BusinessId = "BIZ" + random.Next(1000, 9999),
+                BusinessName = prefix + " " + type,
+                Address = random.Next(1, 250) + " " + street + ", Glasgow",
+                PostCode = "G" + random.Next(1, 99) + " " + random.Next(1, 9) + "AA",
+                Telephone = "07" + random.Next(100000000, 999999999),
+                Email = (firstName + "." + lastName + "@" + prefix + type + ".com").ToLower(),
+                ContactPerson = firstName + " " + lastName,
+                MeterId = "MTR" + random.Next(10000, 99999),
+                RegistrationDate = DateTime.Today.ToString("yyyy-MM-dd"),
+                Status = "Active"
+            };
+        }
+
         public static bool IsValidEmailFormat(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
