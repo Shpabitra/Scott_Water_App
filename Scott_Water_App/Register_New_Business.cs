@@ -14,10 +14,14 @@ namespace Scott_Water_App
 {
     public partial class frmRegisterBusiness : Form
     {
+
+
         public frmRegisterBusiness()
         {
+
             InitializeComponent();
             LoadBusinessFromDatabase();
+            FillFakeBusinessData();
         }
 
         private void LoadBusinessFromDatabase()
@@ -36,43 +40,37 @@ namespace Scott_Water_App
             }
         }
 
+        private void FillFakeBusinessData()
+        {
+            var data = newRegBizFuncs.GenerateFakeBusinessData();
+
+            txtBusinessID.Text = data.BusinessId;
+            txtBusinessName.Text = data.BusinessName;
+            txtAddress.Text = data.Address;
+            txtPostCode.Text = data.PostCode;
+            txtTelephone.Text = data.Telephone;
+            TxtEmail.Text = data.Email;
+            txtContactPerson.Text = data.ContactPerson;
+            textBox1.Text = data.MeterId;
+            textBox2.Text = data.RegistrationDate;
+            textBox3.Text = data.Status;
+        }
+
         private void btnRegister_Click(object sender, EventArgs e)
         {
             string errorMessage;
-            var isValid = newRegBizFuncs.inputValidation(
-                txtBusinessID.Text.Trim(),
-                txtBusinessName.Text.Trim(),
-                txtAddress.Text.Trim(),
-                txtPostCode.Text.Trim(),
-                txtTelephone.Text.Trim(),
-                TxtEmail.Text.Trim(),
-                txtContactPerson.Text.Trim(),
-                textBox1.Text.Trim(),
-                textBox2.Text.Trim(),
-                textBox3.Text.Trim(),
-                out errorMessage);
-
-            if (!isValid)
-            {
-                MessageBox.Show(errorMessage, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
 
             try
             {
                 using (var db = new ScotWaterContext())
                 {
                     var inputEmail = TxtEmail.Text.Trim();
-                    int currentBusinessId;
-                    var hasCurrentBusinessId = int.TryParse(txtBusinessID.Text.Trim(), out currentBusinessId);
 
-                    var emailExists = db.Businesses.Any(b =>
-                        b.BusinessEmail.ToLower() == inputEmail.ToLower() &&
-                        (!hasCurrentBusinessId || b.BusinessID != currentBusinessId));
+                    var emailExists = db.Businesses.Any(b => b.BusinessEmail.ToLower() == inputEmail.ToLower());
 
                     if (emailExists)
                     {
-                        MessageBox.Show("This email address already exists in the database.", "Duplicate Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Business already exist.", $"Duplicate Business w/ email {inputEmail}", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         TxtEmail.Focus();
                         return;
                     }
