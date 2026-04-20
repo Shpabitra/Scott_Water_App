@@ -109,5 +109,37 @@ namespace Scott_Water_App.Functions
             errorMessage = string.Empty;
             return true;
         }
+
+        public static Businesses GetBusinessFromInputFields(
+            string businessId,
+            string businessName,
+            string address,
+            string postCode,
+            string telephone,
+            string email,
+            string contactPerson,
+            string registrationDate,
+            string status)
+        {
+            var business = new Businesses
+            {
+                BusinessName = businessName,
+                BusinessEmail = email,
+                BusinessContactNumber = telephone,
+                BusinessCity = address,
+                BusinessPostcode = postCode,
+                ContactPerson = contactPerson,
+                RegistrationDate = registrationDate,
+                Status = status
+            };
+
+            int parsedBusinessId;
+            if (int.TryParse(businessId, out parsedBusinessId))
+            {
+                business.BusinessID = parsedBusinessId;
+            }
+
+            return business;
+        }
     }
 }

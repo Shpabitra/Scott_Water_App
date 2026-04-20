@@ -18,26 +18,12 @@ namespace Scott_Water_App
 
         public frmRegisterBusiness()
         {
+            const bool testMode = true;
 
             InitializeComponent();
-            LoadBusinessFromDatabase();
-            FillFakeBusinessData();
-        }
 
-        private void LoadBusinessFromDatabase()
-        {
-            try
-            {
-                using (var db = new ScotWaterContext())
-                {
-                    var businessCount = db.Businesses.Count();
-                    MessageBox.Show("Number of businesses loaded: " + businessCount, "Business Count", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to load business data: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            if (testMode)
+             FillFakeBusinessData();
         }
 
         private void FillFakeBusinessData()
@@ -58,19 +44,22 @@ namespace Scott_Water_App
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            string errorMessage;
+
+            var inputEmail = TxtEmail.Text.Trim();
 
             try
             {
                 using (var db = new ScotWaterContext())
                 {
-                    var inputEmail = TxtEmail.Text.Trim();
+                    var businessCount = db.Businesses.Count();
+                    MessageBox.Show("Number of businesses loaded: " + businessCount, "Business Count", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
 
                     var emailExists = db.Businesses.Any(b => b.BusinessEmail.ToLower() == inputEmail.ToLower());
 
                     if (emailExists)
                     {
-                        MessageBox.Show("Business already exist.", $"Duplicate Business w/ email {inputEmail}", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show($"Business already exist.Duplicate Business w/ email {inputEmail}", "123", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         TxtEmail.Focus();
                         return;
                     }
@@ -82,7 +71,21 @@ namespace Scott_Water_App
                 return;
             }
 
-            MessageBox.Show("All inputs are valid and email is available.", "Validation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            var business = newRegBizFuncs.GetBusinessFromInputFields(
+                txtBusinessID.Text.Trim(),
+                txtBusinessName.Text.Trim(),
+                txtAddress.Text.Trim(),
+                txtPostCode.Text.Trim(),
+                txtTelephone.Text.Trim(),
+                TxtEmail.Text.Trim(),
+                txtContactPerson.Text.Trim(),
+                textBox2.Text.Trim(),
+                textBox3.Text.Trim());
+
+            MessageBox.Show($"All inputs are valid and email is available {inputEmail}. Business object created for: {business.BusinessName}", "Validation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //write into database
+
+
         }
     }
 }
