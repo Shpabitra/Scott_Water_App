@@ -53,6 +53,8 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.txtRegistrationDate = new System.Windows.Forms.TextBox();
             this.txtStatus = new System.Windows.Forms.TextBox();
+            this.btnAddNew = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,7 +76,7 @@
             this.btnExit.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnExit.Location = new System.Drawing.Point(90, 1270);
+            this.btnExit.Location = new System.Drawing.Point(90, 1314);
             this.btnExit.Margin = new System.Windows.Forms.Padding(8, 10, 8, 10);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(350, 180);
@@ -154,7 +156,7 @@
             this.btnRegister.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegister.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnRegister.Location = new System.Drawing.Point(1414, 1314);
+            this.btnRegister.Location = new System.Drawing.Point(1540, 1314);
             this.btnRegister.Margin = new System.Windows.Forms.Padding(8, 10, 8, 10);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(350, 180);
@@ -330,12 +332,40 @@
             this.txtStatus.Size = new System.Drawing.Size(806, 56);
             this.txtStatus.TabIndex = 24;
             // 
+            // btnAddNew
+            // 
+            this.btnAddNew.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnAddNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddNew.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAddNew.Location = new System.Drawing.Point(1160, 1314);
+            this.btnAddNew.Margin = new System.Windows.Forms.Padding(8, 10, 8, 10);
+            this.btnAddNew.Name = "btnAddNew";
+            this.btnAddNew.Size = new System.Drawing.Size(350, 180);
+            this.btnAddNew.TabIndex = 25;
+            this.btnAddNew.Text = "ADD NEW";
+            this.btnAddNew.UseVisualStyleBackColor = false;
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSave.Location = new System.Drawing.Point(774, 1314);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(8, 10, 8, 10);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(350, 180);
+            this.btnSave.TabIndex = 26;
+            this.btnSave.Text = "SAVE";
+            this.btnSave.UseVisualStyleBackColor = false;
+            // 
             // frmRegisterBusiness
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(192F, 192F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1968, 1522);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnAddNew);
             this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.txtRegistrationDate);
             this.Controls.Add(this.lblStatus);
@@ -399,5 +429,7 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.TextBox txtRegistrationDate;
         private System.Windows.Forms.TextBox txtStatus;
+        private System.Windows.Forms.Button btnAddNew;
+        private System.Windows.Forms.Button btnSave;
     }
 }
