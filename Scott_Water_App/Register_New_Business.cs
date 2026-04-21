@@ -16,7 +16,6 @@ namespace Scott_Water_App
     public partial class frmRegisterBusiness : Form
     {
 
-
         public frmRegisterBusiness()
         {
             const bool testMode = true;
@@ -43,37 +42,23 @@ namespace Scott_Water_App
             txtStatus.Text = data.Status;
         }
 
-        private bool inputvalidationResult()
-        {
-            string errorMessage;
-            var isValid = newRegBizFuncs.inputValidation(
-                txtBusinessID.Text.Trim(),
-                txtBusinessName.Text.Trim(),
-                txtAddress.Text.Trim(),
-                txtPostCode.Text.Trim(),
-                txtTelephone.Text.Trim(),
-                TxtEmail.Text.Trim(),
-                txtContactPerson.Text.Trim(),
-                textBox1.Text.Trim(),
-                txtRegistrationDate.Text.Trim(),
-                txtStatus.Text.Trim(),
-                out errorMessage);
-
-            if (!isValid)
-            {
-                MessageBox.Show(errorMessage, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            return true;
-        }
-
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            if (!inputvalidationResult())
-            {
+            // get input from textboxes and create business object
+            Businesses business = newRegBizFuncs.GetBusinessFromInputFields(
+                            txtBusinessID.Text.Trim(),
+                            txtBusinessName.Text.Trim(),
+                            txtAddress.Text.Trim(),
+                            txtPostCode.Text.Trim(),
+                            txtTelephone.Text.Trim(),
+                            TxtEmail.Text.Trim(),
+                            txtContactPerson.Text.Trim(),
+                            txtRegistrationDate.Text.Trim(),
+                            txtStatus.Text.Trim());
+
+
+            if (!newRegBizFuncs.inputvalidation(business))
                 return;
-            }
 
             var inputEmail = TxtEmail.Text.Trim();
 
@@ -101,25 +86,15 @@ namespace Scott_Water_App
                 return;
             }
 
-            var business = newRegBizFuncs.GetBusinessFromInputFields(
-                txtBusinessID.Text.Trim(),
-                txtBusinessName.Text.Trim(),
-                txtAddress.Text.Trim(),
-                txtPostCode.Text.Trim(),
-                txtTelephone.Text.Trim(),
-                TxtEmail.Text.Trim(),
-                txtContactPerson.Text.Trim(),
-                txtRegistrationDate.Text.Trim(),
-                txtStatus.Text.Trim());
+
 
             MessageBox.Show($"All inputs are valid and email is available {inputEmail}. Business object created for: {business.BusinessName}", "Validation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            //validation of inputs and email format
 
-            
 
-            //write into database
-            
+
+            //write business into database
+    
 
         }
 

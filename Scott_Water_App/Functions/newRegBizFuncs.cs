@@ -2,6 +2,7 @@
 using System;
 using System.Net;
 using System.Net.Mail;
+using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
@@ -72,41 +73,36 @@ namespace Scott_Water_App.Functions
             }
         }
 
-        public static bool inputValidation(
-            string businessId,
-            string businessName,
-            string address,
-            string postCode,
-            string telephone,
-            string email,
-            string contactPerson,
-            string meterId,
-            string registrationDate,
-            string status,
-            out string errorMessage)
+
+        public static bool inputvalidation(Businesses business)
         {
-            if (string.IsNullOrWhiteSpace(businessId) ||
-                string.IsNullOrWhiteSpace(businessName) ||
-                string.IsNullOrWhiteSpace(address) ||
-                string.IsNullOrWhiteSpace(postCode) ||
-                string.IsNullOrWhiteSpace(telephone) ||
-                string.IsNullOrWhiteSpace(email) ||
-                string.IsNullOrWhiteSpace(contactPerson) ||
-                string.IsNullOrWhiteSpace(meterId) ||
-                string.IsNullOrWhiteSpace(registrationDate) ||
-                string.IsNullOrWhiteSpace(status))
+            if (business == null)
             {
-                errorMessage = "Please fill all required fields.";
+                MessageBox.Show("Business object is null.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (!IsValidEmailFormat(email))
+            if (string.IsNullOrWhiteSpace(business.BusinessName) ||
+                string.IsNullOrWhiteSpace(business.BusinessEmail) ||
+                string.IsNullOrWhiteSpace(business.BusinessContactNumber) ||
+                string.IsNullOrWhiteSpace(business.BusinessCity) ||
+                string.IsNullOrWhiteSpace(business.BusinessPostcode) ||
+                string.IsNullOrWhiteSpace(business.ContactPerson) ||
+                string.IsNullOrWhiteSpace(business.RegistrationDate) ||
+                string.IsNullOrWhiteSpace(business.Status))
             {
-                errorMessage = "Please enter a valid email format.";
+                MessageBox.Show("Please fill all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            errorMessage = string.Empty;
+            if (!IsValidEmailFormat(business.BusinessEmail))
+            {
+                MessageBox.Show("Please enter a valid email format.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // a lot of validation could be added here such as phone number format, postcode format, registration date format etc. but for the sake of time and simplicity I will leave it at this for now.
+
             return true;
         }
 
