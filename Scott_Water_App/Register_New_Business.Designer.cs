@@ -345,6 +345,7 @@
             this.btnAddNew.TabIndex = 25;
             this.btnAddNew.Text = "ADD NEW";
             this.btnAddNew.UseVisualStyleBackColor = false;
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
             // 
             // btnSave
             // 

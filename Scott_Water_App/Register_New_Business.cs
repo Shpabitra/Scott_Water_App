@@ -246,5 +246,28 @@ namespace Scott_Water_App
                 MessageBox.Show("Failed to save business changes: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            ClearAllTextBoxes(this);
+        }
+
+        private void ClearAllTextBoxes(Control parent)
+        {
+            for (int i = 0; i < parent.Controls.Count; i++)
+            {
+                Control control = parent.Controls[i];
+
+                if (control is TextBox)
+                {
+                    ((TextBox)control).Clear();
+                }
+
+                if (control.HasChildren)
+                {
+                    ClearAllTextBoxes(control);
+                }
+            }
+        }
     }
 }
