@@ -78,6 +78,15 @@ namespace Scott_Water_App
                         TxtEmail.Focus();
                         return;
                     }
+                    else
+                    {
+                        //write new business into database
+                        db.Businesses.Add(business);
+                        db.SaveChanges();
+                        MessageBox.Show($"Business {business.BusinessName} registered successfully!", $"Number of businesses after added: {db.Businesses.Count()}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Number of businesses after added: " + db.Businesses.Count(), "Business Count1", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
                 }
             }
             catch (Exception ex)
@@ -85,16 +94,6 @@ namespace Scott_Water_App
                 MessageBox.Show("Failed to validate email in database: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-
-
-            MessageBox.Show($"All inputs are valid and email is available {inputEmail}. Business object created for: {business.BusinessName}", "Validation Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-
-
-            //write business into database
-    
 
         }
 
