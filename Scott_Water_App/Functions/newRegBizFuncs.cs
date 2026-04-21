@@ -24,7 +24,7 @@ namespace Scott_Water_App.Functions
             public string Status { get; set; }
         }
 
-        public static FakeBusinessData GenerateFakeBusinessData()
+        public static Businesses GenerateFakeBusinessData()
         {
             var random = new Random();
 
@@ -40,16 +40,15 @@ namespace Scott_Water_App.Functions
             var lastName = contactLastNames[random.Next(contactLastNames.Length)];
             var street = streets[random.Next(streets.Length)];
 
-            return new FakeBusinessData
+            return new Businesses
             {
-                BusinessId = "BIZ" + random.Next(1000, 9999),
+                BusinessID = random.Next(1000, 9999),
                 BusinessName = prefix + " " + type,
-                Address = random.Next(1, 250) + " " + street + ", Glasgow",
-                PostCode = "G" + random.Next(1, 99) + " " + random.Next(1, 9) + "AA",
-                Telephone = "07" + random.Next(100000000, 999999999),
-                Email = (firstName + "." + lastName + "@" + prefix + type + ".com").ToLower(),
+                BusinessCity = random.Next(1, 250) + " " + street + ", Glasgow",
+                BusinessPostcode = "G" + random.Next(1, 99) + " " + random.Next(1, 9) + "AA",
+                BusinessContactNumber = "07" + random.Next(100000000, 999999999),
+                BusinessEmail = (firstName + "." + lastName + "@" + prefix + type + ".com").ToLower(),
                 ContactPerson = firstName + " " + lastName,
-                MeterId = "MTR" + random.Next(10000, 99999),
                 RegistrationDate = DateTime.Today.ToString("yyyy-MM-dd"),
                 Status = "Active"
             };
@@ -137,5 +136,7 @@ namespace Scott_Water_App.Functions
 
             return business;
         }
+
+        
     }
 }

@@ -27,7 +27,7 @@ namespace Scott_Water_App
             this.cmbBizID.SelectedIndexChanged += cmbBizID_SelectedIndexChanged;
 
             //if (testMode)
-            // FillFakeBusinessData();
+            //    FillFakeBusinessData();
         }
 
         private void frmRegisterBusiness_Load(object sender, EventArgs e)
@@ -63,21 +63,31 @@ namespace Scott_Water_App
             if (selectedBusiness == null)
                 return;
 
-            txtBusinessID.Text = selectedBusiness.BusinessID.ToString();
-            txtBusinessName.Text = selectedBusiness.BusinessName;
-            txtAddress.Text = selectedBusiness.BusinessCity;
-            txtPostCode.Text = selectedBusiness.BusinessPostcode;
-            txtTelephone.Text = selectedBusiness.BusinessContactNumber;
-            TxtEmail.Text = selectedBusiness.BusinessEmail;
-            txtContactPerson.Text = selectedBusiness.ContactPerson;
-            txtRegistrationDate.Text = selectedBusiness.RegistrationDate;
-            txtStatus.Text = selectedBusiness.Status;
+            fillBusinessInfo(selectedBusiness);
 
             var meterId = db.Readings
                 .Where(r => r.BusinessID == selectedBusinessId)
                 .Select(r => r.MeterID)
                 .FirstOrDefault();
             textBox1.Text = meterId == 0 ? string.Empty : meterId.ToString();
+
+
+        }
+
+        private void fillBusinessInfo(Businesses business)
+        {
+            if (business == null)
+                return;
+
+            txtBusinessID.Text = business.BusinessID.ToString();
+            txtBusinessName.Text = business.BusinessName;
+            txtAddress.Text = business.BusinessCity;
+            txtPostCode.Text = business.BusinessPostcode;
+            txtTelephone.Text = business.BusinessContactNumber;
+            TxtEmail.Text = business.BusinessEmail;
+            txtContactPerson.Text = business.ContactPerson;
+            txtRegistrationDate.Text = business.RegistrationDate;
+            txtStatus.Text = business.Status;
         }
 
         private void frmRegisterBusiness_FormClosed(object sender, FormClosedEventArgs e)
@@ -93,18 +103,19 @@ namespace Scott_Water_App
 
         private void FillFakeBusinessData()
         {
-            var data = newRegBizFuncs.GenerateFakeBusinessData();
+            Businesses data = newRegBizFuncs.GenerateFakeBusinessData();
 
-            txtBusinessID.Text = data.BusinessId;
-            txtBusinessName.Text = data.BusinessName;
-            txtAddress.Text = data.Address;
-            txtPostCode.Text = data.PostCode;
-            txtTelephone.Text = data.Telephone;
-            TxtEmail.Text = data.Email;
-            txtContactPerson.Text = data.ContactPerson;
-            textBox1.Text = data.MeterId;
-            txtRegistrationDate.Text = data.RegistrationDate;
-            txtStatus.Text = data.Status;
+            fillBusinessInfo(data); 
+            //txtBusinessID.Text = data.BusinessId;
+            //txtBusinessName.Text = data.BusinessName;
+            //txtAddress.Text = data.Address;
+            //txtPostCode.Text = data.PostCode;
+            //txtTelephone.Text = data.Telephone;
+            //TxtEmail.Text = data.Email;
+            //txtContactPerson.Text = data.ContactPerson;
+            //textBox1.Text = data.MeterId;
+            //txtRegistrationDate.Text = data.RegistrationDate;
+            //txtStatus.Text = data.Status;
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
