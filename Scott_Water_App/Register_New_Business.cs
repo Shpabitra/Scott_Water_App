@@ -180,5 +180,62 @@ namespace Scott_Water_App
         {
             Application.Exit();
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (db == null)
+            {
+                MessageBox.Show("Database is not initialized.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Businesses updatedInput = newRegBizFuncs.GetBusinessFromInputFields(
+                txtBusinessID.Text.Trim(),
+                txtBusinessName.Text.Trim(),
+                txtAddress.Text.Trim(),
+                txtPostCode.Text.Trim(),
+                txtTelephone.Text.Trim(),
+                TxtEmail.Text.Trim(),
+                txtContactPerson.Text.Trim(),
+                txtRegistrationDate.Text.Trim(),
+                txtStatus.Text.Trim());
+
+            if (!newRegBizFuncs.inputvalidation(updatedInput))
+                return;
+
+            int businessId;
+            if (!int.TryParse(txtBusinessID.Text.Trim(), out businessId))
+            {
+                MessageBox.Show("Please select a valid Business ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtBusinessID.Focus();
+                return;
+            }
+
+            try
+            {
+                var existingBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == businessId);
+                if (existingBusiness == null)
+                {
+                    MessageBox.Show($"Business with ID {businessId} was not found.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                existingBusiness.BusinessName = updatedInput.BusinessName;
+                existingBusiness.BusinessCity = updatedInput.BusinessCity;
+                existingBusiness.BusinessPostcode = updatedInput.BusinessPostcode;
+                existingBusiness.BusinessContactNumber = updatedInput.BusinessContactNumber;
+                existingBusiness.BusinessEmail = updatedInput.BusinessEmail;
+                existingBusiness.ContactPerson = updatedInput.ContactPerson;
+                existingBusiness.RegistrationDate = updatedInput.RegistrationDate;
+                existingBusiness.Status = updatedInput.Status;
+
+                db.SaveChanges();
+                MessageBox.Show($"Business {existingBusiness.BusinessName} updated successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to save business changes: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
