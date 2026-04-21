@@ -55,6 +55,7 @@
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.btnAddNew = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.cmbBizID = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -358,12 +359,22 @@
             this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = false;
             // 
+            // cmbBizID
+            // 
+            this.cmbBizID.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbBizID.FormattingEnabled = true;
+            this.cmbBizID.Location = new System.Drawing.Point(833, 357);
+            this.cmbBizID.Name = "cmbBizID";
+            this.cmbBizID.Size = new System.Drawing.Size(806, 63);
+            this.cmbBizID.TabIndex = 27;
+            // 
             // frmRegisterBusiness
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(192F, 192F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1968, 1522);
+            this.Controls.Add(this.cmbBizID);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnAddNew);
             this.Controls.Add(this.txtStatus);
@@ -431,5 +442,6 @@
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.Button btnAddNew;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ComboBox cmbBizID;
     }
 }

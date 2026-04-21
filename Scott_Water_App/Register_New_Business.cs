@@ -25,8 +25,8 @@ namespace Scott_Water_App
             this.Load += frmRegisterBusiness_Load;
             this.FormClosed += frmRegisterBusiness_FormClosed;
 
-            if (testMode)
-             FillFakeBusinessData();
+            //if (testMode)
+            // FillFakeBusinessData();
         }
 
         private void frmRegisterBusiness_Load(object sender, EventArgs e)
@@ -36,6 +36,11 @@ namespace Scott_Water_App
             {
                 db = new ScotWaterContext();
                 var businessCount = db.Businesses.Count();
+                cmbBizID.DataSource = db.Businesses
+                    .Select(b => b.BusinessID)
+                    .OrderBy(id => id)
+                    .ToList();
+
                 MessageBox.Show("Number of businesses loaded: " + businessCount, "Business Count", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
