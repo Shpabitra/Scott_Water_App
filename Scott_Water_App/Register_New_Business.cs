@@ -220,17 +220,26 @@ namespace Scott_Water_App
                     return;
                 }
 
-                existingBusiness.BusinessName = updatedInput.BusinessName;
-                existingBusiness.BusinessCity = updatedInput.BusinessCity;
-                existingBusiness.BusinessPostcode = updatedInput.BusinessPostcode;
-                existingBusiness.BusinessContactNumber = updatedInput.BusinessContactNumber;
-                existingBusiness.BusinessEmail = updatedInput.BusinessEmail;
-                existingBusiness.ContactPerson = updatedInput.ContactPerson;
-                existingBusiness.RegistrationDate = updatedInput.RegistrationDate;
-                existingBusiness.Status = updatedInput.Status;
+                if(!newRegBizFuncs.checkIfAnyBusiessInfoChanged(existingBusiness, updatedInput))
+                {
+                    MessageBox.Show("Nothing changed.", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                else
+                {
+                    existingBusiness.BusinessName = updatedInput.BusinessName;
+                    existingBusiness.BusinessCity = updatedInput.BusinessCity;
+                    existingBusiness.BusinessPostcode = updatedInput.BusinessPostcode;
+                    existingBusiness.BusinessContactNumber = updatedInput.BusinessContactNumber;
+                    existingBusiness.BusinessEmail = updatedInput.BusinessEmail;
+                    existingBusiness.ContactPerson = updatedInput.ContactPerson;
+                    existingBusiness.RegistrationDate = updatedInput.RegistrationDate;
+                    existingBusiness.Status = updatedInput.Status;
 
-                db.SaveChanges();
-                MessageBox.Show($"Business {existingBusiness.BusinessName} updated successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    db.SaveChanges();
+                    MessageBox.Show($"Business {existingBusiness.BusinessName} updated successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
             }
             catch (Exception ex)
             {

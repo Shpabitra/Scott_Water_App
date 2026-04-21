@@ -137,6 +137,24 @@ namespace Scott_Water_App.Functions
             return business;
         }
 
+        public static bool checkIfAnyBusiessInfoChanged(Businesses existingBusiness, Businesses updatedInput)
+        {
+            if (existingBusiness == null || updatedInput == null)
+            {
+                return false;
+            }
+
+            return
+                !string.Equals(existingBusiness.BusinessName, updatedInput.BusinessName, StringComparison.Ordinal) ||
+                !string.Equals(existingBusiness.BusinessCity, updatedInput.BusinessCity, StringComparison.Ordinal) ||
+                !string.Equals(existingBusiness.BusinessPostcode, updatedInput.BusinessPostcode, StringComparison.Ordinal) ||
+                !string.Equals(existingBusiness.BusinessContactNumber, updatedInput.BusinessContactNumber, StringComparison.Ordinal) ||
+                !string.Equals(existingBusiness.BusinessEmail, updatedInput.BusinessEmail, StringComparison.OrdinalIgnoreCase) ||
+                !string.Equals(existingBusiness.ContactPerson, updatedInput.ContactPerson, StringComparison.Ordinal) ||
+                !string.Equals(existingBusiness.RegistrationDate, updatedInput.RegistrationDate, StringComparison.Ordinal) ||
+                !string.Equals(existingBusiness.Status, updatedInput.Status, StringComparison.Ordinal);
+        }
+
         
     }
 }
