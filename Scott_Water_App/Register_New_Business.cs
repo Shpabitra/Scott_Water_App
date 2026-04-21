@@ -24,6 +24,7 @@ namespace Scott_Water_App
             InitializeComponent();
             this.Load += frmRegisterBusiness_Load;
             this.FormClosed += frmRegisterBusiness_FormClosed;
+            this.cmbBizID.SelectedIndexChanged += cmbBizID_SelectedIndexChanged;
 
             //if (testMode)
             // FillFakeBusinessData();
@@ -47,6 +48,36 @@ namespace Scott_Water_App
             {
                 MessageBox.Show("Failed to load business data: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void cmbBizID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (db == null || cmbBizID.SelectedItem == null)
+                return;
+
+            int selectedBusinessId;
+            if (!int.TryParse(cmbBizID.SelectedItem.ToString(), out selectedBusinessId))
+                return;
+
+            var selectedBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == selectedBusinessId);
+            if (selectedBusiness == null)
+                return;
+
+            txtBusinessID.Text = selectedBusiness.BusinessID.ToString();
+            txtBusinessName.Text = selectedBusiness.BusinessName;
+            txtAddress.Text = selectedBusiness.BusinessCity;
+            txtPostCode.Text = selectedBusiness.BusinessPostcode;
+            txtTelephone.Text = selectedBusiness.BusinessContactNumber;
+            TxtEmail.Text = selectedBusiness.BusinessEmail;
+            txtContactPerson.Text = selectedBusiness.ContactPerson;
+            txtRegistrationDate.Text = selectedBusiness.RegistrationDate;
+            txtStatus.Text = selectedBusiness.Status;
+
+            var meterId = db.Readings
+                .Where(r => r.BusinessID == selectedBusinessId)
+                .Select(r => r.MeterID)
+                .FirstOrDefault();
+            textBox1.Text = meterId == 0 ? string.Empty : meterId.ToString();
         }
 
         private void frmRegisterBusiness_FormClosed(object sender, FormClosedEventArgs e)
