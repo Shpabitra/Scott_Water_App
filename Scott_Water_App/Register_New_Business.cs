@@ -139,7 +139,7 @@ namespace Scott_Water_App
             }
 
             // get input from textboxes and create business object
-            Businesses business = newRegBizFuncs.GetBusinessFromInputFields(
+            Businesses business = newRegBizFuncs.CreateBusinessObjectFromInputFields(
                             txtBusinessID.Text.Trim(),
                             txtBusinessName.Text.Trim(),
                             txtAddress.Text.Trim(),
@@ -226,7 +226,7 @@ namespace Scott_Water_App
                 return;
             }
 
-            Businesses updatedInput = newRegBizFuncs.GetBusinessFromInputFields(
+            Businesses updatedInput = newRegBizFuncs.CreateBusinessObjectFromInputFields(
                 txtBusinessID.Text.Trim(),
                 txtBusinessName.Text.Trim(),
                 txtAddress.Text.Trim(),
@@ -302,21 +302,5 @@ namespace Scott_Water_App
             }
         }
 
-        private int? GetBusinessIdFromSelectedValue(string selectedBusinessIdStr)
-        {
-            if (db == null || string.IsNullOrWhiteSpace(selectedBusinessIdStr))
-                return null;
-
-            if (selectedBusinessIdStr == "Add New Business")
-                return null;
-
-            // Supports both modes: name list or ID list
-            int parsedId;
-            if (int.TryParse(selectedBusinessIdStr, out parsedId))
-                return parsedId;
-
-            var business = db.Businesses.FirstOrDefault(b => b.BusinessName == selectedBusinessIdStr);
-            return business != null ? (int?)business.BusinessID : null;
-        }
     }
 }

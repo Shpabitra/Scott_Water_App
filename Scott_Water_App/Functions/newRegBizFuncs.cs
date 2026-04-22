@@ -106,7 +106,7 @@ namespace Scott_Water_App.Functions
             return true;
         }
 
-        public static Businesses GetBusinessFromInputFields(
+        public static Businesses CreateBusinessObjectFromInputFields(
             string businessId,
             string businessName,
             string address,
