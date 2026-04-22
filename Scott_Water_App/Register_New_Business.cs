@@ -16,18 +16,18 @@ namespace Scott_Water_App
     public partial class frmRegisterBusiness : Form
     {
         private ScotWaterContext db;
+        const bool testMode = true;
+
 
         public frmRegisterBusiness()
         {
-            const bool testMode = true;
+            //const bool testMode = true;
 
             InitializeComponent();
             this.Load += frmRegisterBusiness_Load;
             this.FormClosed += frmRegisterBusiness_FormClosed;
             this.cmbBizID.SelectedIndexChanged += cmbBizID_SelectedIndexChanged;
 
-            //if (testMode)
-            //    FillFakeBusinessData();
         }
 
         private void frmRegisterBusiness_Load(object sender, EventArgs e)
@@ -36,11 +36,8 @@ namespace Scott_Water_App
             try
             {
                 db = new ScotWaterContext();
-                var businessCount = db.Businesses.Count();
-                cmbBizID.DataSource = db.Businesses
-                    .Select(b => b.BusinessID)
-                    .OrderBy(id => id)
-                    .ToList();
+                var businessCount = newRegBizFuncs.GetBusinessCount(db);
+                cmbBizID.DataSource = newRegBizFuncs.GetBusinessIds(db);
 
                 MessageBox.Show("Number of businesses loaded: " + businessCount, "Business Count", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -166,6 +163,8 @@ namespace Scott_Water_App
                     MessageBox.Show($"Business {business.BusinessName} registered successfully!", $"Number of businesses after added: {db.Businesses.Count()}", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MessageBox.Show("Number of businesses after added: " + db.Businesses.Count(), "Business Count1", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    cmbBizID.DataSource = newRegBizFuncs.GetBusinessIds(db);
+
                 }
             }
             catch (Exception ex)
@@ -250,6 +249,9 @@ namespace Scott_Water_App
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             ClearAllTextBoxes(this);
+
+            if (testMode)
+                FillFakeBusinessData();
         }
 
         private void ClearAllTextBoxes(Control parent)
@@ -269,5 +271,6 @@ namespace Scott_Water_App
                 }
             }
         }
+
     }
 }

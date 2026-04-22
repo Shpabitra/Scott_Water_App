@@ -1,5 +1,6 @@
 ﻿using Scott_Water_App.Models;
 using System;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Windows.Forms;
@@ -155,6 +156,23 @@ namespace Scott_Water_App.Functions
                 !string.Equals(existingBusiness.Status, updatedInput.Status, StringComparison.Ordinal);
         }
 
-        
+        public static int GetBusinessCount(ScotWaterContext database)
+        {
+            if (database == null)
+                return 0;
+
+            return database.Businesses.Count();
+        }
+
+        public static System.Collections.Generic.List<int> GetBusinessIds(ScotWaterContext database)
+        {
+            if (database == null)
+                return new System.Collections.Generic.List<int>();
+
+            return database.Businesses
+                .Select(b => b.BusinessID)
+                .OrderBy(id => id)
+                .ToList();
+        }
     }
 }
