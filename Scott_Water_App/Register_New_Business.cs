@@ -76,7 +76,7 @@ namespace Scott_Water_App
 
 
 
-            int? selectedBusinessId = GetBusinessIdFromSelectedValue(selectedBusinessIdStr);
+            int? selectedBusinessId = newRegBizFuncs.GetBusinessIdFromSelectedValue(selectedBusinessIdStr, db);
             if (!selectedBusinessId.HasValue)
                 return;
 
@@ -283,14 +283,6 @@ namespace Scott_Water_App
                 MessageBox.Show("Failed to save business changes: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        //private void btnAddNew_Click(object sender, EventArgs e)
-        //{
-        //    ClearAllTextBoxes(this);
-
-        //    if (testMode)
-        //        FillFakeBusinessData();
-        //}
 
         private void ClearAllTextBoxes(Control parent)
         {
