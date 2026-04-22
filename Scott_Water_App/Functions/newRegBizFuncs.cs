@@ -228,5 +228,6 @@ namespace Scott_Water_App.Functions
             var business = db.Businesses.FirstOrDefault(b => b.BusinessName == selectedBusinessIdStr);
             return business != null ? (int?)business.BusinessID : null;
         }
+
     }
 }

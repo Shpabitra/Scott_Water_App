@@ -31,7 +31,6 @@ namespace Scott_Water_App
         }
 
         private void frmRegisterBusiness_Load(object sender, EventArgs e)
-
         {
             try
             {
@@ -49,68 +48,6 @@ namespace Scott_Water_App
             }
         }
 
-        private void cmbBizID_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (db == null || cmbSelectBusiness.SelectedItem == null)
-                return;
-
-            string selectedBusinessIdStr = cmbSelectBusiness.SelectedItem.ToString();
-
-            if (selectedBusinessIdStr == "Add New Business")
-            {
-                ClearAllTextBoxes(this);
-                if (testMode)
-                    FillFakeBusinessData();
-
-
-                int businessCount = newRegBizFuncs.GetBusinessCount(db)+1;
-                txtBusinessID.Text = businessCount.ToString();
-
-                var newMeterId = db.Readings.Any()
-                    ? db.Readings.Max(r => r.MeterID) + 1
-                    : 1;
-
-                txtMeterID.Text = newMeterId.ToString();
-                return;
-            }
-
-
-
-            int? selectedBusinessId = newRegBizFuncs.GetBusinessIdFromSelectedValue(selectedBusinessIdStr, db);
-            if (!selectedBusinessId.HasValue)
-                return;
-
-            var selectedBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == selectedBusinessId.Value);
-            if (selectedBusiness == null)
-                return;
-
-            fillBusinessInfo(selectedBusiness);
-
-
-            var meterId = db.Readings
-                .Where(r => r.BusinessID == selectedBusinessId.Value)
-                .Select(r => r.MeterID)
-                .FirstOrDefault();
-
-            txtMeterID.Text = meterId == 0 ? string.Empty : meterId.ToString();
-        }
-
-        private void fillBusinessInfo(Businesses business)
-        {
-            if (business == null)
-                return;
-
-            txtBusinessID.Text = business.BusinessID.ToString();
-            txtBusinessName.Text = business.BusinessName;
-            txtAddress.Text = business.BusinessCity;
-            txtPostCode.Text = business.BusinessPostcode;
-            txtTelephone.Text = business.BusinessContactNumber;
-            TxtEmail.Text = business.BusinessEmail;
-            txtContactPerson.Text = business.ContactPerson;
-            txtRegistrationDate.Text = business.RegistrationDate;
-            txtStatus.Text = business.Status;
-        }
-
         private void frmRegisterBusiness_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (db != null)
@@ -120,15 +57,64 @@ namespace Scott_Water_App
             }
         }
 
-
-
-        private void FillFakeBusinessData()
+        // When a business is selected from the combo box, load its details into the textboxes. If "Add New Business" is selected, clear the textboxes for new input and generate a new business ID and meter ID.
+        private void cmbBizID_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Businesses data = newRegBizFuncs.GenerateFakeBusinessData();
+            if (db == null || cmbSelectBusiness.SelectedItem == null)
+                return;
 
-            fillBusinessInfo(data); 
+            string selectedBusinessIdStr = cmbSelectBusiness.SelectedItem.ToString();
 
+            // If "Add New Business" is selected, clear the textboxes and generate new IDs
+            if (selectedBusinessIdStr == "Add New Business")
+            {
+                ClearAllTextBoxes(this);
+
+                if (testMode)
+                    FillFakeBusinessData();
+
+                //Generate new Business ID by taking the max existing Business ID and adding 1
+                int businessCount = newRegBizFuncs.GetBusinessCount(db)+1;
+                txtBusinessID.Text = businessCount.ToString();
+
+                // Generate new Meter ID by taking the max existing Meter ID and adding 1, or start at 1 if there are no readings
+                var newMeterId = db.Readings.Any()
+                    ? db.Readings.Max(r => r.MeterID) + 1
+                    : 1;
+
+                txtMeterID.Text = newMeterId.ToString();
+                return;
+            }
+
+
+            // For existing business selection, load the business info into textboxes
+            // Get the business ID from the selected value in the combo box
+            int? selectedBusinessId = newRegBizFuncs.GetBusinessIdFromSelectedValue(selectedBusinessIdStr, db);
+            if (!selectedBusinessId.HasValue)
+                return;
+
+            // Find the selected business in the database using the business ID
+            var selectedBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == selectedBusinessId.Value);
+            if (selectedBusiness == null)
+                return;
+
+            // Fill the textboxes with the selected business info
+            fillBusinessInfo(selectedBusiness);
+
+            // Get the Meter ID associated with the selected business and fill it in the textbox
+            var meterId = db.Readings
+                .Where(r => r.BusinessID == selectedBusinessId.Value)
+                .Select(r => r.MeterID)
+                .FirstOrDefault();
+
+            txtMeterID.Text = meterId == 0 ? string.Empty : meterId.ToString();
         }
+
+
+
+        // ====================================================================================================
+        // ======================================= CLICK EVENTS ===============================================
+        // ====================================================================================================
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
@@ -276,6 +262,13 @@ namespace Scott_Water_App
             }
         }
 
+
+
+        // ====================================================================================================
+        // ======================================= HELPER FUNCTIONS ===========================================
+        // ====================================================================================================
+
+        // Recursively clear all textboxes in the form
         private void ClearAllTextBoxes(Control parent)
         {
             for (int i = 0; i < parent.Controls.Count; i++)
@@ -292,6 +285,30 @@ namespace Scott_Water_App
                     ClearAllTextBoxes(control);
                 }
             }
+        }
+
+        // Fill the textboxes with business info from a given business object
+        private void fillBusinessInfo(Businesses business)
+        {
+            if (business == null)
+                return;
+
+            txtBusinessID.Text = business.BusinessID.ToString();
+            txtBusinessName.Text = business.BusinessName;
+            txtAddress.Text = business.BusinessCity;
+            txtPostCode.Text = business.BusinessPostcode;
+            txtTelephone.Text = business.BusinessContactNumber;
+            TxtEmail.Text = business.BusinessEmail;
+            txtContactPerson.Text = business.ContactPerson;
+            txtRegistrationDate.Text = business.RegistrationDate;
+            txtStatus.Text = business.Status;
+        }
+
+        // Generate fake business data and fill the textboxes with it (for testing purposes)
+        private void FillFakeBusinessData()
+        {
+            Businesses data = newRegBizFuncs.GenerateFakeBusinessData();
+            fillBusinessInfo(data);
         }
 
     }
