@@ -156,6 +156,22 @@ namespace Scott_Water_App.Functions
                 !string.Equals(existingBusiness.Status, updatedInput.Status, StringComparison.Ordinal);
         }
 
+        public static void updateExistingBusinessInfo(Businesses existingBusiness, Businesses updatedInput)
+        {
+            if (existingBusiness == null || updatedInput == null)
+            {
+                return;
+            }
+
+            existingBusiness.BusinessName = updatedInput.BusinessName;
+            existingBusiness.BusinessCity = updatedInput.BusinessCity;
+            existingBusiness.BusinessPostcode = updatedInput.BusinessPostcode;
+            existingBusiness.BusinessContactNumber = updatedInput.BusinessContactNumber;
+            existingBusiness.BusinessEmail = updatedInput.BusinessEmail;
+            existingBusiness.ContactPerson = updatedInput.ContactPerson;
+            existingBusiness.RegistrationDate = updatedInput.RegistrationDate;
+            existingBusiness.Status = updatedInput.Status;
+        }
         public static int GetBusinessCount(ScotWaterContext database)
         {
             if (database == null)

@@ -264,15 +264,7 @@ namespace Scott_Water_App
                 }
                 else
                 {
-                    existingBusiness.BusinessName = updatedInput.BusinessName;
-                    existingBusiness.BusinessCity = updatedInput.BusinessCity;
-                    existingBusiness.BusinessPostcode = updatedInput.BusinessPostcode;
-                    existingBusiness.BusinessContactNumber = updatedInput.BusinessContactNumber;
-                    existingBusiness.BusinessEmail = updatedInput.BusinessEmail;
-                    existingBusiness.ContactPerson = updatedInput.ContactPerson;
-                    existingBusiness.RegistrationDate = updatedInput.RegistrationDate;
-                    existingBusiness.Status = updatedInput.Status;
-
+                    newRegBizFuncs.updateExistingBusinessInfo(existingBusiness, updatedInput);
                     db.SaveChanges();
                     MessageBox.Show($"Business {existingBusiness.BusinessName} updated successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
