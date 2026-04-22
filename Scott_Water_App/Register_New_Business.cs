@@ -59,6 +59,10 @@ namespace Scott_Water_App
                 ClearAllTextBoxes(this);
                 if (testMode)
                     FillFakeBusinessData();
+
+                int businessCount = newRegBizFuncs.GetBusinessCount(db)+1;
+                txtBusinessID.Text = businessCount.ToString();
+
                 return;
             }
 
@@ -71,6 +75,7 @@ namespace Scott_Water_App
                 return;
 
             fillBusinessInfo(selectedBusiness);
+
 
             var meterId = db.Readings
                 .Where(r => r.BusinessID == selectedBusinessId)
@@ -112,16 +117,7 @@ namespace Scott_Water_App
             Businesses data = newRegBizFuncs.GenerateFakeBusinessData();
 
             fillBusinessInfo(data); 
-            //txtBusinessID.Text = data.BusinessId;
-            //txtBusinessName.Text = data.BusinessName;
-            //txtAddress.Text = data.Address;
-            //txtPostCode.Text = data.PostCode;
-            //txtTelephone.Text = data.Telephone;
-            //TxtEmail.Text = data.Email;
-            //txtContactPerson.Text = data.ContactPerson;
-            //textBox1.Text = data.MeterId;
-            //txtRegistrationDate.Text = data.RegistrationDate;
-            //txtStatus.Text = data.Status;
+
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
