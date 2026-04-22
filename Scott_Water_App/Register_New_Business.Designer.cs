@@ -47,8 +47,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbltxtBusinessID = new System.Windows.Forms.Label();
             this.txtBusinessID = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lblMeterID = new System.Windows.Forms.Label();
+            this.txtMeterID = new System.Windows.Forms.TextBox();
             this.lblRegistrationDate = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.txtRegistrationDate = new System.Windows.Forms.TextBox();
@@ -269,26 +269,27 @@
             this.txtBusinessID.Size = new System.Drawing.Size(806, 56);
             this.txtBusinessID.TabIndex = 18;
             // 
-            // label9
+            // lblMeterID
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(551, 1018);
-            this.label9.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(257, 63);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "Meter ID:";
+            this.lblMeterID.AutoSize = true;
+            this.lblMeterID.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMeterID.Location = new System.Drawing.Point(551, 1018);
+            this.lblMeterID.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblMeterID.Name = "lblMeterID";
+            this.lblMeterID.Size = new System.Drawing.Size(257, 63);
+            this.lblMeterID.TabIndex = 19;
+            this.lblMeterID.Text = "Meter ID:";
             // 
-            // textBox1
+            // txtMeterID
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(833, 1020);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(6);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(806, 56);
-            this.textBox1.TabIndex = 20;
+            this.txtMeterID.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMeterID.Location = new System.Drawing.Point(833, 1020);
+            this.txtMeterID.Margin = new System.Windows.Forms.Padding(6);
+            this.txtMeterID.Multiline = true;
+            this.txtMeterID.Name = "txtMeterID";
+            this.txtMeterID.ReadOnly = true;
+            this.txtMeterID.Size = new System.Drawing.Size(806, 56);
+            this.txtMeterID.TabIndex = 20;
             // 
             // lblRegistrationDate
             // 
@@ -367,8 +368,8 @@
             this.Controls.Add(this.txtRegistrationDate);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.lblRegistrationDate);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.txtMeterID);
+            this.Controls.Add(this.lblMeterID);
             this.Controls.Add(this.txtBusinessID);
             this.Controls.Add(this.lbltxtBusinessID);
             this.Controls.Add(this.label7);
@@ -420,8 +421,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lbltxtBusinessID;
         private System.Windows.Forms.TextBox txtBusinessID;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lblMeterID;
+        private System.Windows.Forms.TextBox txtMeterID;
         private System.Windows.Forms.Label lblRegistrationDate;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.TextBox txtRegistrationDate;

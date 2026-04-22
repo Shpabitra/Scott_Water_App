@@ -60,9 +60,15 @@ namespace Scott_Water_App
                 if (testMode)
                     FillFakeBusinessData();
 
+
                 int businessCount = newRegBizFuncs.GetBusinessCount(db)+1;
                 txtBusinessID.Text = businessCount.ToString();
 
+                var newMeterId = db.Readings.Any()
+                    ? db.Readings.Max(r => r.MeterID) + 1
+                    : 1;
+
+                txtMeterID.Text = newMeterId.ToString();
                 return;
             }
 
@@ -82,7 +88,7 @@ namespace Scott_Water_App
                 .Select(r => r.MeterID)
                 .FirstOrDefault();
 
-            textBox1.Text = meterId == 0 ? string.Empty : meterId.ToString();
+            txtMeterID.Text = meterId == 0 ? string.Empty : meterId.ToString();
         }
 
         private void fillBusinessInfo(Businesses business)
@@ -165,10 +171,31 @@ namespace Scott_Water_App
                     //write new business into database
                     db.Businesses.Add(business);
                     db.SaveChanges();
+
+                    int meterId;
+                    if (!int.TryParse(txtMeterID.Text.Trim(), out meterId))
+                    {
+                        MessageBox.Show("Invalid Meter ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    var reading = new Readings
+                    {
+                        MeterID = meterId,
+                        BusinessID = business.BusinessID,
+                        ReadingDate = DateTime.Now,
+                        UsageUnits = 0,
+                        RecycledUnits = 0
+                    };
+
+                    db.Readings.Add(reading);
+                    db.SaveChanges();
+
                     MessageBox.Show($"Business {business.BusinessName} registered successfully!", $"Number of businesses after added: {db.Businesses.Count()}", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MessageBox.Show("Number of businesses after added: " + db.Businesses.Count(), "Business Count1", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     cmbBizID.DataSource = newRegBizFuncs.GetBusinessIds(db);
+                    
 
                 }
             }
