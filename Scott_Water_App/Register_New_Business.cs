@@ -52,8 +52,18 @@ namespace Scott_Water_App
             if (db == null || cmbBizID.SelectedItem == null)
                 return;
 
+            string selectedBusinessIdStr = cmbBizID.SelectedItem.ToString();
+
+            if (selectedBusinessIdStr == "Add New Business")
+            {
+                ClearAllTextBoxes(this);
+                if (testMode)
+                    FillFakeBusinessData();
+                return;
+            }
+
             int selectedBusinessId;
-            if (!int.TryParse(cmbBizID.SelectedItem.ToString(), out selectedBusinessId))
+            if (!int.TryParse(selectedBusinessIdStr, out selectedBusinessId))
                 return;
 
             var selectedBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == selectedBusinessId);
@@ -66,9 +76,8 @@ namespace Scott_Water_App
                 .Where(r => r.BusinessID == selectedBusinessId)
                 .Select(r => r.MeterID)
                 .FirstOrDefault();
+
             textBox1.Text = meterId == 0 ? string.Empty : meterId.ToString();
-
-
         }
 
         private void fillBusinessInfo(Businesses business)
@@ -246,13 +255,13 @@ namespace Scott_Water_App
             }
         }
 
-        private void btnAddNew_Click(object sender, EventArgs e)
-        {
-            ClearAllTextBoxes(this);
+        //private void btnAddNew_Click(object sender, EventArgs e)
+        //{
+        //    ClearAllTextBoxes(this);
 
-            if (testMode)
-                FillFakeBusinessData();
-        }
+        //    if (testMode)
+        //        FillFakeBusinessData();
+        //}
 
         private void ClearAllTextBoxes(Control parent)
         {

@@ -164,15 +164,20 @@ namespace Scott_Water_App.Functions
             return database.Businesses.Count();
         }
 
-        public static System.Collections.Generic.List<int> GetBusinessIds(ScotWaterContext database)
+        public static System.Collections.Generic.List<string> GetBusinessIds(ScotWaterContext database)
         {
-            if (database == null)
-                return new System.Collections.Generic.List<int>();
+            var businessIds = new System.Collections.Generic.List<string>();
 
-            return database.Businesses
-                .Select(b => b.BusinessID)
-                .OrderBy(id => id)
-                .ToList();
+            if (database != null)
+            {
+                businessIds = database.Businesses
+                    .Select(b => b.BusinessID.ToString())
+                    .OrderBy(id => id)
+                    .ToList();
+            }
+
+            businessIds.Add("Add New Business");
+            return businessIds;
         }
     }
 }
