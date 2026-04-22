@@ -54,7 +54,8 @@
             this.txtRegistrationDate = new System.Windows.Forms.TextBox();
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
-            this.cmbBizID = new System.Windows.Forms.ComboBox();
+            this.cmbSelectBusiness = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -212,7 +213,6 @@
             this.TxtEmail.Margin = new System.Windows.Forms.Padding(8, 10, 8, 10);
             this.TxtEmail.Multiline = true;
             this.TxtEmail.Name = "TxtEmail";
-            this.TxtEmail.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.TxtEmail.Size = new System.Drawing.Size(806, 56);
             this.TxtEmail.TabIndex = 13;
             // 
@@ -347,14 +347,25 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // cmbBizID
+            // cmbSelectBusiness
             // 
-            this.cmbBizID.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbBizID.FormattingEnabled = true;
-            this.cmbBizID.Location = new System.Drawing.Point(833, 357);
-            this.cmbBizID.Name = "cmbBizID";
-            this.cmbBizID.Size = new System.Drawing.Size(806, 63);
-            this.cmbBizID.TabIndex = 27;
+            this.cmbSelectBusiness.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSelectBusiness.FormattingEnabled = true;
+            this.cmbSelectBusiness.Location = new System.Drawing.Point(833, 357);
+            this.cmbSelectBusiness.Name = "cmbSelectBusiness";
+            this.cmbSelectBusiness.Size = new System.Drawing.Size(806, 63);
+            this.cmbSelectBusiness.TabIndex = 27;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(362, 357);
+            this.label8.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(443, 63);
+            this.label8.TabIndex = 28;
+            this.label8.Text = "Select Business:";
             // 
             // frmRegisterBusiness
             // 
@@ -362,7 +373,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1968, 1522);
-            this.Controls.Add(this.cmbBizID);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.cmbSelectBusiness);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.txtRegistrationDate);
@@ -428,6 +440,7 @@
         private System.Windows.Forms.TextBox txtRegistrationDate;
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.ComboBox cmbBizID;
+        private System.Windows.Forms.ComboBox cmbSelectBusiness;
+        private System.Windows.Forms.Label label8;
     }
 }

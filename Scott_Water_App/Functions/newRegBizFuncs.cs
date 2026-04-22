@@ -179,5 +179,21 @@ namespace Scott_Water_App.Functions
             businessIds.Add("Add New Business");
             return businessIds;
         }
+
+        public static System.Collections.Generic.List<string> GetBusinessNames(ScotWaterContext database)
+        {
+            var businessNames = new System.Collections.Generic.List<string>();
+
+            if (database != null)
+            {
+                businessNames = database.Businesses
+                    .Select(b => b.BusinessName)
+                    .OrderBy(name => name)
+                    .ToList();
+            }
+
+            businessNames.Add("Add New Business");
+            return businessNames;
+        }
     }
 }

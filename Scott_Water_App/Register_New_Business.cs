@@ -26,7 +26,7 @@ namespace Scott_Water_App
             InitializeComponent();
             this.Load += frmRegisterBusiness_Load;
             this.FormClosed += frmRegisterBusiness_FormClosed;
-            this.cmbBizID.SelectedIndexChanged += cmbBizID_SelectedIndexChanged;
+            this.cmbSelectBusiness.SelectedIndexChanged += cmbBizID_SelectedIndexChanged;
 
         }
 
@@ -37,7 +37,9 @@ namespace Scott_Water_App
             {
                 db = new ScotWaterContext();
                 var businessCount = newRegBizFuncs.GetBusinessCount(db);
-                cmbBizID.DataSource = newRegBizFuncs.GetBusinessIds(db);
+                //cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessIds(db);
+                cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db);
+
 
                 MessageBox.Show("Number of businesses loaded: " + businessCount, "Business Count", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -49,10 +51,10 @@ namespace Scott_Water_App
 
         private void cmbBizID_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (db == null || cmbBizID.SelectedItem == null)
+            if (db == null || cmbSelectBusiness.SelectedItem == null)
                 return;
 
-            string selectedBusinessIdStr = cmbBizID.SelectedItem.ToString();
+            string selectedBusinessIdStr = cmbSelectBusiness.SelectedItem.ToString();
 
             if (selectedBusinessIdStr == "Add New Business")
             {
@@ -72,11 +74,13 @@ namespace Scott_Water_App
                 return;
             }
 
-            int selectedBusinessId;
-            if (!int.TryParse(selectedBusinessIdStr, out selectedBusinessId))
+
+
+            int? selectedBusinessId = GetBusinessIdFromSelectedValue(selectedBusinessIdStr);
+            if (!selectedBusinessId.HasValue)
                 return;
 
-            var selectedBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == selectedBusinessId);
+            var selectedBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == selectedBusinessId.Value);
             if (selectedBusiness == null)
                 return;
 
@@ -84,7 +88,7 @@ namespace Scott_Water_App
 
 
             var meterId = db.Readings
-                .Where(r => r.BusinessID == selectedBusinessId)
+                .Where(r => r.BusinessID == selectedBusinessId.Value)
                 .Select(r => r.MeterID)
                 .FirstOrDefault();
 
@@ -194,8 +198,10 @@ namespace Scott_Water_App
                     MessageBox.Show($"Business {business.BusinessName} registered successfully!", $"Number of businesses after added: {db.Businesses.Count()}", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MessageBox.Show("Number of businesses after added: " + db.Businesses.Count(), "Business Count1", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    cmbBizID.DataSource = newRegBizFuncs.GetBusinessIds(db);
-                    
+                    //cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessIds(db);
+                    cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db);
+
+
 
                 }
             }
@@ -304,5 +310,21 @@ namespace Scott_Water_App
             }
         }
 
+        private int? GetBusinessIdFromSelectedValue(string selectedBusinessIdStr)
+        {
+            if (db == null || string.IsNullOrWhiteSpace(selectedBusinessIdStr))
+                return null;
+
+            if (selectedBusinessIdStr == "Add New Business")
+                return null;
+
+            // Supports both modes: name list or ID list
+            int parsedId;
+            if (int.TryParse(selectedBusinessIdStr, out parsedId))
+                return parsedId;
+
+            var business = db.Businesses.FirstOrDefault(b => b.BusinessName == selectedBusinessIdStr);
+            return business != null ? (int?)business.BusinessID : null;
+        }
     }
 }
