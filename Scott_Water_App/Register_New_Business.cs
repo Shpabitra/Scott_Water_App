@@ -38,8 +38,6 @@ namespace Scott_Water_App
                 var businessCount = newRegBizFuncs.GetBusinessCount(db);
                 //cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessIds(db);
                 cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db);
-
-
                 MessageBox.Show("Number of businesses loaded: " + businessCount, "Business Count", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
