@@ -17,9 +17,9 @@ namespace Scott_Water_App
     {
         private ScotWaterContext db;
         const bool testMode = true;
+        private bool addNew;
 
-
-        public frmRegisterBusiness()
+        public frmRegisterBusiness(bool addNewBusiness = false)
         {
             //const bool testMode = true;
 
@@ -27,7 +27,7 @@ namespace Scott_Water_App
             this.Load += frmRegisterBusiness_Load;
             this.FormClosed += frmRegisterBusiness_FormClosed;
             this.cmbSelectBusiness.SelectedIndexChanged += cmbBizID_SelectedIndexChanged;
-
+            addNew = addNewBusiness;
         }
 
         private void frmRegisterBusiness_Load(object sender, EventArgs e)
@@ -35,6 +35,11 @@ namespace Scott_Water_App
             try
             {
                 db = new ScotWaterContext();
+
+                
+                // Add this MessageBox to show the addNew value
+                MessageBox.Show($"addNew value: {addNew}", "AddNew Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 var businessCount = newRegBizFuncs.GetBusinessCount(db);
                 //cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessIds(db);
                 cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db);
