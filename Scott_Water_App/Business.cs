@@ -26,7 +26,7 @@ namespace Scott_Water_App
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            frmRegisterBusiness BizUpdate = new frmRegisterBusiness(false);// passing false for updating an existing business
+            frmRegisterBusiness BizUpdate = new frmRegisterBusiness(2);// passing false for updating an existing business
             //BizUpdate.AddNew = false; 
             BizUpdate.Show();
             this.Hide();
@@ -34,7 +34,7 @@ namespace Scott_Water_App
 
         private void btnAddNewBusiness_Click(object sender, EventArgs e)
         {
-            frmRegisterBusiness BizUpdate = new frmRegisterBusiness(true); // passing true for adding business
+            frmRegisterBusiness BizUpdate = new frmRegisterBusiness(1); // passing true for adding business
             BizUpdate.Show();
             this.Hide();
         }

@@ -17,9 +17,9 @@ namespace Scott_Water_App
     {
         private ScotWaterContext db;
         const bool testMode = true;
-        private bool addNew;
+        private int addNew;
 
-        public frmRegisterBusiness(bool addNewBusiness = false)
+        public frmRegisterBusiness(int addNewBusiness = 99)
         {
             //const bool testMode = true;
 
@@ -35,10 +35,11 @@ namespace Scott_Water_App
             try
             {
                 db = new ScotWaterContext();
-
                 
-                // Add this MessageBox to show the addNew value
-                MessageBox.Show($"addNew value: {addNew}", "AddNew Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Call the helper function
+                ToggleBusinessSelection(addNew);  // If addNew is true, hide; if false, show
+                
+                MessageBox.Show($"AddNew value: {addNew}", "AddNew Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 var businessCount = newRegBizFuncs.GetBusinessCount(db);
                 //cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessIds(db);
@@ -319,6 +320,29 @@ namespace Scott_Water_App
             frmMenu menu = new frmMenu();
             menu.Show();
             this.Hide();
+        }
+
+        // Helper function to toggle visibility of business selection controls
+        private void ToggleBusinessSelection(int addNew)
+        {
+            // Show the value of hide parameter
+            MessageBox.Show($"addNew value: {addNew}", "Toggle Business Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
+            if (addNew == 2)
+            {
+                lblSelectBusiness.Visible = false;
+                cmbSelectBusiness.Visible = false;
+            }
+            else if (addNew == 1)
+            {
+                lblSelectBusiness.Visible = true;
+                cmbSelectBusiness.Visible = true;
+            } 
+            else if (addNew == 0)
+            {
+                // hide is null - do nothing or add custom logic
+                MessageBox.Show("Hide value is null - no action taken", "Null Value", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

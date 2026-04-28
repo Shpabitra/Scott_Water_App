@@ -103,7 +103,7 @@
             this.btnExitBusiness.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExitBusiness.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnExitBusiness.Location = new System.Drawing.Point(40, 1308);
-            this.btnExitBusiness.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnExitBusiness.Margin = new System.Windows.Forms.Padding(6);
             this.btnExitBusiness.Name = "btnExitBusiness";
             this.btnExitBusiness.Size = new System.Drawing.Size(350, 180);
             this.btnExitBusiness.TabIndex = 4;
@@ -125,7 +125,7 @@
             // 
             this.dudSearchBusiness.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dudSearchBusiness.Location = new System.Drawing.Point(776, 396);
-            this.dudSearchBusiness.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.dudSearchBusiness.Margin = new System.Windows.Forms.Padding(6);
             this.dudSearchBusiness.Name = "dudSearchBusiness";
             this.dudSearchBusiness.Size = new System.Drawing.Size(744, 80);
             this.dudSearchBusiness.TabIndex = 6;
@@ -149,7 +149,7 @@
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnUpdate.Location = new System.Drawing.Point(474, 20);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(6);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(350, 180);
             this.btnUpdate.TabIndex = 8;
@@ -163,7 +163,7 @@
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.btnDelete.Location = new System.Drawing.Point(1180, 20);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(6);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(350, 180);
             this.btnDelete.TabIndex = 9;
@@ -176,7 +176,7 @@
             this.btnInvHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInvHistory.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.btnInvHistory.Location = new System.Drawing.Point(1542, 22);
-            this.btnInvHistory.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnInvHistory.Margin = new System.Windows.Forms.Padding(6);
             this.btnInvHistory.Name = "btnInvHistory";
             this.btnInvHistory.Size = new System.Drawing.Size(350, 180);
             this.btnInvHistory.TabIndex = 10;
@@ -202,9 +202,9 @@
             this.groupBox1.Controls.Add(this.btnUpdate);
             this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Location = new System.Drawing.Point(-10, 1286);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(6);
             this.groupBox1.Size = new System.Drawing.Size(1920, 228);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
@@ -243,6 +243,7 @@
             this.Margin = new System.Windows.Forms.Padding(8, 10, 8, 10);
             this.Name = "frmBusinessView";
             this.Text = "Business View";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dgvBusiness)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);

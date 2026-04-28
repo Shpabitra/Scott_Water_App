@@ -55,7 +55,7 @@
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.cmbSelectBusiness = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblSelectBusiness = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -357,16 +357,16 @@
             this.cmbSelectBusiness.Size = new System.Drawing.Size(806, 63);
             this.cmbSelectBusiness.TabIndex = 27;
             // 
-            // label8
+            // lblSelectBusiness
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(362, 357);
-            this.label8.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(432, 61);
-            this.label8.TabIndex = 28;
-            this.label8.Text = "Select Business:";
+            this.lblSelectBusiness.AutoSize = true;
+            this.lblSelectBusiness.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectBusiness.Location = new System.Drawing.Point(362, 357);
+            this.lblSelectBusiness.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblSelectBusiness.Name = "lblSelectBusiness";
+            this.lblSelectBusiness.Size = new System.Drawing.Size(432, 61);
+            this.lblSelectBusiness.TabIndex = 28;
+            this.lblSelectBusiness.Text = "Select Business:";
             // 
             // frmRegisterBusiness
             // 
@@ -374,7 +374,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1968, 1522);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lblSelectBusiness);
             this.Controls.Add(this.cmbSelectBusiness);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtStatus);
@@ -443,6 +443,6 @@
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox cmbSelectBusiness;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblSelectBusiness;
     }
 }
