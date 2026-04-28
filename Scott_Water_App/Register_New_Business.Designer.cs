@@ -71,6 +71,7 @@
             this.btnMenu.TabIndex = 0;
             this.btnMenu.Text = "Scot Water";
             this.btnMenu.UseVisualStyleBackColor = false;
+            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
             // btnExit
             // 

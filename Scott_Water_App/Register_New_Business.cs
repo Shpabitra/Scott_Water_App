@@ -309,5 +309,11 @@ namespace Scott_Water_App
             fillBusinessInfo(data);
         }
 
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            frmMenu menu = new frmMenu();
+            menu.Show();
+            this.Hide();
+        }
     }
 }
