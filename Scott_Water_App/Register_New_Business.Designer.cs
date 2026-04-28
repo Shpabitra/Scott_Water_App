@@ -406,6 +406,7 @@
             this.MinimizeBox = false;
             this.Name = "frmRegisterBusiness";
             this.Text = "Register_New_Business";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

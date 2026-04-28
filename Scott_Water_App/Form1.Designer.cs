@@ -79,7 +79,7 @@
             // 
             this.txtUserEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUserEmail.Location = new System.Drawing.Point(684, 406);
-            this.txtUserEmail.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtUserEmail.Margin = new System.Windows.Forms.Padding(6);
             this.txtUserEmail.Name = "txtUserEmail";
             this.txtUserEmail.Size = new System.Drawing.Size(806, 80);
             this.txtUserEmail.TabIndex = 3;
@@ -88,7 +88,7 @@
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(684, 586);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(6);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(806, 80);
@@ -100,7 +100,7 @@
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.btnLogin.Location = new System.Drawing.Point(826, 826);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(6);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(390, 180);
             this.btnLogin.TabIndex = 5;
@@ -114,7 +114,7 @@
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.btnExit.Location = new System.Drawing.Point(46, 1178);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(6);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(350, 180);
             this.btnExit.TabIndex = 7;
@@ -137,7 +137,7 @@
             // 
             this.pictureBox1.Image = global::Scott_Water_App.Properties.Resources.Scot_Water_App_Logo;
             this.pictureBox1.Location = new System.Drawing.Point(1600, 40);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(290, 270);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -159,11 +159,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLogin";
             this.Text = "LOGIN";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
