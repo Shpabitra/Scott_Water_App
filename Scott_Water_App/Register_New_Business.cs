@@ -43,14 +43,12 @@ namespace Scott_Water_App
                 MessageBox.Show($"AddNew value: {addNew}", "AddNew Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 var businessCount = newRegBizFuncs.GetBusinessCount(db);
-                cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db, addNew);
 
-                //// Remove the last item if addNew = 2
-                //if (addNew == 2 && cmbSelectBusiness.Items.Count > 0)
-                //{
-                //    cmbSelectBusiness.Items.RemoveAt(cmbSelectBusiness.Items.Count - 1);
-                //    MessageBox.Show("Last item removed from combo box", "Item Removed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //}
+                if (addNew == 2 || addNew ==0)
+                {
+                    cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db, addNew);
+                }
+
 
                 MessageBox.Show("Number of businesses loaded: " + businessCount, "Business Count", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
