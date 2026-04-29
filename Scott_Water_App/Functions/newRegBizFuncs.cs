@@ -196,7 +196,7 @@ namespace Scott_Water_App.Functions
             return businessIds;
         }
 
-        public static System.Collections.Generic.List<string> GetBusinessNames(ScotWaterContext database)
+        public static System.Collections.Generic.List<string> GetBusinessNames(ScotWaterContext database, int addNew)
         {
             var businessNames = new System.Collections.Generic.List<string>();
 
@@ -208,7 +208,8 @@ namespace Scott_Water_App.Functions
                     .ToList();
             }
 
-            businessNames.Add("Add New Business");
+            if (addNew == 0)
+             businessNames.Add("Add New Business");
             return businessNames;
         }
 

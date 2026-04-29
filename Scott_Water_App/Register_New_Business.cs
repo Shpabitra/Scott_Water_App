@@ -35,15 +35,17 @@ namespace Scott_Water_App
             try
             {
                 db = new ScotWaterContext();
-                
-                // Call the helper function
-                ToggleBusinessSelection(addNew);  // If addNew is true, hide; if false, show
-                
+
                 MessageBox.Show($"AddNew value: {addNew}", "AddNew Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                // Call the helper function
+                ToggleBusinessSelection(addNew);
+                
+
                 var businessCount = newRegBizFuncs.GetBusinessCount(db);
-                //cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessIds(db);
-                cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db);
+                cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db, addNew);
+
+
                 MessageBox.Show("Number of businesses loaded: " + businessCount, "Business Count", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -189,7 +191,7 @@ namespace Scott_Water_App
                     MessageBox.Show("Number of businesses after added: " + db.Businesses.Count(), "Business Count1", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     //cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessIds(db);
-                    cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db);
+                    cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db, addNew);
 
 
 
@@ -328,20 +330,26 @@ namespace Scott_Water_App
             // Show the value of hide parameter
             MessageBox.Show($"addNew value: {addNew}", "Toggle Business Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
-            if (addNew == 2)
-            {
-                lblSelectBusiness.Visible = false;
-                cmbSelectBusiness.Visible = false;
-            }
-            else if (addNew == 1)
+            if (addNew == 2) // for updating business, hide the selection controls
             {
                 lblSelectBusiness.Visible = true;
                 cmbSelectBusiness.Visible = true;
-            } 
-            else if (addNew == 0)
+
+                lblSelectBusiness.Text = "Select Business:";
+
+            }
+            else if (addNew == 1) // for adding new business, show the selection controls
             {
-                // hide is null - do nothing or add custom logic
-                MessageBox.Show("Hide value is null - no action taken", "Null Value", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                lblSelectBusiness.Visible = false;
+                cmbSelectBusiness.Visible = false;
+
+            } 
+            else if (addNew == 0) // for both udpating exiting & adding new business, show the selection controls
+            {
+                lblSelectBusiness.Visible = true;
+                cmbSelectBusiness.Visible = true;
+
+                lblSelectBusiness.Text = "Update/New Biz:";
             }
         }
     }

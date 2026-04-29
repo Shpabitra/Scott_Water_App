@@ -367,6 +367,7 @@
             this.lblSelectBusiness.Size = new System.Drawing.Size(432, 61);
             this.lblSelectBusiness.TabIndex = 28;
             this.lblSelectBusiness.Text = "Select Business:";
+            this.lblSelectBusiness.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // frmRegisterBusiness
             // 
