@@ -226,61 +226,61 @@ namespace Scott_Water_App
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (db == null)
-            {
-                MessageBox.Show("Database is not initialized.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            if (db == null || selectedBusiness == null)
+    {
+        MessageBox.Show("Database is not initialized or no business selected.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        return;
+    }
 
-            Businesses updatedInput = newRegBizFuncs.CreateBusinessObjectFromInputFields(
-                txtBusinessID.Text.Trim(),
-                txtBusinessName.Text.Trim(),
-                txtAddress.Text.Trim(),
-                txtPostCode.Text.Trim(),
-                txtTelephone.Text.Trim(),
-                TxtEmail.Text.Trim(),
-                txtContactPerson.Text.Trim(),
-                txtRegistrationDate.Text.Trim(),
-                txtStatus.Text.Trim());
+    Businesses updatedInput = newRegBizFuncs.CreateBusinessObjectFromInputFields(
+        txtBusinessID.Text.Trim(),
+        txtBusinessName.Text.Trim(),
+        txtAddress.Text.Trim(),
+        txtPostCode.Text.Trim(),
+        txtTelephone.Text.Trim(),
+        TxtEmail.Text.Trim(),
+        txtContactPerson.Text.Trim(),
+        txtRegistrationDate.Text.Trim(),
+        txtStatus.Text.Trim());
 
-            if (!newRegBizFuncs.inputvalidation(updatedInput))
-                return;
+    if (!newRegBizFuncs.inputvalidation(updatedInput))
+        return;
 
-            int businessId;
-            if (!int.TryParse(txtBusinessID.Text.Trim(), out businessId))
-            {
-                MessageBox.Show("Please select a valid Business ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtBusinessID.Focus();
-                return;
-            }
+    int businessId;
+    if (!int.TryParse(txtBusinessID.Text.Trim(), out businessId))
+    {
+        MessageBox.Show("Please select a valid Business ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        txtBusinessID.Focus();
+        return;
+    }
 
-            try
-            {
-                var existingBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == businessId);
-                if (existingBusiness == null)
-                {
-                    MessageBox.Show($"Business with ID {businessId} was not found.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if(!newRegBizFuncs.checkIfAnyBusiessInfoChanged(existingBusiness, updatedInput))
-                {
-                    MessageBox.Show("Nothing changed.", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-                else
-                {
-                    newRegBizFuncs.updateExistingBusinessInfo(existingBusiness, updatedInput);
-                    db.SaveChanges();
-                    MessageBox.Show($"Business {existingBusiness.BusinessName} updated successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to save business changes: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+    try
+    {
+        var existingBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == businessId);
+        if (existingBusiness == null)
+        {
+            MessageBox.Show($"Business with ID {businessId} was not found.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
         }
+
+        if(!newRegBizFuncs.checkIfAnyBusiessInfoChanged(existingBusiness, updatedInput))
+        {
+            MessageBox.Show("Nothing changed.", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+        else
+        {
+            newRegBizFuncs.updateExistingBusinessInfo(existingBusiness, updatedInput);
+            db.SaveChanges();
+            MessageBox.Show($"Business {existingBusiness.BusinessName} updated successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show("Failed to save business changes: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+}
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
@@ -429,11 +429,11 @@ namespace Scott_Water_App
                 {
                     ComparingData(selectedBusiness);  // Pass selectedBusiness as argument
                 }
-                else if (addNew == 1)
-                {
-                    // For new business mode, use the existing validation
-                    ValidateFormInput();
-                }
+                //else if (addNew == 1)
+                //{
+                //    // For new business mode, use the existing validation
+                //    ValidateFormInput();
+                //}
             }
         }
 
