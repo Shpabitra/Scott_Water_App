@@ -70,8 +70,6 @@ namespace Scott_Water_App
                     AddNewBusiness();
                 }
 
-
-               
                 MessageBox.Show("Number of businesses loaded: " + businessCount, "Business Count", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 // Subscribe all textboxes to TextChanged event
                 SubscribeTextboxesToTextChanged(this);
@@ -256,14 +254,13 @@ namespace Scott_Water_App
                 var existingBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == businessId);
 
                 //selectedBusiness
-                //if (existingBusiness == null)
-                //{
-                //    MessageBox.Show($"Business with ID {businessId} was not found.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    return;
-                //}
+                if (existingBusiness == null)
+                {
+                    MessageBox.Show($"Business with ID {businessId} was not found.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-                if (!newRegBizFuncs.checkIfAnyBusiessInfoChanged(selectedBusiness, updatedInput))
-                //if (!newRegBizFuncs.checkIfAnyBusiessInfoChanged(existingBusiness, updatedInput))
+                if (!newRegBizFuncs.checkIfAnyBusiessInfoChanged(existingBusiness, updatedInput))
                 {
                     MessageBox.Show("Nothing changed.", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -273,6 +270,10 @@ namespace Scott_Water_App
                     newRegBizFuncs.updateExistingBusinessInfo(existingBusiness, updatedInput);
                     db.SaveChanges();
                     MessageBox.Show($"Business {existingBusiness.BusinessName} updated successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //refreshing the combo box and textboxes with the updated business info
+                    cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db, addNew);
+
                 }
 
             }
@@ -465,25 +466,29 @@ namespace Scott_Water_App
                 return;
             }
 
-            // Get current values from textboxes
-            string currentBusinessName = txtBusinessName.Text.Trim();
-            string currentAddress = txtAddress.Text.Trim();
-            string currentPostCode = txtPostCode.Text.Trim();
-            string currentTelephone = txtTelephone.Text.Trim();
-            string currentEmail = TxtEmail.Text.Trim();
-            string currentContactPerson = txtContactPerson.Text.Trim();
-            string currentRegistrationDate = txtRegistrationDate.Text.Trim();
-            string currentStatus = txtStatus.Text.Trim();
+            // Define control mappings for comparison
+            var controlMappings = new Dictionary<Control, string>
+            {
+                { txtBusinessName, originalBusiness.BusinessName },
+                { txtAddress, originalBusiness.BusinessCity },
+                { txtPostCode, originalBusiness.BusinessPostcode },
+                { txtTelephone, originalBusiness.BusinessContactNumber },
+                { TxtEmail, originalBusiness.BusinessEmail },
+                { txtContactPerson, originalBusiness.ContactPerson },
+                { txtRegistrationDate, originalBusiness.RegistrationDate },
+                { txtStatus, originalBusiness.Status }
+            };
 
-            // Compare with original loaded data
-            bool hasChanges = (currentBusinessName != originalBusiness.BusinessName) ||
-                              (currentAddress != originalBusiness.BusinessCity) ||
-                              (currentPostCode != originalBusiness.BusinessPostcode) ||
-                              (currentTelephone != originalBusiness.BusinessContactNumber) ||
-                              (currentEmail != originalBusiness.BusinessEmail) ||
-                              (currentContactPerson != originalBusiness.ContactPerson) ||
-                              (currentRegistrationDate != originalBusiness.RegistrationDate) ||
-                              (currentStatus != originalBusiness.Status);
+            // Iterate through the mappings and compare values
+            bool hasChanges = false;
+            foreach (var mapping in controlMappings)
+            {
+                if (mapping.Key.Text.Trim() != mapping.Value)
+                {
+                    hasChanges = true;
+                    break;
+                }
+            }
 
             // Enable or disable btnSave based on changes
             btnSave.Enabled = hasChanges;
