@@ -35,16 +35,22 @@ namespace Scott_Water_App
             try
             {
                 db = new ScotWaterContext();
-
-                MessageBox.Show($"AddNew value: {addNew}", "AddNew Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Call the helper function
-                ToggleBusinessSelection(addNew);
                 
+                // Call the helper functions
+                ToggleBusinessSelection(addNew);
+                ToggleButtons(addNew);  // Add this line
+                
+                MessageBox.Show($"AddNew value: {addNew}", "AddNew Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 var businessCount = newRegBizFuncs.GetBusinessCount(db);
                 cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db, addNew);
 
+                //// Remove the last item if addNew = 2
+                //if (addNew == 2 && cmbSelectBusiness.Items.Count > 0)
+                //{
+                //    cmbSelectBusiness.Items.RemoveAt(cmbSelectBusiness.Items.Count - 1);
+                //    MessageBox.Show("Last item removed from combo box", "Item Removed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //}
 
                 MessageBox.Show("Number of businesses loaded: " + businessCount, "Business Count", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -350,6 +356,35 @@ namespace Scott_Water_App
                 cmbSelectBusiness.Visible = true;
 
                 lblSelectBusiness.Text = "Update/New Biz:";
+            }
+        }
+
+        // Helper function to toggle button visibility based on addNew value
+        private void ToggleButtons(int addNew)
+        {
+            MessageBox.Show($"ToggleButtons called with addNew value: {addNew}", "Toggle Buttons", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
+            if (addNew == 2)
+            {
+                // For updating business: show save button, hide register button
+                btnSave.Visible = true;
+                btnRegister.Visible = false;
+                btnSave.Enabled = false;
+            }
+            else if (addNew == 1)
+            {
+                // For adding new business: hide save button, show register button
+                btnSave.Visible = false;
+                btnRegister.Visible = true;
+                btnRegister.Enabled = false;
+            }
+            else if (addNew == 0)
+            {
+                // For both updating and adding: show both buttons
+                btnSave.Visible = true;
+                btnRegister.Visible = true;
+                btnSave.Enabled = false;
+                btnRegister.Enabled = false;
             }
         }
     }
