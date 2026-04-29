@@ -18,16 +18,33 @@ namespace Scott_Water_App
         private ScotWaterContext db;
         const bool testMode = true;
         private int addNew;
+        private Businesses selectedBusiness; // Store the selected business for comparison
 
         public frmRegisterBusiness(int addNewBusiness = 99)
         {
-            //const bool testMode = true;
-
             InitializeComponent();
             this.Load += frmRegisterBusiness_Load;
             this.FormClosed += frmRegisterBusiness_FormClosed;
             this.cmbSelectBusiness.SelectedIndexChanged += cmbBizID_SelectedIndexChanged;
+            
             addNew = addNewBusiness;
+        }
+
+        // Helper method to subscribe all textboxes to TextChanged event
+        private void SubscribeTextboxesToTextChanged(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                if (control is TextBox)
+                {
+                    ((TextBox)control).TextChanged += TextBox_TextChanged;
+                }
+
+                if (control.HasChildren)
+                {
+                    SubscribeTextboxesToTextChanged(control);
+                }
+            }
         }
 
         private void frmRegisterBusiness_Load(object sender, EventArgs e)
@@ -54,7 +71,10 @@ namespace Scott_Water_App
                 }
 
 
+               
                 MessageBox.Show("Number of businesses loaded: " + businessCount, "Business Count", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Subscribe all textboxes to TextChanged event
+                SubscribeTextboxesToTextChanged(this);
             }
             catch (Exception ex)
             {
@@ -93,7 +113,8 @@ namespace Scott_Water_App
                 return;
 
             // Find the selected business in the database using the business ID
-            var selectedBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == selectedBusinessId.Value);
+            //var selectedBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == selectedBusinessId.Value);
+            selectedBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == selectedBusinessId.Value);
             if (selectedBusiness == null)
                 return;
 
@@ -261,7 +282,12 @@ namespace Scott_Water_App
             }
         }
 
-
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            frmMenu menu = new frmMenu();
+            menu.Show();
+            this.Hide();
+        }
 
         // ====================================================================================================
         // ======================================= HELPER FUNCTIONS ===========================================
@@ -310,18 +336,35 @@ namespace Scott_Water_App
             fillBusinessInfo(data);
         }
 
-        private void btnMenu_Click(object sender, EventArgs e)
+        // Helper function to handle adding a new business
+        private void AddNewBusiness()
         {
-            frmMenu menu = new frmMenu();
-            menu.Show();
-            this.Hide();
+            ClearAllTextBoxes(this);
+
+            if (testMode)
+                FillFakeBusinessData();
+
+            // Generate new Business ID by taking the max existing Business ID and adding 1
+            int businessCount = newRegBizFuncs.GetBusinessCount(db) + 1;
+            txtBusinessID.Text = businessCount.ToString();
+
+            // Generate new Meter ID by taking the max existing Meter ID and adding 1, or start at 1 if there are no readings
+            var newMeterId = db.Readings.Any()
+                ? db.Readings.Max(r => r.MeterID) + 1
+                : 1;
+
+            txtMeterID.Text = newMeterId.ToString();
         }
+
+        // ====================================================================================================
+        // ======================================= TOGGLE VIEW FUNCTIONS=======================================
+        // ====================================================================================================
 
         // Helper function to toggle visibility of business selection controls
         private void ToggleBusinessSelection(int addNew)
         {
             // Show the value of hide parameter
-            MessageBox.Show($"addNew value: {addNew}", "Toggle Business Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show($"addNew value: {addNew}", "Toggle Business Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
             if (addNew == 2) // for updating business, hide the selection controls
             {
@@ -349,7 +392,7 @@ namespace Scott_Water_App
         // Helper function to toggle button visibility based on addNew value
         private void ToggleButtons(int addNew)
         {
-            MessageBox.Show($"ToggleButtons called with addNew value: {addNew}", "Toggle Buttons", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show($"ToggleButtons called with addNew value: {addNew}", "Toggle Buttons", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
             if (addNew == 2)
             {
@@ -375,24 +418,81 @@ namespace Scott_Water_App
             }
         }
 
-        // Helper function to handle adding a new business
-        private void AddNewBusiness()
+        // Event handler for textbox text changes
+        private void TextBox_TextChanged(object sender, EventArgs e)
         {
-            ClearAllTextBoxes(this);
-
-            if (testMode)
-                FillFakeBusinessData();
-
-            // Generate new Business ID by taking the max existing Business ID and adding 1
-            int businessCount = newRegBizFuncs.GetBusinessCount(db) + 1;
-            txtBusinessID.Text = businessCount.ToString();
-
-            // Generate new Meter ID by taking the max existing Meter ID and adding 1, or start at 1 if there are no readings
-            var newMeterId = db.Readings.Any()
-                ? db.Readings.Max(r => r.MeterID) + 1
-                : 1;
-
-            txtMeterID.Text = newMeterId.ToString();
+            TextBox textBox = sender as TextBox;
+            if (textBox != null)
+            {
+                // Call the comparing data function for update mode (addNew = 2 or addNew = 0)
+                if ((addNew == 2 || addNew == 0) && selectedBusiness != null)
+                {
+                    ComparingData(selectedBusiness);  // Pass selectedBusiness as argument
+                }
+                else if (addNew == 1)
+                {
+                    // For new business mode, use the existing validation
+                    ValidateFormInput();
+                }
+            }
         }
+
+        // Helper method to validate form input
+        private void ValidateFormInput()
+        {
+            bool isFormValid = !string.IsNullOrWhiteSpace(txtBusinessName.Text) &&
+                              !string.IsNullOrWhiteSpace(TxtEmail.Text) &&
+                              !string.IsNullOrWhiteSpace(txtAddress.Text) &&
+                              !string.IsNullOrWhiteSpace(txtPostCode.Text);
+
+            if (addNew == 1)
+            {
+                btnRegister.Enabled = isFormValid;
+            }
+            else if (addNew == 2)
+            {
+                btnSave.Enabled = isFormValid;
+            }
+        }
+
+        // Helper function to compare current textbox values with original loaded data
+        private void ComparingData(Businesses originalBusiness)
+        {
+            // Only compare when updating an existing business (addNew = 2 or addNew = 0)
+            if ((addNew != 2 && addNew != 0) || originalBusiness == null)
+            {
+                btnSave.Enabled = false;
+                return;
+            }
+
+            // Get current values from textboxes
+            string currentBusinessName = txtBusinessName.Text.Trim();
+            string currentAddress = txtAddress.Text.Trim();
+            string currentPostCode = txtPostCode.Text.Trim();
+            string currentTelephone = txtTelephone.Text.Trim();
+            string currentEmail = TxtEmail.Text.Trim();
+            string currentContactPerson = txtContactPerson.Text.Trim();
+            string currentRegistrationDate = txtRegistrationDate.Text.Trim();
+            string currentStatus = txtStatus.Text.Trim();
+
+            // Compare with original loaded data
+            bool hasChanges = (currentBusinessName != originalBusiness.BusinessName) ||
+                              (currentAddress != originalBusiness.BusinessCity) ||
+                              (currentPostCode != originalBusiness.BusinessPostcode) ||
+                              (currentTelephone != originalBusiness.BusinessContactNumber) ||
+                              (currentEmail != originalBusiness.BusinessEmail) ||
+                              (currentContactPerson != originalBusiness.ContactPerson) ||
+                              (currentRegistrationDate != originalBusiness.RegistrationDate) ||
+                              (currentStatus != originalBusiness.Status);
+
+            // Enable or disable btnSave based on changes
+            btnSave.Enabled = hasChanges;
+        }
+            
+
+
+        
+
+        
     }
 }
