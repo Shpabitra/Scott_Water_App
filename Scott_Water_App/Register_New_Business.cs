@@ -251,25 +251,26 @@ namespace Scott_Water_App
 
             try
             {
-                var existingBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == businessId);
+                //var existingBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == businessId);
 
                 //selectedBusiness
-                if (existingBusiness == null)
+                    //var businessId = selectedBusiness.BusinessID;
+                if (selectedBusiness == null)
                 {
-                    MessageBox.Show($"Business with ID {businessId} was not found.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"Business with ID {selectedBusiness.BusinessID} was not found.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (!newRegBizFuncs.checkIfAnyBusiessInfoChanged(existingBusiness, updatedInput))
+                if (!newRegBizFuncs.checkIfAnyBusiessInfoChanged(selectedBusiness, updatedInput))
                 {
                     MessageBox.Show("Nothing changed.", "No Changes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 else
                 {
-                    newRegBizFuncs.updateExistingBusinessInfo(existingBusiness, updatedInput);
+                    newRegBizFuncs.updateExistingBusinessInfo(selectedBusiness, updatedInput);
                     db.SaveChanges();
-                    MessageBox.Show($"Business {existingBusiness.BusinessName} updated successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Business {selectedBusiness.BusinessName} updated successfully.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     //refreshing the combo box and textboxes with the updated business info
                     cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db, addNew);
