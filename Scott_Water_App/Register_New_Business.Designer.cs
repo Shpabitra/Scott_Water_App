@@ -267,6 +267,7 @@
             this.txtBusinessID.Margin = new System.Windows.Forms.Padding(6);
             this.txtBusinessID.Multiline = true;
             this.txtBusinessID.Name = "txtBusinessID";
+            this.txtBusinessID.ReadOnly = true;
             this.txtBusinessID.Size = new System.Drawing.Size(806, 56);
             this.txtBusinessID.TabIndex = 18;
             // 

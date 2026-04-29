@@ -48,6 +48,10 @@ namespace Scott_Water_App
                 {
                     cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db, addNew);
                 }
+                else if (addNew == 1)
+                {
+                    AddNewBusiness();
+                }
 
 
                 MessageBox.Show("Number of businesses loaded: " + businessCount, "Business Count", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -78,24 +82,9 @@ namespace Scott_Water_App
             // If "Add New Business" is selected, clear the textboxes and generate new IDs
             if (selectedBusinessIdStr == "Add New Business")
             {
-                ClearAllTextBoxes(this);
-
-                if (testMode)
-                    FillFakeBusinessData();
-
-                //Generate new Business ID by taking the max existing Business ID and adding 1
-                int businessCount = newRegBizFuncs.GetBusinessCount(db)+1;
-                txtBusinessID.Text = businessCount.ToString();
-
-                // Generate new Meter ID by taking the max existing Meter ID and adding 1, or start at 1 if there are no readings
-                var newMeterId = db.Readings.Any()
-                    ? db.Readings.Max(r => r.MeterID) + 1
-                    : 1;
-
-                txtMeterID.Text = newMeterId.ToString();
+                AddNewBusiness();  // Call the helper function instead
                 return;
             }
-
 
             // For existing business selection, load the business info into textboxes
             // Get the business ID from the selected value in the combo box
@@ -384,6 +373,26 @@ namespace Scott_Water_App
                 btnSave.Enabled = false;
                 btnRegister.Enabled = false;
             }
+        }
+
+        // Helper function to handle adding a new business
+        private void AddNewBusiness()
+        {
+            ClearAllTextBoxes(this);
+
+            if (testMode)
+                FillFakeBusinessData();
+
+            // Generate new Business ID by taking the max existing Business ID and adding 1
+            int businessCount = newRegBizFuncs.GetBusinessCount(db) + 1;
+            txtBusinessID.Text = businessCount.ToString();
+
+            // Generate new Meter ID by taking the max existing Meter ID and adding 1, or start at 1 if there are no readings
+            var newMeterId = db.Readings.Any()
+                ? db.Readings.Max(r => r.MeterID) + 1
+                : 1;
+
+            txtMeterID.Text = newMeterId.ToString();
         }
     }
 }
