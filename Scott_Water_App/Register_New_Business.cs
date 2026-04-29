@@ -128,7 +128,24 @@ namespace Scott_Water_App
             txtMeterID.Text = meterId == 0 ? string.Empty : meterId.ToString();
         }
 
-
+        // Event handler for textbox text changes
+        private void TextBox_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (textBox != null)
+            {
+                // Call the comparing data function for update mode (addNew = 2 or addNew = 0)
+                if ((addNew == 2 || addNew == 0) && selectedBusiness != null)
+                {
+                    ComparingData(selectedBusiness);  // Pass selectedBusiness as argument
+                }
+                //else if (addNew == 1)
+                //{
+                //    // For new business mode, use the existing validation
+                //    ValidateFormInput();
+                //}
+            }
+        }
 
         // ====================================================================================================
         // ======================================= CLICK EVENTS ===============================================
@@ -251,10 +268,6 @@ namespace Scott_Water_App
 
             try
             {
-                //var existingBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == businessId);
-
-                //selectedBusiness
-                    //var businessId = selectedBusiness.BusinessID;
                 if (selectedBusiness == null)
                 {
                     MessageBox.Show($"Business with ID {selectedBusiness.BusinessID} was not found.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -274,9 +287,7 @@ namespace Scott_Water_App
 
                     //refreshing the combo box and textboxes with the updated business info
                     cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db, addNew);
-
                 }
-
             }
             catch (Exception ex)
             {
@@ -358,6 +369,61 @@ namespace Scott_Water_App
             txtMeterID.Text = newMeterId.ToString();
         }
 
+        // Helper function to compare current textbox values with original loaded data
+        private void ComparingData(Businesses originalBusiness)
+        {
+            // Only compare when updating an existing business (addNew = 2 or addNew = 0)
+            if ((addNew != 2 && addNew != 0) || originalBusiness == null)
+            {
+                btnSave.Enabled = false;
+                return;
+            }
+
+            // Define control mappings for comparison
+            var controlMappings = new Dictionary<Control, string>
+            {
+                { txtBusinessName, originalBusiness.BusinessName },
+                { txtAddress, originalBusiness.BusinessCity },
+                { txtPostCode, originalBusiness.BusinessPostcode },
+                { txtTelephone, originalBusiness.BusinessContactNumber },
+                { TxtEmail, originalBusiness.BusinessEmail },
+                { txtContactPerson, originalBusiness.ContactPerson },
+                { txtRegistrationDate, originalBusiness.RegistrationDate },
+                { txtStatus, originalBusiness.Status }
+            };
+
+            // Iterate through the mappings and compare values
+            bool hasChanges = false;
+            foreach (var mapping in controlMappings)
+            {
+                if (mapping.Key.Text.Trim() != mapping.Value)
+                {
+                    hasChanges = true;
+                    break;
+                }
+            }
+
+            // Enable or disable btnSave based on changes
+            btnSave.Enabled = hasChanges;
+        }
+
+        // Helper method to validate form input
+        private void ValidateFormInput()
+        {
+            bool isFormValid = !string.IsNullOrWhiteSpace(txtBusinessName.Text) &&
+                              !string.IsNullOrWhiteSpace(TxtEmail.Text) &&
+                              !string.IsNullOrWhiteSpace(txtAddress.Text) &&
+                              !string.IsNullOrWhiteSpace(txtPostCode.Text);
+
+            if (addNew == 1)
+            {
+                btnRegister.Enabled = isFormValid;
+            }
+            else if (addNew == 2)
+            {
+                btnSave.Enabled = isFormValid;
+            }
+        }
         // ====================================================================================================
         // ======================================= TOGGLE VIEW FUNCTIONS=======================================
         // ====================================================================================================
@@ -408,7 +474,7 @@ namespace Scott_Water_App
                 // For adding new business: hide save button, show register button
                 btnSave.Visible = false;
                 btnRegister.Visible = true;
-                btnRegister.Enabled = false;
+                btnRegister.Enabled = true;
             }
             else if (addNew == 0)
             {
@@ -420,85 +486,11 @@ namespace Scott_Water_App
             }
         }
 
-        // Event handler for textbox text changes
-        private void TextBox_TextChanged(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-            TextBox textBox = sender as TextBox;
-            if (textBox != null)
-            {
-                // Call the comparing data function for update mode (addNew = 2 or addNew = 0)
-                if ((addNew == 2 || addNew == 0) && selectedBusiness != null)
-                {
-                    ComparingData(selectedBusiness);  // Pass selectedBusiness as argument
-                }
-                //else if (addNew == 1)
-                //{
-                //    // For new business mode, use the existing validation
-                //    ValidateFormInput();
-                //}
-            }
+            frmRegisterBusiness BizUpdate = new frmRegisterBusiness(1); // passing true for adding business
+            BizUpdate.Show();
+            this.Hide();
         }
-
-        // Helper method to validate form input
-        private void ValidateFormInput()
-        {
-            bool isFormValid = !string.IsNullOrWhiteSpace(txtBusinessName.Text) &&
-                              !string.IsNullOrWhiteSpace(TxtEmail.Text) &&
-                              !string.IsNullOrWhiteSpace(txtAddress.Text) &&
-                              !string.IsNullOrWhiteSpace(txtPostCode.Text);
-
-            if (addNew == 1)
-            {
-                btnRegister.Enabled = isFormValid;
-            }
-            else if (addNew == 2)
-            {
-                btnSave.Enabled = isFormValid;
-            }
-        }
-
-        // Helper function to compare current textbox values with original loaded data
-        private void ComparingData(Businesses originalBusiness)
-        {
-            // Only compare when updating an existing business (addNew = 2 or addNew = 0)
-            if ((addNew != 2 && addNew != 0) || originalBusiness == null)
-            {
-                btnSave.Enabled = false;
-                return;
-            }
-
-            // Define control mappings for comparison
-            var controlMappings = new Dictionary<Control, string>
-            {
-                { txtBusinessName, originalBusiness.BusinessName },
-                { txtAddress, originalBusiness.BusinessCity },
-                { txtPostCode, originalBusiness.BusinessPostcode },
-                { txtTelephone, originalBusiness.BusinessContactNumber },
-                { TxtEmail, originalBusiness.BusinessEmail },
-                { txtContactPerson, originalBusiness.ContactPerson },
-                { txtRegistrationDate, originalBusiness.RegistrationDate },
-                { txtStatus, originalBusiness.Status }
-            };
-
-            // Iterate through the mappings and compare values
-            bool hasChanges = false;
-            foreach (var mapping in controlMappings)
-            {
-                if (mapping.Key.Text.Trim() != mapping.Value)
-                {
-                    hasChanges = true;
-                    break;
-                }
-            }
-
-            // Enable or disable btnSave based on changes
-            btnSave.Enabled = hasChanges;
-        }
-            
-
-
-        
-
-        
     }
 }

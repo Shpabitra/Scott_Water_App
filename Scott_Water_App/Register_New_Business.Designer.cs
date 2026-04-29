@@ -56,6 +56,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.cmbSelectBusiness = new System.Windows.Forms.ComboBox();
             this.lblSelectBusiness = new System.Windows.Forms.Label();
+            this.btnAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -370,12 +371,27 @@
             this.lblSelectBusiness.Text = "Select Business:";
             this.lblSelectBusiness.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAdd.Location = new System.Drawing.Point(648, 1346);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(8, 10, 8, 10);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(233, 117);
+            this.btnAdd.TabIndex = 29;
+            this.btnAdd.Text = "ADD";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // frmRegisterBusiness
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(192F, 192F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1968, 1522);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lblSelectBusiness);
             this.Controls.Add(this.cmbSelectBusiness);
             this.Controls.Add(this.btnSave);
@@ -446,5 +462,6 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox cmbSelectBusiness;
         private System.Windows.Forms.Label lblSelectBusiness;
+        private System.Windows.Forms.Button btnAdd;
     }
 }
