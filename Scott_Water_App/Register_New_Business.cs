@@ -20,6 +20,8 @@ namespace Scott_Water_App
         private int addNew;
         private Businesses selectedBusiness; // Store the selected business for comparison
 
+
+
         public frmRegisterBusiness(int addNewBusiness = 99)
         {
             InitializeComponent();
@@ -220,6 +222,7 @@ namespace Scott_Water_App
 
                     //cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessIds(db);
                     cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db, addNew);
+
                     // Refresh form with addNew = 0 to show both Register and Save buttons
                     addNew = 0;
                     ToggleButtons(addNew);
@@ -462,8 +465,10 @@ namespace Scott_Water_App
         // Helper function to toggle button visibility based on addNew value
         private void ToggleButtons(int addNew)
         {
+
+            btnAdd.Visible = false;
             //MessageBox.Show($"ToggleButtons called with addNew value: {addNew}", "Toggle Buttons", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
+
             if (addNew == 2)
             {
                 // For updating business: show save button, hide register button
