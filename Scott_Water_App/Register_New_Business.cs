@@ -298,6 +298,13 @@ namespace Scott_Water_App
             }
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            frmRegisterBusiness BizUpdate = new frmRegisterBusiness(1); // passing true for adding business
+            BizUpdate.Show();
+            this.Hide();
+        }
+
         private void btnMenu_Click(object sender, EventArgs e)
         {
             frmMenu menu = new frmMenu();
@@ -468,6 +475,9 @@ namespace Scott_Water_App
         {
 
             btnAdd.Visible = false;
+            btnSave.Visible = true;
+            btnRegister.Visible = true;
+
             //MessageBox.Show($"ToggleButtons called with addNew value: {addNew}", "Toggle Buttons", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             if (addNew == 2)
@@ -476,14 +486,14 @@ namespace Scott_Water_App
                 //btnSave.Visible = true;
                 btnSave.Enabled = true;
 
-                btnRegister.Visible = true;
+                //btnRegister.Visible = true;
                 btnRegister.Enabled = false;
 
             }
             else if (addNew == 1)
             {
                 // For adding new business: hide save button, show register button
-                btnSave.Visible = true;
+                //btnSave.Visible = true;
                 btnSave.Enabled = false;
 
                 //btnRegister.Visible = true;
@@ -501,11 +511,6 @@ namespace Scott_Water_App
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            frmRegisterBusiness BizUpdate = new frmRegisterBusiness(1); // passing true for adding business
-            BizUpdate.Show();
-            this.Hide();
-        }
+
     }
 }
