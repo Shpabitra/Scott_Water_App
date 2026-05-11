@@ -103,6 +103,8 @@ namespace Scott_Water_App.Functions
 
             // a lot of validation could be added here such as phone number format, postcode format, registration date format etc. but for the sake of time and simplicity I will leave it at this for now.
 
+
+
             return true;
         }
 

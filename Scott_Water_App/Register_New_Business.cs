@@ -103,6 +103,7 @@ namespace Scott_Water_App
             if (selectedBusinessIdStr == "Add New Business")
             {
                 AddNewBusiness();  // Call the helper function instead
+                ToggleButtons(1);
                 return;
             }
 
@@ -472,29 +473,29 @@ namespace Scott_Water_App
             if (addNew == 2)
             {
                 // For updating business: show save button, hide register button
-                btnSave.Visible = true;
+                //btnSave.Visible = true;
                 btnSave.Enabled = true;
 
-                btnRegister.Visible = false;
+                //btnRegister.Visible = false;
                 btnRegister.Enabled = false;
 
             }
             else if (addNew == 1)
             {
                 // For adding new business: hide save button, show register button
-                btnSave.Visible = false;
+                //btnSave.Visible = false;
                 btnSave.Enabled = false;
 
-                btnRegister.Visible = true;
+                //btnRegister.Visible = true;
                 btnRegister.Enabled = true;
             }
             else if (addNew == 0)
             {
                 // For both updating and adding: show both buttons
-                btnSave.Visible = true;
+                //btnSave.Visible = true;
                 btnSave.Enabled = false;
 
-                btnRegister.Visible = true;
+                //btnRegister.Visible = true;
                 btnRegister.Enabled = false;
 
             }
