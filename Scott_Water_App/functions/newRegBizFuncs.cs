@@ -1,16 +1,289 @@
-﻿using Scott_Water_App.Models;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
+using System.Text;
+using System.Threading.Tasks;
+using Scott_Water_App.Models;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Text.RegularExpressions;
 
 namespace Scott_Water_App.Functions
 {
-    internal class newRegBizFuncs
+    public static class newRegBizFuncs
     {
+        // Comprehensive input validation for Business object
+        public static bool inputvalidation(Businesses business)
+        {
+            // Check for null object
+            if (business == null)
+            {
+                MessageBox.Show("Business object cannot be null.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Validate Business ID
+            if (!ValidateBusinessID(business.BusinessID))
+                return false;
+
+            // Validate Business Name
+            if (!ValidateBusinessName(business.BusinessName))
+                return false;
+
+            // Validate Business Email
+            if (!ValidateEmail(business.BusinessEmail))
+                return false;
+
+            // Validate Address (City)
+            if (!ValidateAddress(business.BusinessCity))
+                return false;
+
+            // Validate Postcode
+            if (!ValidatePostcode(business.BusinessPostcode))
+                return false;
+
+            // Validate Telephone Number
+            if (!ValidatePhoneNumber(business.BusinessContactNumber))
+                return false;
+
+            // Validate Contact Person
+            if (!ValidateContactPerson(business.ContactPerson))
+                return false;
+
+            // Validate Registration Date
+            if (!ValidateRegistrationDate(business.RegistrationDate))
+                return false;
+
+            // Validate Status
+            if (!ValidateStatus(business.Status))
+                return false;
+
+            return true;
+        }
+
+        // Validation: Business ID must be a positive number
+        public static bool ValidateBusinessID(int businessID)
+        {
+            if (businessID <= 0)
+            {
+                MessageBox.Show("Business ID must be a positive number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
+        // Validation: Business Name (2-100 characters, alphanumeric with special chars)
+        public static bool ValidateBusinessName(string businessName)
+        {
+            if (string.IsNullOrWhiteSpace(businessName))
+            {
+                MessageBox.Show("Business Name is required and cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (businessName.Length < 2)
+            {
+                MessageBox.Show("Business Name must be at least 2 characters.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (businessName.Length > 100)
+            {
+                MessageBox.Show("Business Name must not exceed 100 characters.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Allow alphanumeric, spaces, hyphens, ampersand, comma, period, apostrophe
+            if (!Regex.IsMatch(businessName, @"^[a-zA-Z0-9\s\-&,.']+$"))
+            {
+                MessageBox.Show("Business Name contains invalid characters. Allowed: letters, numbers, spaces, hyphens, ampersand, comma, period, apostrophe.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        // Validation: Email format
+        public static bool ValidateEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                MessageBox.Show("Business Email is required and cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Email pattern validation
+            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!Regex.IsMatch(email, pattern))
+            {
+                MessageBox.Show("Please enter a valid email address (e.g., name@domain.com).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        // Validation: Address/City (5-100 characters)
+        public static bool ValidateAddress(string address)
+        {
+            if (string.IsNullOrWhiteSpace(address))
+            {
+                MessageBox.Show("Address/City is required and cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (address.Length < 5)
+            {
+                MessageBox.Show("Address must be at least 5 characters.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (address.Length > 100)
+            {
+                MessageBox.Show("Address must not exceed 100 characters.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Allow alphanumeric, spaces, hyphens, comma, period, apostrophe, parentheses
+            if (!Regex.IsMatch(address, @"^[a-zA-Z0-9\s\-,.'()]+$"))
+            {
+                MessageBox.Show("Address contains invalid characters. Allowed: letters, numbers, spaces, hyphens, comma, period, apostrophe, parentheses.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        // Validation: UK Postcode format
+        public static bool ValidatePostcode(string postcode)
+        {
+            if (string.IsNullOrWhiteSpace(postcode))
+            {
+                MessageBox.Show("Postcode is required and cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // UK postcode validation pattern
+            string pattern = @"^[A-Z]{1,2}[0-9]{1,2}[A-Z]?\s?[0-9][A-Z]{2}$";
+            if (!Regex.IsMatch(postcode, pattern, RegexOptions.IgnoreCase))
+            {
+                MessageBox.Show("Please enter a valid UK postcode (e.g., G2 1BB or G21BB).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        // Validation: Phone Number (10-15 digits with optional separators)
+        public static bool ValidatePhoneNumber(string phoneNumber)
+        {
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+            {
+                MessageBox.Show("Telephone number is required and cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Remove common separators: spaces, hyphens, parentheses
+            string cleaned = Regex.Replace(phoneNumber, @"[\s\-\(\)]+", "");
+
+            // Check if it contains only digits and has 10-15 digits
+            if (!Regex.IsMatch(cleaned, @"^\d{10,15}$"))
+            {
+                MessageBox.Show("Telephone number must be 10-15 digits (can include spaces, dashes, or parentheses).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        // Validation: Contact Person (2-100 characters, letters only with some punctuation)
+        public static bool ValidateContactPerson(string contactPerson)
+        {
+            if (string.IsNullOrWhiteSpace(contactPerson))
+            {
+                MessageBox.Show("Contact Person name is required and cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (contactPerson.Length < 2)
+            {
+                MessageBox.Show("Contact Person name must be at least 2 characters.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (contactPerson.Length > 100)
+            {
+                MessageBox.Show("Contact Person name must not exceed 100 characters.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Allow only letters, spaces, hyphens, periods, apostrophes
+            if (!Regex.IsMatch(contactPerson, @"^[a-zA-Z\s\-.']+$"))
+            {
+                MessageBox.Show("Contact Person name contains invalid characters. Allowed: letters, spaces, hyphens, periods, apostrophes.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        // Validation: Registration Date (multiple formats supported)
+        public static bool ValidateRegistrationDate(string registrationDate)
+        {
+            if (string.IsNullOrWhiteSpace(registrationDate))
+            {
+                MessageBox.Show("Registration Date is required and cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            DateTime result;
+            string[] formats = { "dd/MM/yyyy", "MM/dd/yyyy", "yyyy-MM-dd", "d/M/yyyy", "M/d/yyyy" };
+
+            if (!DateTime.TryParseExact(registrationDate, formats, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out result))
+            {
+                MessageBox.Show("Please enter a valid date (e.g., DD/MM/YYYY, MM/DD/YYYY, or YYYY-MM-DD).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Optional: Check if date is not in the future
+            if (result > DateTime.Now)
+            {
+                MessageBox.Show("Registration Date cannot be in the future.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        // Validation: Status (must be one of predefined values)
+        public static bool ValidateStatus(string status)
+        {
+            if (string.IsNullOrWhiteSpace(status))
+            {
+                MessageBox.Show("Status is required and cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            string[] validStatuses = { "Active", "Inactive", "Suspended" };
+            if (!validStatuses.Contains(status.Trim()))
+            {
+                MessageBox.Show("Status must be one of: Active, Inactive, or Suspended.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        // Get business count from database
+        public static int GetBusinessCount(ScotWaterContext database)
+        {
+            if (database == null)
+                return 0;
+
+            return database.Businesses.Count();
+        }
+
+        // Add other existing methods here (GetBusinessNames, CreateBusinessObjectFromInputFields, etc.)
+
         internal class FakeBusinessData
         {
             public string BusinessId { get; set; }
@@ -55,58 +328,7 @@ namespace Scott_Water_App.Functions
             };
         }
 
-        public static bool IsValidEmailFormat(string email)
-        {
-            if (string.IsNullOrWhiteSpace(email))
-            {
-                return false;
-            }
 
-            try
-            {
-                var mailAddress = new MailAddress(email);
-                return string.Equals(mailAddress.Address, email, StringComparison.OrdinalIgnoreCase);
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-
-        public static bool inputvalidation(Businesses business)
-        {
-            if (business == null)
-            {
-                MessageBox.Show("Business object is null.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (string.IsNullOrWhiteSpace(business.BusinessName) ||
-                string.IsNullOrWhiteSpace(business.BusinessEmail) ||
-                string.IsNullOrWhiteSpace(business.BusinessContactNumber) ||
-                string.IsNullOrWhiteSpace(business.BusinessCity) ||
-                string.IsNullOrWhiteSpace(business.BusinessPostcode) ||
-                string.IsNullOrWhiteSpace(business.ContactPerson) ||
-                string.IsNullOrWhiteSpace(business.RegistrationDate) ||
-                string.IsNullOrWhiteSpace(business.Status))
-            {
-                MessageBox.Show("Please fill all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (!IsValidEmailFormat(business.BusinessEmail))
-            {
-                MessageBox.Show("Please enter a valid email format.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            // a lot of validation could be added here such as phone number format, postcode format, registration date format etc. but for the sake of time and simplicity I will leave it at this for now.
-
-
-
-            return true;
-        }
 
         public static Businesses CreateBusinessObjectFromInputFields(
             string businessId,
@@ -174,14 +396,6 @@ namespace Scott_Water_App.Functions
             existingBusiness.RegistrationDate = updatedInput.RegistrationDate;
             existingBusiness.Status = updatedInput.Status;
         }
-        public static int GetBusinessCount(ScotWaterContext database)
-        {
-            if (database == null)
-                return 0;
-
-            return database.Businesses.Count();
-        }
-
         public static System.Collections.Generic.List<string> GetBusinessIds(ScotWaterContext database)
         {
             var businessIds = new System.Collections.Generic.List<string>();
