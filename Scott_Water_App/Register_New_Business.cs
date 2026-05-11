@@ -93,7 +93,7 @@ namespace Scott_Water_App
                     AddNewBusiness();
                 }
 
-                MessageBox.Show("Number of businesses loaded: " + businessCount, "Business Count", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Number of businesses loaded: " + businessCount, "Business Count", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -123,7 +123,6 @@ namespace Scott_Water_App
             {
                 UnsubscribeTextboxesFromTextChanged(this);
                 AddNewBusiness();  // Call the helper function instead
-                //ToggleButtons(1);
                 return;
             }
 
@@ -134,7 +133,6 @@ namespace Scott_Water_App
                 return;
 
             // Find the selected business in the database using the business ID
-            //var selectedBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == selectedBusinessId.Value);
             selectedBusiness = db.Businesses.FirstOrDefault(b => b.BusinessID == selectedBusinessId.Value);
             if (selectedBusiness == null)
                 return;
@@ -463,35 +461,6 @@ namespace Scott_Water_App
             }
         }
 
-        // Alternative method: Temporarily disable all textbox TextChanged events during clearing
-        private void ClearAllTextBoxesWithEventSuspension(Control parent)
-        {
-            // Unsubscribe all textboxes from TextChanged event
-            UnsubscribeTextboxesFromTextChanged(this);
-
-            try
-            {
-                for (int i = 0; i < parent.Controls.Count; i++)
-                {
-                    Control control = parent.Controls[i];
-
-                    if (control is TextBox)
-                    {
-                        ((TextBox)control).Clear();
-                    }
-
-                    if (control.HasChildren)
-                    {
-                        ClearAllTextBoxesWithEventSuspension(control);
-                    }
-                }
-            }
-            finally
-            {
-                // Re-subscribe all textboxes to TextChanged event
-                SubscribeTextboxesToTextChanged(this);
-            }
-        }
 
         // Helper function to toggle visibility of business selection controls
         private void ToggleBusinessSelection(int addNew)
@@ -530,36 +499,25 @@ namespace Scott_Water_App
             btnSave.Visible = true;
             btnRegister.Visible = true;
 
-            MessageBox.Show($"ToggleButtons called with addNew value: {addNew}", "Toggle Buttons", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show($"ToggleButtons called with addNew value: {addNew}", "Toggle Buttons", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             if (addNew == 2)
             {
-                // For updating business: show save button, hide register button
-                //btnSave.Visible = true;
+                // For updating business: enable save button, disable register button
                 btnSave.Enabled = true;
-
-                //btnRegister.Visible = true;
                 btnRegister.Enabled = false;
-
             }
             else if (addNew == 1)
             {
-                // For adding new business: hide save button, show register button
-                //btnSave.Visible = true;
+                // For adding new business: disable save button, enable register button
                 btnSave.Enabled = false;
-
-                //btnRegister.Visible = true;
                 btnRegister.Enabled = true;
             }
             else if (addNew == 0)
             {
-                // For both updating and adding: show both buttons
-                //btnSave.Visible = true;
+                // For both updating and adding: disable both buttons untill change happens
                 btnSave.Enabled = false;
-
-                //btnRegister.Visible = true;
                 btnRegister.Enabled = false;
-
             }
         }
 
