@@ -16,7 +16,7 @@ namespace Scott_Water_App
     public partial class frmRegisterBusiness : Form
     {
         private ScotWaterContext db;
-        const bool testMode = true;
+        const bool testMode = false;
         private int addNew;
         private Businesses selectedBusiness; // Store the selected business for comparison
 
@@ -49,6 +49,25 @@ namespace Scott_Water_App
             }
         }
 
+        // Helper method to unsubscribe all textboxes from TextChanged event
+        private void UnsubscribeTextboxesFromTextChanged(Control parent)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                if (control is TextBox)
+                {
+                    ((TextBox)control).TextChanged -= TextBox_TextChanged;
+                }
+
+                if (control.HasChildren)
+                {
+                    UnsubscribeTextboxesFromTextChanged(control);
+                }
+            }
+        }
+
+
+
         private void frmRegisterBusiness_Load(object sender, EventArgs e)
         {
             try
@@ -66,15 +85,15 @@ namespace Scott_Water_App
                 if (addNew == 2 || addNew ==0)
                 {
                     cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db, addNew);
+                    SubscribeTextboxesToTextChanged(this);
                 }
                 else if (addNew == 1)
                 {
+                    UnsubscribeTextboxesFromTextChanged(this);
                     AddNewBusiness();
                 }
 
                 MessageBox.Show("Number of businesses loaded: " + businessCount, "Business Count", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                // Subscribe all textboxes to TextChanged event
-                SubscribeTextboxesToTextChanged(this);
             }
             catch (Exception ex)
             {
@@ -102,8 +121,9 @@ namespace Scott_Water_App
             // If "Add New Business" is selected, clear the textboxes and generate new IDs
             if (selectedBusinessIdStr == "Add New Business")
             {
+                UnsubscribeTextboxesFromTextChanged(this);
                 AddNewBusiness();  // Call the helper function instead
-                ToggleButtons(1);
+                //ToggleButtons(1);
                 return;
             }
 
@@ -132,16 +152,19 @@ namespace Scott_Water_App
         }
 
         // Event handler for textbox text changes
+
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
+
             TextBox textBox = sender as TextBox;
             if (textBox != null)
             {
-                // Call the comparing data function for update mode (addNew = 2 or addNew = 0)
+                //Call the comparing data function for update mode (addNew = 2 or addNew = 0)
                 if ((addNew == 2 || addNew == 0) && selectedBusiness != null)
                 {
                     ComparingData(selectedBusiness);  // Pass selectedBusiness as argument
                 }
+               
             }
         }
 
@@ -365,7 +388,7 @@ namespace Scott_Water_App
             ClearAllTextBoxes(this);
 
             ToggleBusinessSelection(1);
-            ToggleButtons(1);
+            //ToggleButtons(1);
 
             if (testMode)
                 FillFakeBusinessData();
@@ -380,6 +403,8 @@ namespace Scott_Water_App
                 : 1;
 
             txtMeterID.Text = newMeterId.ToString();
+            ToggleButtons(1);
+
         }
 
         // Helper function to compare current textbox values with original loaded data
@@ -437,9 +462,36 @@ namespace Scott_Water_App
                 btnSave.Enabled = isFormValid;
             }
         }
-        // ====================================================================================================
-        // ======================================= TOGGLE VIEW FUNCTIONS=======================================
-        // ====================================================================================================
+
+        // Alternative method: Temporarily disable all textbox TextChanged events during clearing
+        private void ClearAllTextBoxesWithEventSuspension(Control parent)
+        {
+            // Unsubscribe all textboxes from TextChanged event
+            UnsubscribeTextboxesFromTextChanged(this);
+
+            try
+            {
+                for (int i = 0; i < parent.Controls.Count; i++)
+                {
+                    Control control = parent.Controls[i];
+
+                    if (control is TextBox)
+                    {
+                        ((TextBox)control).Clear();
+                    }
+
+                    if (control.HasChildren)
+                    {
+                        ClearAllTextBoxesWithEventSuspension(control);
+                    }
+                }
+            }
+            finally
+            {
+                // Re-subscribe all textboxes to TextChanged event
+                SubscribeTextboxesToTextChanged(this);
+            }
+        }
 
         // Helper function to toggle visibility of business selection controls
         private void ToggleBusinessSelection(int addNew)
@@ -478,7 +530,7 @@ namespace Scott_Water_App
             btnSave.Visible = true;
             btnRegister.Visible = true;
 
-            //MessageBox.Show($"ToggleButtons called with addNew value: {addNew}", "Toggle Buttons", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"ToggleButtons called with addNew value: {addNew}", "Toggle Buttons", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             if (addNew == 2)
             {
