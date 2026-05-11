@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Scott_Water_App.Functions;
+using Scott_Water_App.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,17 +10,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Scott_Water_App.Functions;
-using Scott_Water_App.Models;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace Scott_Water_App
 {
     public partial class frmRegisterBusiness : Form
     {
         private ScotWaterContext db;
-        const bool testMode = false;
-        private int addNew;
+        const bool testMode = true;
         private Businesses selectedBusiness; // Store the selected business for comparison
+        private int addNew;
 
 
 
@@ -29,6 +30,10 @@ namespace Scott_Water_App
             this.FormClosed += frmRegisterBusiness_FormClosed;
             this.cmbSelectBusiness.SelectedIndexChanged += cmbBizID_SelectedIndexChanged;
             
+            // ****** explaination for integer addNew ********//
+            //addNew = 0 => Update exiting business & addNew new business (show all options)
+            //addNew = 1 => addNew new business
+            //addNew = 2 => Update exiting business 
             addNew = addNewBusiness;
         }
 
@@ -66,30 +71,34 @@ namespace Scott_Water_App
             }
         }
 
-
-
         private void frmRegisterBusiness_Load(object sender, EventArgs e)
         {
             try
             {
                 db = new ScotWaterContext();
-                
-                // Call the helper functions
+
+                // change the text of the form title and buttons based on addNew value
                 ToggleBusinessSelection(addNew);
-                ToggleButtons(addNew);  // Add this line
+                // change the availability of buttons based on addNew value
+                ToggleButtons(addNew);  
                 
-                MessageBox.Show($"AddNew value: {addNew}", "AddNew Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show($"AddNew value: {addNew}", "AddNew Status", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 var businessCount = newRegBizFuncs.GetBusinessCount(db);
 
                 if (addNew == 2 || addNew ==0)
                 {
                     cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db, addNew);
+
+                    // assign text change events for updating business, then compare the data when any change happens
                     SubscribeTextboxesToTextChanged(this);
                 }
                 else if (addNew == 1)
                 {
+                    // since comparison data is not needed for adding new business, we can unsubscribe the text change events to avoid unnecessary comparison and improve performance
                     UnsubscribeTextboxesFromTextChanged(this);
+
+                    // after removing all the text change events, we can call the AddNewBusiness function to handle the logic for adding new business, which includes generating new IDs and filling fake data if test mode is on
                     AddNewBusiness();
                 }
 
@@ -101,6 +110,7 @@ namespace Scott_Water_App
             }
         }
 
+        // Dispose the database context when the form is closed to free up resources
         private void frmRegisterBusiness_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (db != null)
@@ -149,11 +159,9 @@ namespace Scott_Water_App
             txtMeterID.Text = meterId == 0 ? string.Empty : meterId.ToString();
         }
 
-        // Event handler for textbox text changes
-
+        // Event handler for textbox text changes, which will call the ComparingData function to compare current textbox values with original loaded data and enable/disable the Save button accordingly. This only applies when updating an existing business (addNew = 2 or addNew = 0), and will not be triggered when adding a new business (addNew = 1) since the text change events are unsubscribed in that case.
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
-
             TextBox textBox = sender as TextBox;
             if (textBox != null)
             {
@@ -319,12 +327,12 @@ namespace Scott_Water_App
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            frmRegisterBusiness BizUpdate = new frmRegisterBusiness(1); // passing true for adding business
-            BizUpdate.Show();
-            this.Hide();
-        }
+        //private void btnAdd_Click(object sender, EventArgs e)
+        //{
+        //    frmRegisterBusiness BizUpdate = new frmRegisterBusiness(1); // passing true for adding business
+        //    BizUpdate.Show();
+        //    this.Hide();
+        //}
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
@@ -377,6 +385,8 @@ namespace Scott_Water_App
         private void FillFakeBusinessData()
         {
             Businesses data = newRegBizFuncs.GenerateFakeBusinessData();
+
+            // reuse the fillBusinessInfo function to fill the textboxes with the generated fake data, which will ensure that the same formatting and mapping logic is applied as when filling data for an existing business
             fillBusinessInfo(data);
         }
 
@@ -386,8 +396,8 @@ namespace Scott_Water_App
             ClearAllTextBoxes(this);
 
             ToggleBusinessSelection(1);
-            //ToggleButtons(1);
 
+            // fill fake data only if testMode is true, which allows us to easily switch between testing and production scenarios without modifying the core logic of adding a new business. When testMode is false, the textboxes will simply be cleared and ready for new input without any pre-filled data.
             if (testMode)
                 FillFakeBusinessData();
 
@@ -443,24 +453,6 @@ namespace Scott_Water_App
             btnSave.Enabled = hasChanges;
         }
 
-        // Helper method to validate form input
-        private void ValidateFormInput()
-        {
-            bool isFormValid = !string.IsNullOrWhiteSpace(txtBusinessName.Text) &&
-                              !string.IsNullOrWhiteSpace(TxtEmail.Text) &&
-                              !string.IsNullOrWhiteSpace(txtAddress.Text) &&
-                              !string.IsNullOrWhiteSpace(txtPostCode.Text);
-
-            if (addNew == 1)
-            {
-                btnRegister.Enabled = isFormValid;
-            }
-            else if (addNew == 2)
-            {
-                btnSave.Enabled = isFormValid;
-            }
-        }
-
 
         // Helper function to toggle visibility of business selection controls
         private void ToggleBusinessSelection(int addNew)
@@ -495,7 +487,7 @@ namespace Scott_Water_App
         private void ToggleButtons(int addNew)
         {
 
-            btnAdd.Visible = false;
+            //btnAdd.Visible = false;
             btnSave.Visible = true;
             btnRegister.Visible = true;
 
