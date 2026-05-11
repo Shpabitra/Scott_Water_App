@@ -20,7 +20,9 @@ namespace Scott_Water_App
         private int addNew;
         private Businesses selectedBusiness; // Store the selected business for comparison
 
-        public frmRegisterBusiness(int addNewBusiness = 99)
+        public frmRegisterBusiness(int addNewBusiness = 0)
+
+        //public frmRegisterBusiness(int addNewBusiness = 99)
         {
             InitializeComponent();
             this.Load += frmRegisterBusiness_Load;

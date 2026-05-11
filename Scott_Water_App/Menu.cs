@@ -51,7 +51,7 @@ namespace Scott_Water_App
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            frmRegisterBusiness registerBusinessForm = new frmRegisterBusiness();
+            frmRegisterBusiness registerBusinessForm = new frmRegisterBusiness(0);
             registerBusinessForm.Show();
             this.Hide();
         }
