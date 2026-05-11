@@ -476,14 +476,14 @@ namespace Scott_Water_App
                 //btnSave.Visible = true;
                 btnSave.Enabled = true;
 
-                //btnRegister.Visible = false;
+                btnRegister.Visible = true;
                 btnRegister.Enabled = false;
 
             }
             else if (addNew == 1)
             {
                 // For adding new business: hide save button, show register button
-                //btnSave.Visible = false;
+                btnSave.Visible = true;
                 btnSave.Enabled = false;
 
                 //btnRegister.Visible = true;
