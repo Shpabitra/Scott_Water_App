@@ -23,5 +23,27 @@ namespace Scott_Water_App
             registerBusiness.Show();
             this.Hide();
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            frmRegisterBusiness BizUpdate = new frmRegisterBusiness(2);// passing false for updating an existing business
+            //BizUpdate.AddNew = false; 
+            BizUpdate.Show();
+            this.Hide();
+        }
+
+        private void btnAddNewBusiness_Click(object sender, EventArgs e)
+        {
+            frmRegisterBusiness BizUpdate = new frmRegisterBusiness(1); // passing true for adding business
+            BizUpdate.Show();
+            this.Hide();
+        }
+
+        private void btnExitBusiness_Click(object sender, EventArgs e)
+        {
+            frmMenu frmMenu = new frmMenu();
+            frmMenu.Show();
+            this.Hide();
+        }
     }
 }

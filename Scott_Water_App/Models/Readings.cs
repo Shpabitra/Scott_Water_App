@@ -23,7 +23,8 @@ namespace Scott_Water_App.Models
 
         // Water Recycled by business
        // public int WaterRecycled { get; set; }
-       public double UsageUnits { get; internal set; }
+        public double UsageUnits { get; internal set; }
         public double RecycledUnits { get; internal set; }
+        public decimal ReserveLevel { get; set; }
     }
 }

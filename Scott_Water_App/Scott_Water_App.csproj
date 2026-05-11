@@ -56,11 +56,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Add_New_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_New_Login.Designer.cs">
+      <DependentUpon>Add_New_Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Business.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Business.Designer.cs">
       <DependentUpon>Business.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ForgotPass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForgotPass.Designer.cs">
+      <DependentUpon>ForgotPass.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -68,11 +80,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Home_Page.cs">
+    <Compile Include="functions\newRegBizFuncs.cs" />
+    <Compile Include="GenerateBill.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Home_Page.Designer.cs">
-      <DependentUpon>Home_Page.cs</DependentUpon>
+    <Compile Include="GenerateBill.Designer.cs">
+      <DependentUpon>GenerateBill.cs</DependentUpon>
     </Compile>
     <Compile Include="Invoice.cs">
       <SubType>Form</SubType>
@@ -95,10 +108,18 @@
     <Compile Include="Models\Businesses.cs" />
     <Compile Include="Models\InvoiceCalculation.cs" />
     <Compile Include="Models\Invoices.cs" />
+    <Compile Include="Models\Price.cs" />
     <Compile Include="Models\Readings.cs" />
     <Compile Include="Models\ScotWaterContext.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WaterLevel.cs" />
+    <Compile Include="Price.cs" />
+    <Compile Include="Price_Change.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Price_Change.Designer.cs">
+      <DependentUpon>Price_Change.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register_New_Business.cs">
@@ -119,23 +140,29 @@
     <Compile Include="Water_Level.Designer.cs">
       <DependentUpon>Water_Level.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Add_New_Login.resx">
+      <DependentUpon>Add_New_Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Business.resx">
       <DependentUpon>Business.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ForgotPass.resx">
+      <DependentUpon>ForgotPass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Home_Page.resx">
-      <DependentUpon>Home_Page.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Invoice.resx">
-      <DependentUpon>Invoice.cs</DependentUpon>
+    <EmbeddedResource Include="GenerateBill.resx">
+      <DependentUpon>GenerateBill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Meter_Reading.resx">
       <DependentUpon>Meter_Reading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Price_Change.resx">
+      <DependentUpon>Price_Change.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

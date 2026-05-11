@@ -15,6 +15,7 @@ namespace Scott_Water_App.Models
         public int UserID { get; set; } //Primary Key
         public string Email { get; set; } //User's Email
         public string Password { get; set; } //User's Password
+        public string ConfirmPassword { get; set; } // to confirm password
 
         //[ForeignKey("Businesses")]
         //public int BusinessID { get; set; }

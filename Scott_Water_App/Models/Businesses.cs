@@ -16,7 +16,8 @@ namespace Scott_Water_App.Models
         public string BusinessName { get; set; } //Business Name
         public string BusinessEmail { get; set; } //Business Email
         public string BusinessContactNumber { get; set; } //Business Contact Number
-        public string BusinessCity { get; set; } //Location of Business
+        public string BusinessLocation { get; set; } //Location of Business
+        public string BusinessCity { get; set; } //Business City
         public string BusinessPostcode { get; set; } //Business Postcode
         public string ContactPerson { get; set; } //Contact Person
         public string RegistrationDate { get; set; } //Registration Date

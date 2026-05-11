@@ -74,5 +74,22 @@ namespace Scott_Water_App
         {
             Application.Exit();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //Nathan Allan
+            Add_New_Login registerForm = new Add_New_Login();
+            registerForm.Show();
+            this.Hide();
+        
+    }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //Nathan Allan 22 04 2026
+            frmPasswordReset forgotForm = new frmPasswordReset();
+            forgotForm.Show();
+            this.Hide();
+        }
     }
 }

@@ -12,8 +12,17 @@ namespace Scott_Water_App.Models
     public class WaterLevel
     {
         [Key]
-        public int Id { get; set; }
+        public int WaterLevelID { get; set; }
+        [Required]
+
+        public int BusinessID { get; set; }
+        [ForeignKey("BusinessID")]
+        public virtual Businesses Business { get; set; }
+
+        [Required]
         public double ReservePercentage { get; set; }
+
+        [Required]
         public DateTime DateSet { get; set; }
     }
 }

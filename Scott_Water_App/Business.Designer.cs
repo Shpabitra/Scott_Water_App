@@ -41,6 +41,7 @@
             this.btnInvHistory = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnAddNewBusiness = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBusiness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -54,6 +55,7 @@
             this.dgvBusiness.Location = new System.Drawing.Point(20, 264);
             this.dgvBusiness.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvBusiness.Name = "dgvBusiness";
+            this.dgvBusiness.RowHeadersWidth = 82;
             this.dgvBusiness.Size = new System.Drawing.Size(810, 362);
             this.dgvBusiness.TabIndex = 0;
             // 
@@ -106,6 +108,7 @@
             this.btnExitBusiness.TabIndex = 4;
             this.btnExitBusiness.Text = "EXIT";
             this.btnExitBusiness.UseVisualStyleBackColor = false;
+            this.btnExitBusiness.Click += new System.EventHandler(this.btnExitBusiness_Click);
             // 
             // label1
             // 
@@ -142,19 +145,20 @@
             this.btnUpdate.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnUpdate.Location = new System.Drawing.Point(293, 654);
+            this.btnUpdate.Location = new System.Drawing.Point(237, 10);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(175, 90);
             this.btnUpdate.TabIndex = 8;
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnDelete.Location = new System.Drawing.Point(474, 654);
+            this.btnDelete.Location = new System.Drawing.Point(590, 10);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(175, 90);
             this.btnDelete.TabIndex = 9;
@@ -166,7 +170,7 @@
             this.btnInvHistory.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnInvHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInvHistory.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnInvHistory.Location = new System.Drawing.Point(660, 11);
+            this.btnInvHistory.Location = new System.Drawing.Point(771, 11);
             this.btnInvHistory.Name = "btnInvHistory";
             this.btnInvHistory.Size = new System.Drawing.Size(175, 90);
             this.btnInvHistory.TabIndex = 10;
@@ -186,22 +190,36 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.groupBox1.Controls.Add(this.btnAddNewBusiness);
             this.groupBox1.Controls.Add(this.btnInvHistory);
+            this.groupBox1.Controls.Add(this.btnUpdate);
+            this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Location = new System.Drawing.Point(-5, 643);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(860, 114);
+            this.groupBox1.Size = new System.Drawing.Size(960, 114);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
+            // 
+            // btnAddNewBusiness
+            // 
+            this.btnAddNewBusiness.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnAddNewBusiness.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddNewBusiness.ForeColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnAddNewBusiness.Location = new System.Drawing.Point(414, 10);
+            this.btnAddNewBusiness.Name = "btnAddNewBusiness";
+            this.btnAddNewBusiness.Size = new System.Drawing.Size(175, 90);
+            this.btnAddNewBusiness.TabIndex = 11;
+            this.btnAddNewBusiness.Text = "ADD NEW";
+            this.btnAddNewBusiness.UseVisualStyleBackColor = false;
+            this.btnAddNewBusiness.Click += new System.EventHandler(this.btnAddNewBusiness_Click);
             // 
             // frmBusinessView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(984, 870);
+            this.ClientSize = new System.Drawing.Size(962, 870);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lblLinkRegisterBusiness);
             this.Controls.Add(this.dudSearchBusiness);
             this.Controls.Add(this.label1);
@@ -215,6 +233,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmBusinessView";
             this.Text = "Business View";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dgvBusiness)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -238,5 +257,6 @@
         private System.Windows.Forms.Button btnInvHistory;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnAddNewBusiness;
     }
 }

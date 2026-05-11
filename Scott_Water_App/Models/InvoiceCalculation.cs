@@ -9,13 +9,29 @@ using System.Data.Entity;
 
 namespace Scott_Water_App.Models
 {
+    
     public class InvoiceCalculation
     {
+        private Price _price;
         //to hold the invoice calculation details for a given meter reading
         public double UsageUnits { get; set; }
         public double RecycledUnits { get; set; }
         public double ReserveLevel { get; set; }
         public string RateType { get; set; } // "Standard" or "Low Reserve"
+
+        //information for the tiered billing
+        public double DroughtRate1 { get; set; } //= 40; // 0-40 units
+        public double DroughtRate2 { get; set; } //= 40; // 41-80 units
+        public double DroughtRate3 { get; set; } //= 40; // 81+ units
+
+        public double NoDroughtRate1 { get; set; } //= 32; // 0-40 units
+        public double NoDroughtRate2 { get; set; } //= 72; // 41-80 units
+        public double NoDroughtRate3 { get; set; } //= 116; // 81+ units
+
+        public double RecycleRate1 { get; set; } //= 0; // 0-5 recycled units
+        public double RecycleRate2 { get; set; } //= 0.10; // 6-20 recycled units
+        public double RecycleRate3 { get; set; } //= 0.25; // 21+ recycled units
+
 
         public double Tier1UnitsUsed { get; set; } 
         public double Tier2UnitsUsed { get; set; }
@@ -43,22 +59,48 @@ namespace Scott_Water_App.Models
         public DateTime InvoiceDate { get; internal set; }
 
         //logic to calculate everything automatically
-        public void CalculateInvoice()
+        public InvoiceCalculation(Businesses business, Readings reading, Price price, WaterLevel waterLevel)
         {
+            _price = price; // Store the price for use in calculations
+
+            //store the price values for the invoice info box
+            DroughtRate1 = _price.DroughtTier1Rate;
+            DroughtRate2 = _price.DroughtTier2Rate;
+            DroughtRate3 = _price.DroughtTier3Rate;
+
+            NoDroughtRate1 =_price.NoDroughtTier1Rate;
+            NoDroughtRate2 = _price.NoDroughtTier2Rate;
+            NoDroughtRate3 = _price.NoDroughtTier3Rate;
+
+            RecycleRate1 = _price.RecycleRate1;
+            RecycleRate2 = _price.RecycleRate2;
+            RecycleRate3 = _price.RecycleRate3;
+
+
+            BusinessName = business.BusinessName;
+            BusinessAddress = $"{business.BusinessLocation}, {business.BusinessCity}, {business.BusinessPostcode}";
+
+            UsageUnits = reading.UsageUnits;
+            RecycledUnits = reading.RecycledUnits;
+            ReserveLevel = waterLevel.ReservePercentage;
+                DateRange = reading.ReadingDate.ToShortDateString();
+            InvoiceDate = DateTime.Now; // Set invoice date to current date
             // decide the rates based on reserved level
             if (this.ReserveLevel < 25)
             {
                 // low reserve level - higher rates
-                this.Tier1Rate = 0.47;
-                this.Tier2Rate = 0.82;
-                this.Tier3Rate = 2.25;
+                this.Tier1Rate = _price.DroughtTier1Rate;
+                this.Tier2Rate = _price.DroughtTier2Rate;
+                this.Tier3Rate = _price.DroughtTier3Rate;
+                //this.RateType = "Drought";
             }
             else
             {
                 //Standard rates
-                this.Tier1Rate = 0.41;
-                this.Tier2Rate = 0.64;
-                this.Tier3Rate = 1.35;
+                this.Tier1Rate = _price.NoDroughtTier1Rate;
+                this.Tier2Rate = _price.NoDroughtTier2Rate;
+                this.Tier3Rate = _price.NoDroughtTier3Rate;
+                //this.RateType = "No Drought";
             }
             // Calculate tiered costs based on usage
             double remaining = this.UsageUnits;
@@ -95,11 +137,11 @@ namespace Scott_Water_App.Models
 
             //Recycling discount Logic
             if(RecycledUnits <= 5)
-               RecyclePerUnit = 0.05; // no credit for 5 or fewer recycled units
+               RecyclePerUnit = _price.RecycleRate1; // no credit for 5 or fewer recycled units
             else if (RecycledUnits <= 20)
-                RecyclePerUnit = 0.15; // 10% credit for 6-20 recycled units
+                RecyclePerUnit = _price.RecycleRate2; // 10% credit for 6-20 recycled units
             else
-                RecyclePerUnit = 0.25; // 25% credit for more than 20 recycled units
+                RecyclePerUnit = _price.RecycleRate3; // 25% credit for more than 20 recycled units
                 this.RecycleTotal = this.RecycledUnits * this.RecyclePerUnit; // credit for recycled units
                                                                               // this.RecyclePerUnit = 0.10; // credit per recycled unit
                                                                               // this.RecycleTotal= this.RecycledUnits * this.RecyclePerUnit; // credit for recycled units

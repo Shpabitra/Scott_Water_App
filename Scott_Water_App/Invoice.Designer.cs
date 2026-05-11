@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInvoice));
             this.btnExit = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnEmailBusiness = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lblInvoiceNo = new System.Windows.Forms.Label();
@@ -74,15 +74,16 @@
             this.label34 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label35 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
+            this.lblNoDroughtRate3 = new System.Windows.Forms.Label();
+            this.lblNoDrougthtRate2 = new System.Windows.Forms.Label();
+            this.lblNoDroughtRate1 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
+            this.lblDroughtRate3 = new System.Windows.Forms.Label();
+            this.lblDroughtRate2 = new System.Windows.Forms.Label();
+            this.lblDroughtRate1 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -103,7 +104,9 @@
             this.btnMenu = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label35 = new System.Windows.Forms.Label();
+            this.lblRecycleRate1 = new System.Windows.Forms.Label();
+            this.lblRecycleRate2 = new System.Windows.Forms.Label();
+            this.lblRecycleRate3 = new System.Windows.Forms.Label();
             this.panelPrintInvoice.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -123,18 +126,19 @@
             this.btnExit.Text = "EXIT";
             this.btnExit.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btnEmailBusiness
             // 
-            this.button3.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(599, 18);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(197, 90);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Email To Business";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnEmailBusiness.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnEmailBusiness.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmailBusiness.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEmailBusiness.Location = new System.Drawing.Point(599, 18);
+            this.btnEmailBusiness.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEmailBusiness.Name = "btnEmailBusiness";
+            this.btnEmailBusiness.Size = new System.Drawing.Size(197, 90);
+            this.btnEmailBusiness.TabIndex = 2;
+            this.btnEmailBusiness.Text = "Email To Business";
+            this.btnEmailBusiness.UseVisualStyleBackColor = false;
+            this.btnEmailBusiness.Click += new System.EventHandler(this.btnEmailBusiness_Click);
             // 
             // label9
             // 
@@ -226,13 +230,6 @@
             // 
             // printPreviewDialog1
             // 
-            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
-            this.printPreviewDialog1.Enabled = true;
-            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
-            this.printPreviewDialog1.Name = "printPreviewDialog1";
-            this.printPreviewDialog1.Visible = false;
             // 
             // btnPrint
             // 
@@ -300,7 +297,7 @@
             this.panelPrintInvoice.Name = "panelPrintInvoice";
             this.panelPrintInvoice.Size = new System.Drawing.Size(960, 767);
             this.panelPrintInvoice.TabIndex = 58;
-          
+            this.panelPrintInvoice.Paint += new System.Windows.Forms.PaintEventHandler(this.panelPrintInvoice_Paint);
             // 
             // label14
             // 
@@ -646,16 +643,19 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.groupBox2.Controls.Add(this.lblRecycleRate3);
+            this.groupBox2.Controls.Add(this.lblRecycleRate2);
+            this.groupBox2.Controls.Add(this.lblRecycleRate1);
             this.groupBox2.Controls.Add(this.label35);
             this.groupBox2.Controls.Add(this.label33);
             this.groupBox2.Controls.Add(this.label32);
-            this.groupBox2.Controls.Add(this.label29);
-            this.groupBox2.Controls.Add(this.label28);
-            this.groupBox2.Controls.Add(this.label27);
+            this.groupBox2.Controls.Add(this.lblNoDroughtRate3);
+            this.groupBox2.Controls.Add(this.lblNoDrougthtRate2);
+            this.groupBox2.Controls.Add(this.lblNoDroughtRate1);
             this.groupBox2.Controls.Add(this.label26);
-            this.groupBox2.Controls.Add(this.label24);
-            this.groupBox2.Controls.Add(this.label23);
-            this.groupBox2.Controls.Add(this.label22);
+            this.groupBox2.Controls.Add(this.lblDroughtRate3);
+            this.groupBox2.Controls.Add(this.lblDroughtRate2);
+            this.groupBox2.Controls.Add(this.lblDroughtRate1);
             this.groupBox2.Controls.Add(this.label21);
             this.groupBox2.Controls.Add(this.label20);
             this.groupBox2.Controls.Add(this.label19);
@@ -669,50 +669,59 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "INFO";
             // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(13, 183);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(114, 16);
+            this.label35.TabIndex = 14;
+            this.label35.Text = "RecycleUnit >=21 ";
+            // 
             // label33
             // 
             this.label33.AutoSize = true;
             this.label33.Location = new System.Drawing.Point(14, 159);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(144, 16);
+            this.label33.Size = new System.Drawing.Size(120, 16);
             this.label33.TabIndex = 13;
-            this.label33.Text = "RecycleUnit <=20   0.15";
+            this.label33.Text = "RecycleUnit <=20   ";
             // 
             // label32
             // 
             this.label32.AutoSize = true;
             this.label32.Location = new System.Drawing.Point(10, 135);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(140, 16);
+            this.label32.Size = new System.Drawing.Size(116, 16);
             this.label32.TabIndex = 12;
-            this.label32.Text = "Recycle Unit<=5    0.05";
+            this.label32.Text = "Recycle Unit<=5    ";
             // 
-            // label29
+            // lblNoDroughtRate3
             // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(184, 105);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(31, 16);
-            this.label29.TabIndex = 11;
-            this.label29.Text = "1.35";
+            this.lblNoDroughtRate3.AutoSize = true;
+            this.lblNoDroughtRate3.Location = new System.Drawing.Point(184, 105);
+            this.lblNoDroughtRate3.Name = "lblNoDroughtRate3";
+            this.lblNoDroughtRate3.Size = new System.Drawing.Size(31, 16);
+            this.lblNoDroughtRate3.TabIndex = 11;
+            this.lblNoDroughtRate3.Text = "1.35";
             // 
-            // label28
+            // lblNoDrougthtRate2
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(184, 75);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(31, 16);
-            this.label28.TabIndex = 10;
-            this.label28.Text = "0.64";
+            this.lblNoDrougthtRate2.AutoSize = true;
+            this.lblNoDrougthtRate2.Location = new System.Drawing.Point(184, 75);
+            this.lblNoDrougthtRate2.Name = "lblNoDrougthtRate2";
+            this.lblNoDrougthtRate2.Size = new System.Drawing.Size(31, 16);
+            this.lblNoDrougthtRate2.TabIndex = 10;
+            this.lblNoDrougthtRate2.Text = "0.64";
             // 
-            // label27
+            // lblNoDroughtRate1
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(184, 47);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(31, 16);
-            this.label27.TabIndex = 9;
-            this.label27.Text = "0.41";
+            this.lblNoDroughtRate1.AutoSize = true;
+            this.lblNoDroughtRate1.Location = new System.Drawing.Point(184, 47);
+            this.lblNoDroughtRate1.Name = "lblNoDroughtRate1";
+            this.lblNoDroughtRate1.Size = new System.Drawing.Size(31, 16);
+            this.lblNoDroughtRate1.TabIndex = 9;
+            this.lblNoDroughtRate1.Text = "0.41";
             // 
             // label26
             // 
@@ -724,32 +733,32 @@
             this.label26.TabIndex = 8;
             this.label26.Text = "Standard >25";
             // 
-            // label24
+            // lblDroughtRate3
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(97, 105);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(31, 16);
-            this.label24.TabIndex = 7;
-            this.label24.Text = "2.25";
+            this.lblDroughtRate3.AutoSize = true;
+            this.lblDroughtRate3.Location = new System.Drawing.Point(97, 105);
+            this.lblDroughtRate3.Name = "lblDroughtRate3";
+            this.lblDroughtRate3.Size = new System.Drawing.Size(31, 16);
+            this.lblDroughtRate3.TabIndex = 7;
+            this.lblDroughtRate3.Text = "2.25";
             // 
-            // label23
+            // lblDroughtRate2
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(97, 75);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(31, 16);
-            this.label23.TabIndex = 6;
-            this.label23.Text = "0.82";
+            this.lblDroughtRate2.AutoSize = true;
+            this.lblDroughtRate2.Location = new System.Drawing.Point(97, 75);
+            this.lblDroughtRate2.Name = "lblDroughtRate2";
+            this.lblDroughtRate2.Size = new System.Drawing.Size(31, 16);
+            this.lblDroughtRate2.TabIndex = 6;
+            this.lblDroughtRate2.Text = "0.82";
             // 
-            // label22
+            // lblDroughtRate1
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(97, 47);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(31, 16);
-            this.label22.TabIndex = 5;
-            this.label22.Text = "0.47";
+            this.lblDroughtRate1.AutoSize = true;
+            this.lblDroughtRate1.Location = new System.Drawing.Point(97, 47);
+            this.lblDroughtRate1.Name = "lblDroughtRate1";
+            this.lblDroughtRate1.Size = new System.Drawing.Size(31, 16);
+            this.lblDroughtRate1.TabIndex = 5;
+            this.lblDroughtRate1.Text = "0.47";
             // 
             // label21
             // 
@@ -958,28 +967,46 @@
             this.groupBox1.Controls.Add(this.btnSaveToDataBase);
             this.groupBox1.Controls.Add(this.btnBacktoMeterReading);
             this.groupBox1.Controls.Add(this.btnExit);
-            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.btnEmailBusiness);
             this.groupBox1.Location = new System.Drawing.Point(1, 785);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(971, 135);
             this.groupBox1.TabIndex = 59;
             this.groupBox1.TabStop = false;
             // 
-            // label35
+            // lblRecycleRate1
             // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(13, 183);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(141, 16);
-            this.label35.TabIndex = 14;
-            this.label35.Text = "RecycleUnit >=21  0.25";
+            this.lblRecycleRate1.AutoSize = true;
+            this.lblRecycleRate1.Location = new System.Drawing.Point(140, 134);
+            this.lblRecycleRate1.Name = "lblRecycleRate1";
+            this.lblRecycleRate1.Size = new System.Drawing.Size(31, 16);
+            this.lblRecycleRate1.TabIndex = 15;
+            this.lblRecycleRate1.Text = "0.05";
+            // 
+            // lblRecycleRate2
+            // 
+            this.lblRecycleRate2.AutoSize = true;
+            this.lblRecycleRate2.Location = new System.Drawing.Point(140, 159);
+            this.lblRecycleRate2.Name = "lblRecycleRate2";
+            this.lblRecycleRate2.Size = new System.Drawing.Size(31, 16);
+            this.lblRecycleRate2.TabIndex = 16;
+            this.lblRecycleRate2.Text = "0.15";
+            // 
+            // lblRecycleRate3
+            // 
+            this.lblRecycleRate3.AutoSize = true;
+            this.lblRecycleRate3.Location = new System.Drawing.Point(140, 183);
+            this.lblRecycleRate3.Name = "lblRecycleRate3";
+            this.lblRecycleRate3.Size = new System.Drawing.Size(31, 16);
+            this.lblRecycleRate3.TabIndex = 17;
+            this.lblRecycleRate3.Text = "0.25";
             // 
             // frmInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(984, 911);
+            this.ClientSize = new System.Drawing.Size(988, 849);
             this.Controls.Add(this.lblInvoiceDate);
             this.Controls.Add(this.lblInvoiceNo);
             this.Controls.Add(this.label7);
@@ -1004,7 +1031,7 @@
 
         #endregion
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnEmailBusiness;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblInvoiceNo;
@@ -1035,13 +1062,13 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label lblNoDroughtRate3;
+        private System.Windows.Forms.Label lblNoDrougthtRate2;
+        private System.Windows.Forms.Label lblNoDroughtRate1;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label lblDroughtRate3;
+        private System.Windows.Forms.Label lblDroughtRate2;
+        private System.Windows.Forms.Label lblDroughtRate1;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
@@ -1079,5 +1106,8 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label lblRecycleRate3;
+        private System.Windows.Forms.Label lblRecycleRate2;
+        private System.Windows.Forms.Label lblRecycleRate1;
     }
 }

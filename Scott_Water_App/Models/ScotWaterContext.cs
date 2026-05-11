@@ -21,143 +21,116 @@ namespace Scott_Water_App.Models
         //Users reprents the meters within the database
         public DbSet<Readings> Readings { get; set; }
         public DbSet<WaterLevel> WaterLevels { get; set; }
-        
         public DbSet<Invoices> Invoices { get; set; }
 
-
+        public DbSet<Price> Prices { get; set; }
         public ScotWaterContext() : base("ScotWaterConnection")
         {
             Database.SetInitializer(new ScotWaterDatabaseInitialiser());
         }
-
-       
-            // Seed initial data if necessary
-        
-
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
-        //    // Configure the relationships between entities
-        //    modelBuilder.Entity<User>()
-        //        .HasRequired(u => u.Readings)
-        //        .WithMany()
-        //        .HasForeignKey(u => u.BusinessID)
-        //        .WillCascadeOnDelete(false); // Prevent cascade delete to avoid deleting related readings when a user is deleted
-           
-        //    //Turn off cascade delete fo user business relationships.
-        //    modelBuilder.Entity<User>()
-        //        .HasRequired(u => u.Businesses)
-        //        .WithMany()
-        //        .HasForeignKey(u => u.BusinessID)
-        //        .WillCascadeOnDelete(false); // Prevent cascade delete to avoid deleting related businesses when a user is deleted
-           
-        //    base.OnModelCreating(modelBuilder);
-        //}
-    }//End of ScotWaterContext class
-
-    public class ScotWaterDatabaseInitialiser : DropCreateDatabaseAlways<ScotWaterContext>
-    {
-        protected override void Seed(ScotWaterContext context)
+        public class ScotWaterDatabaseInitialiser : DropCreateDatabaseAlways<ScotWaterContext>
         {
-            base.Seed(context);
-            // Create businesses and link to readings via MeterID
-            var businesses1 = new Businesses
+            protected override void Seed(ScotWaterContext context)
             {
-                BusinessID = 1,
-                BusinessName = "Tesco",
-                BusinessEmail = "TescoCompany@test.com",
-                BusinessContactNumber = "0123456789",
-                BusinessCity = "Glasgow",
-                BusinessPostcode = "GL23 7PT",
-                ContactPerson = "John Smith",
-                RegistrationDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                Status = "Active"
-                // MeterID = reading1.MeterID
-            };
+                base.Seed(context);
+                // Create businesses and link to readings via MeterID
+                var businesses1 = new Businesses
+                {
+                    BusinessID = 1,
+                    BusinessName = "Tesco",
+                    BusinessEmail = "TescoCompany@test.com",
+                    BusinessContactNumber = "0123456789",
+                    BusinessCity = "Glasgow",
+                    BusinessPostcode = "GL23 7PT",
+                    ContactPerson = "John Smith",
+                    RegistrationDate = DateTime.Now.ToString("yyyy-MM-dd"),
+                    Status = "Active"
+                    // MeterID = reading1.MeterID
+                };
 
-            var businesses2 = new Businesses
-            {
-                BusinessID = 2,
-                BusinessName = "Costa",
-                BusinessEmail = "Costa@test.com",
-                BusinessContactNumber = "0987654321",
-                BusinessCity = "Edinburgh",
-                BusinessPostcode = "ED26 9TL",
-                ContactPerson = "Jane Brown",
-                RegistrationDate = DateTime.Now.ToString("yyyy-MM-dd"),
-                Status = "Active"
-                // MeterID = reading2.MeterID
-            };
+                var businesses2 = new Businesses
+                {
+                    BusinessID = 2,
+                    BusinessName = "Costa",
+                    BusinessEmail = "Costa@test.com",
+                    BusinessContactNumber = "0987654321",
+                    BusinessCity = "Edinburgh",
+                    BusinessPostcode = "ED26 9TL",
+                    ContactPerson = "Jane Brown",
+                    RegistrationDate = DateTime.Now.ToString("yyyy-MM-dd"),
+                    Status = "Active"
+                    // MeterID = reading2.MeterID
+                };
 
-            context.Businesses.Add(businesses1);
-            context.Businesses.Add(businesses2);
-            context.SaveChanges();
+                context.Businesses.Add(businesses1);
+                context.Businesses.Add(businesses2);
+                context.SaveChanges();
 
-            // Create Readings first (IDs must match FK types)
-            var reading1 = new Readings
-            {
-                MeterID = 1,
-                BusinessID = 1, // Link to business with ID 1
-                ReadingDate = DateTime.Now,
-                UsageUnits = 90,
-                RecycledUnits = 10
-            };
+                // Create Readings first (IDs must match FK types)
+                var reading1 = new Readings
+                {
+                    MeterID = 1,
+                    BusinessID = 1, // Link to business with ID 1
+                    ReadingDate = new DateTime(2000, 01, 1),
+                    UsageUnits = 90,
+                    RecycledUnits = 10
+                };
 
-            var reading2 = new Readings
-            {
-                MeterID = 2,
-                BusinessID = 2, // Link to business with ID 2
-                ReadingDate = DateTime.Now,
-                UsageUnits = 50,
-               RecycledUnits = 5
+                var reading2 = new Readings
+                {
+                    MeterID = 2,
+                    BusinessID = 2, // Link to business with ID 2
+                    ReadingDate = new DateTime(2000, 01, 1),
+                    UsageUnits = 50,
+                    RecycledUnits = 5
 
-            };
+                };
 
-            context.Readings.Add(reading1);
-            context.Readings.Add(reading2);
-            context.SaveChanges();
+                context.Readings.Add(reading1);
+                context.Readings.Add(reading2);
+                context.SaveChanges();
 
-            var waterLevel1 = new WaterLevel
-            {
-                ReservePercentage = 22,
-               DateSet = DateTime.Now,
-               
-            };
-            var waterLevel2 = new WaterLevel
-            {
-                ReservePercentage = 30,
-                DateSet = DateTime.Now,
-                
-            };
-            context.WaterLevels.Add(waterLevel1);
-            context.WaterLevels.Add(waterLevel2);
+                var waterLevel1 = new WaterLevel
+                {
+                    BusinessID = 1, // Link to business with ID 1
+                    ReservePercentage = 22,
+                    DateSet = DateTime.Now,
+
+                };
+                var waterLevel2 = new WaterLevel
+                {
+                    BusinessID = 2, // Link to business with ID 2
+                    ReservePercentage = 30,
+                    DateSet = DateTime.Now,
+
+                };
+                context.WaterLevels.Add(waterLevel1);
+                context.WaterLevels.Add(waterLevel2);
                 context.SaveChanges();
 
 
 
-            // Create Users and associate them with businesses/readings
-            var member1 = new User
-            {
-                Email = "member1@test.com",
-                Password = "1",
-                
-            };
+                // Create Users and associate them with businesses/readings
+                var member1 = new User
+                {
+                    Email = "member1@test.com",
+                    Password = "1",
 
-            var member2 = new User
-            {
-                Email = "member2@test.com",
-                Password = "2",
-               
-            };
+                };
 
-            context.Users.Add(member1);
-            context.Users.Add(member2);
-            context.SaveChanges();
-        }
+                var member2 = new User
+                {
+                    Email = "member2@test.com",
+                    Password = "2",
 
-        //THIS IS A TEST TO SEE IF GITHUB WORKS!!!!!!
+                };
 
-    }//End of ScotWaterDatabaseInitialiser class
+                context.Users.Add(member1);
+                context.Users.Add(member2);
+                context.SaveChanges();
+            }
+        }//End of ScotWaterDatabaseInitialiser class
+    }
 }//End of Namespace
 
     
