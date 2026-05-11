@@ -16,7 +16,7 @@ namespace Scott_Water_App
     public partial class frmRegisterBusiness : Form
     {
         private ScotWaterContext db;
-        const bool testMode = false;
+        const bool testMode = true;
         private int addNew;
         private Businesses selectedBusiness; // Store the selected business for comparison
 
@@ -139,11 +139,6 @@ namespace Scott_Water_App
                 {
                     ComparingData(selectedBusiness);  // Pass selectedBusiness as argument
                 }
-                //else if (addNew == 1)
-                //{
-                //    // For new business mode, use the existing validation
-                //    ValidateFormInput();
-                //}
             }
         }
 
@@ -225,6 +220,10 @@ namespace Scott_Water_App
 
                     //cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessIds(db);
                     cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db, addNew);
+                    // Refresh form with addNew = 0 to show both Register and Save buttons
+                    addNew = 0;
+                    ToggleButtons(addNew);
+                    ToggleBusinessSelection(addNew);
 
                 }
             }
@@ -354,6 +353,9 @@ namespace Scott_Water_App
         {
             ClearAllTextBoxes(this);
 
+            ToggleBusinessSelection(1);
+            ToggleButtons(1);
+
             if (testMode)
                 FillFakeBusinessData();
 
@@ -466,13 +468,18 @@ namespace Scott_Water_App
             {
                 // For updating business: show save button, hide register button
                 btnSave.Visible = true;
+                btnSave.Enabled = true;
+
                 btnRegister.Visible = false;
-                btnSave.Enabled = false;
+                btnRegister.Enabled = false;
+
             }
             else if (addNew == 1)
             {
                 // For adding new business: hide save button, show register button
                 btnSave.Visible = false;
+                btnSave.Enabled = false;
+
                 btnRegister.Visible = true;
                 btnRegister.Enabled = true;
             }
@@ -480,9 +487,11 @@ namespace Scott_Water_App
             {
                 // For both updating and adding: show both buttons
                 btnSave.Visible = true;
-                btnRegister.Visible = true;
                 btnSave.Enabled = false;
+
+                btnRegister.Visible = true;
                 btnRegister.Enabled = false;
+
             }
         }
 
