@@ -251,6 +251,8 @@ namespace Scott_Water_App
 
                     // Refresh form with addNew = 0 to show both Register and Save buttons
                     addNew = 0;
+                    SubscribeTextboxesToTextChanged(this);
+
                     ToggleButtons(addNew);
                     ToggleBusinessSelection(addNew);
 
@@ -315,6 +317,8 @@ namespace Scott_Water_App
 
                     //refreshing the combo box and textboxes with the updated business info
                     cmbSelectBusiness.DataSource = newRegBizFuncs.GetBusinessNames(db, addNew);
+                    btnSave.Enabled = false;
+
                 }
             }
             catch (Exception ex)
