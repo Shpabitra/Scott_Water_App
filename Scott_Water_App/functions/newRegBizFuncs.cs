@@ -323,7 +323,7 @@ namespace Scott_Water_App.Functions
                 BusinessContactNumber = "07" + random.Next(100000000, 999999999),
                 BusinessEmail = (firstName + "." + lastName + "@" + prefix + type + ".com").ToLower(),
                 ContactPerson = firstName + " " + lastName,
-                RegistrationDate = DateTime.Today.ToString("yyyy-MM-dd"),
+                RegistrationDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
                 Status = "Active"
             };
         }
