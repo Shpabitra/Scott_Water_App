@@ -236,11 +236,11 @@ namespace Scott_Water_App.Functions
             }
 
             DateTime result;
-            string[] formats = { "dd/MM/yyyy", "MM/dd/yyyy", "yyyy-MM-dd", "d/M/yyyy", "M/d/yyyy" };
+            string[] formats = { "dd/MM/yyyy HH:mm:ss", "MM/dd/yyyy HH:mm:ss", "yyyy-MM-dd HH:mm:ss", "d/M/yyyy HH:mm:ss", "M/d/yyyy HH:mm:ss" };
 
             if (!DateTime.TryParseExact(registrationDate, formats, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out result))
             {
-                MessageBox.Show("Please enter a valid date (e.g., DD/MM/YYYY, MM/DD/YYYY, or YYYY-MM-DD).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter a valid date and time (e.g., DD/MM/YYYY HH:MM:SS, MM/DD/YYYY HH:MM:SS, or YYYY-MM-DD HH:MM:SS).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
