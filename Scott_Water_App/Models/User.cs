@@ -15,13 +15,9 @@ namespace Scott_Water_App.Models
         public int UserID { get; set; } //Primary Key
         public string Email { get; set; } //User's Email
         public string Password { get; set; } //User's Password
-
-        //[ForeignKey("Businesses")]
-        //public int BusinessID { get; set; }
-        //public Businesses Businesses { get; set; }
-
-        //[ForeignKey("Readings")]
-        //public int MeterID { get; set; }
-        //public Readings Readings { get; set; }
+        public string ConfirmPassword { get; set; } // to confirm password
+        public string Role { get; set; }
+        public int FailedLoginAttempts { get; set; } // counter of failed log on attemps 
+        public bool IsLocked { get; set; }
     }
 }

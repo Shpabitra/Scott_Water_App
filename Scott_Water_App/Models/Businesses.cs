@@ -16,13 +16,17 @@ namespace Scott_Water_App.Models
         public string BusinessName { get; set; } //Business Name
         public string BusinessEmail { get; set; } //Business Email
         public string BusinessContactNumber { get; set; } //Business Contact Number
-        public string BusinessCity { get; set; } //Location of Business
+        public string BusinessCity { get; set; } //Business City
         public string BusinessPostcode { get; set; } //Business Postcode
         public string ContactPerson { get; set; } //Contact Person
         public string RegistrationDate { get; set; } //Registration Date
         public string Status { get; set; } //Status of the business (active/inactive)
+        public string BusinessLocation { get; set; } //Location of Business
+        // Navigation properties
+        public virtual ICollection<Readings> Readings { get; set; }
 
-        public virtual ICollection<Readings> Readings { get; set; } // Navigation property to Users
-        public virtual ICollection<Invoices> Invoices { get; set; } // Navigation property to Invoices
+        public virtual ICollection<WaterLevel> WaterLevels { get; set; }
+
+        public virtual ICollection<Invoices> Invoices { get; set; }
     }
 }

@@ -21,9 +21,49 @@ namespace Scott_Water_App
         {
             InitializeComponent();
         }
+        //find the reserve level from the database and set the reserve
+        //level numeric up down control to that value
+        private double GetReserveLevel(int businessId)
+        {
+                using (var db = new ScotWaterContext())
+                {
+                //entity framework query to find the most recent water level for the selected business
+                var waterLevel = db.WaterLevels
+                       .Where(W=> W.BusinessID == businessId)
+                       .OrderByDescending(r => r.DateSet)
+                          .FirstOrDefault();
+
+                //return the reserve percentage if a water level is found, otherwise return 0
+                if (waterLevel != null)
+                    {
+                        return waterLevel.ReservePercentage;
+                    }
+                return 0;
+                }
+        }
+        //when the business name selected the water reserve level
+        //for that business is pulled from the database
+        //and set to the reserve level
+        private void dudBusinessName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //check if a business is selected
+            if (dudBusinessName.SelectedItem == null)
+                return;
+           int businessId;
+            using (var db = new ScotWaterContext())
+                //convert the selected business name to the business id
+                if (!int.TryParse(dudBusinessName.SelectedItem.ToString(), out businessId))
+            return;
+
+            //show the reserve level for the selected business
+            double reserveLevel = GetReserveLevel(businessId);
+               txtReserveLevel.Text = reserveLevel.ToString("0.##");
+            
+        }
 
         private void frmMeterReading_Load(object sender, EventArgs e)
         {
+            dtpReadingDate.MaxDate = DateTime.Today;
             try
             {
                 using (var db = new ScotWaterContext())
@@ -36,9 +76,8 @@ namespace Scott_Water_App
                     //add the business names to the dropdown
                     foreach (var name in businessNames)
                     {
-                        dudBusinessName.Items.Add(name);
-                    }
-
+                       dudBusinessName.Items.Add(name);
+                    } 
                     // set the first item as default if the list is not empty
                     if (dudBusinessName.Items.Count > 0)
                     {
@@ -53,77 +92,6 @@ namespace Scott_Water_App
             }
         }
 
-       
-
-
-        private void btnGenerateBill_Click(object sender, EventArgs e)
-        {
-
-            //Create the object
-            InvoiceCalculation invoice = new InvoiceCalculation();
-
-            //   //pull from the numeric up down controls and assign to the invoice object
-            //info.UsageUnits = (double)nudWaterUsage.Value;
-            //   info.RecycleUnits = (double)nudRecycle.Value;
-
-            using (var db = new ScotWaterContext())
-            {
-                // Find the selected business in the database
-                //string selectedBusiness = dudBusinessName.SelectedItem.ToString();
-                var biz = db.Businesses.FirstOrDefault(b => b.BusinessName == dudBusinessName.Text);
-                if (biz != null)
-                {
-                    //fill the invoice object with the business data and date range
-                    invoice.BusinessName = biz.BusinessName;
-                    invoice.BusinessAddress = $"{biz.BusinessCity}, {biz.BusinessPostcode}";
-                    invoice.DateRange = dtpReadingDate.Value.ToString("DD MM yy");
-                    //Assign values from the textboxes inputs
-                    invoice.ReserveLevel = (double)nudReserveLevel.Value;
-                    invoice.RateType = invoice.ReserveLevel < 25 ? "Low" : "Standard";
-                    invoice.UsageUnits = (double)nudUsageUnits.Value;
-                    invoice.RecycledUnits = (double)nudRecycleUnits.Value;
-
-                    //run the calculation
-                    invoice.CalculateInvoice();
-
-                    //open the invoice form and pass my invoice object to it
-                    frmInvoice frm = new frmInvoice(invoice);
-                    frm.ShowDialog();
-                    this.Hide();
-
-                }
-                else
-                {
-                    MessageBox.Show("Please select a valid business");
-                }
-
-
-
-
-
-            }
-        }
-
-        //private double GetReserveLevel()
-        //{
-        //    using (var db = new ScotWaterContext())
-        //    {
-        //        var reserve = db.WaterLevels
-
-        //            .OrderByDescending(r => r.Id)
-        //            .FirstOrDefault();
-
-        //        if (reserve != null)
-        //        {
-        //            return reserve.ReservePercentage;
-
-
-        //        }
-        //        return 100;
-
-        //    }
-        //}
-
         private void btnSaveReading_Click(object sender, EventArgs e)
         {
             try
@@ -136,65 +104,90 @@ namespace Scott_Water_App
                 using (var db = new ScotWaterContext())
                 {
                     string selectedBusiness = dudBusinessName.Text.Trim();
+
                     var biz = db.Businesses.FirstOrDefault(b => b.BusinessName == selectedBusiness);
+
                     if (biz == null)
                     {
-                        // Save the reading for the selected business
-                        MessageBox.Show("Business not found. Please select a valid business.");
+                        MessageBox.Show("Business not found.");
                         return;
                     }
-                    //check if a reading already exists for the selected business and date
+
+                    DateTime selectedDate = dtpReadingDate.Value.Date;
+                    // 1. Cannot be in the future
+                    if (selectedDate > DateTime.Today)
+                    {
+                        MessageBox.Show("You cannot generate a bill for a future date.");
+                        return;
+                    }
+
                     var existingReading = db.Readings.FirstOrDefault(r =>
-                    r.BusinessID == biz.BusinessID &&
-                    r.ReadingDate == dtpReadingDate.Value.Date);
+                        r.BusinessID == biz.BusinessID &&
+                        r.ReadingDate == selectedDate);
+
                     if (existingReading != null)
                     {
-                        MessageBox.Show("A reading for the selected business and date.");
+                        MessageBox.Show("Reading already exists for this date.");
                         return;
                     }
-                    Readings reading = new Readings
+
+                    var reading = new Readings
                     {
                         BusinessID = biz.BusinessID,
-                        ReadingDate = dtpReadingDate.Value.Date,
+                        ReadingDate = selectedDate,
                         UsageUnits = (double)nudUsageUnits.Value,
-                        RecycledUnits = (double)nudRecycleUnits.Value
+                        RecycledUnits = (double)nudRecycleUnits.Value,
+                        ReserveLevel = decimal.Parse(txtReserveLevel.Text)
                     };
+
                     db.Readings.Add(reading);
-                    // Save the reserve level as well
-                    WaterLevel wl = new WaterLevel
-                    {
-                        ReservePercentage = (double)nudReserveLevel.Value,
-                        DateSet = DateTime.Now
-                    };
-                    db.WaterLevels.Add(wl);
                     db.SaveChanges();
+
+                    db.WaterLevels.Add(new WaterLevel
+                    {
+                        BusinessID = biz.BusinessID,
+                        ReservePercentage = double.Parse(txtReserveLevel.Text),
+                        DateSet = selectedDate
+                    });
+
+                    db.SaveChanges();
+
                     MessageBox.Show("Reading saved successfully.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error saving reading: {ex.Message}");
+                MessageBox.Show($"Error Saving to Database: {ex.Message}");
             }
         }
-        private void SaveReserveLevel(double reserveLevel)
+
+        private void dudBusinessName_SelectedItemChanged(object sender, EventArgs e)
         {
-            try
+            using(var db = new ScotWaterContext())
             {
-                using (var db = new ScotWaterContext())
+                var biz = db.Businesses.FirstOrDefault(b => b.BusinessName == dudBusinessName.Text);
+
+                if (biz != null)
                 {
-                    WaterLevel wl = new WaterLevel
-                    {
-                        ReservePercentage = reserveLevel,
-                        DateSet = DateTime.Now
-                    };
-                    db.WaterLevels.Add(wl);
-                    db.SaveChanges();
+                    double reserveLevel = GetReserveLevel(biz.BusinessID);
+                    txtReserveLevel.Text = reserveLevel.ToString();
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error saving reserve level: {ex.Message}");
-            }
+        }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            frmMenu menu = new frmMenu();
+            menu.Show();
+            this.Hide();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            dudBusinessName = null;
+            dtpReadingDate = null;
+            nudUsageUnits.Value = 0;
+            nudRecycleUnits.Value = 0;
         }
     }
 }

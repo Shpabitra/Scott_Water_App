@@ -18,6 +18,9 @@ namespace Scott_Water_App
         public frmLogin()
         {
             InitializeComponent();
+
+            this.KeyPreview = true;
+            this.KeyDown += frmLogin_KeyDown;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -33,46 +36,57 @@ namespace Scott_Water_App
                 return;
             }
             //stop if already locked
-            if(failedLoginAttempts >= 3)
+            if (failedLoginAttempts >= 3)
             {
                 MessageBox.Show("Incorrect login attempts 3 times. Please Contact Administration.", "Account Locked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            } 
+            }
 
+            //06/05/26 Nathan ALlan
             using (var db = new ScotWaterContext())
             {
-                try
+                string email = txtUserEmail.Text.Trim();
+                string pass = txtPassword.Text.Trim();
+
+                var user = db.Users.FirstOrDefault(u => u.Email == email && u.Password == pass);
+
+                if (user != null)
                 {
-                    // check if the user exists in the database
-                    var user = db.Users.FirstOrDefault(u => u.Email == useremail && u.Password == password);
-                    if (user != null)
+                    failedLoginAttempts = 0;
+
+                    if (user.Role == "Admin")
                     {
-                        // login successful, open the main form
-                        MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        frmMenu mainForm = new frmMenu();
-                        mainForm.Show();
-                        this.Hide();
+                        MessageBox.Show("Logging in as Admin", "Admin Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //tells user they logged in as admin 
                     }
                     else
                     {
-                        // login failed, show error message
-                        MessageBox.Show("Invalid email or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                }
-                catch (Exception ex)
-                {
-                    // handle any exceptions that may occur during database access
-                    MessageBox.Show("An error occurred while trying to log in: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                    frmMenu menuForm = new frmMenu(user.Role);
+                    menuForm.Show();
+
+                    this.Hide();
+                }
+                else
+                {
+                    failedLoginAttempts++;
+
+                    MessageBox.Show("Invalid email or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            
-
         }
-
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+        private void frmLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLogin_Click(sender, e);
+            }
         }
     }
 }
