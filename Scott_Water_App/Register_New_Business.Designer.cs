@@ -55,6 +55,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.cmbSelectBusiness = new System.Windows.Forms.ComboBox();
             this.lblSelectBusiness = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -226,7 +227,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Scott_Water_App.Properties.Resources.Scot_Water_App_Logo;
-            this.pictureBox1.Location = new System.Drawing.Point(1680, 158);
+            this.pictureBox1.Location = new System.Drawing.Point(1461, 158);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(8, 10, 8, 10);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(290, 270);
@@ -249,7 +250,7 @@
             // 
             this.txtBusinessID.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBusinessID.Location = new System.Drawing.Point(540, 248);
-            this.txtBusinessID.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtBusinessID.Margin = new System.Windows.Forms.Padding(6);
             this.txtBusinessID.Multiline = true;
             this.txtBusinessID.Name = "txtBusinessID";
             this.txtBusinessID.ReadOnly = true;
@@ -271,7 +272,7 @@
             // 
             this.txtMeterID.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMeterID.Location = new System.Drawing.Point(540, 854);
-            this.txtMeterID.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtMeterID.Margin = new System.Windows.Forms.Padding(6);
             this.txtMeterID.Multiline = true;
             this.txtMeterID.Name = "txtMeterID";
             this.txtMeterID.ReadOnly = true;
@@ -304,7 +305,7 @@
             // 
             this.txtRegistrationDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRegistrationDate.Location = new System.Drawing.Point(540, 938);
-            this.txtRegistrationDate.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtRegistrationDate.Margin = new System.Windows.Forms.Padding(6);
             this.txtRegistrationDate.Multiline = true;
             this.txtRegistrationDate.Name = "txtRegistrationDate";
             this.txtRegistrationDate.Size = new System.Drawing.Size(806, 56);
@@ -314,7 +315,7 @@
             // 
             this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStatus.Location = new System.Drawing.Point(540, 1022);
-            this.txtStatus.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.txtStatus.Margin = new System.Windows.Forms.Padding(6);
             this.txtStatus.Multiline = true;
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.Size = new System.Drawing.Size(806, 56);
@@ -339,7 +340,7 @@
             this.cmbSelectBusiness.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSelectBusiness.FormattingEnabled = true;
             this.cmbSelectBusiness.Location = new System.Drawing.Point(540, 158);
-            this.cmbSelectBusiness.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbSelectBusiness.Margin = new System.Windows.Forms.Padding(4);
             this.cmbSelectBusiness.Name = "cmbSelectBusiness";
             this.cmbSelectBusiness.Size = new System.Drawing.Size(806, 63);
             this.cmbSelectBusiness.TabIndex = 27;
@@ -356,12 +357,29 @@
             this.lblSelectBusiness.Text = "Select Business:";
             this.lblSelectBusiness.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.Teal;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.SystemColors.Window;
+            this.textBox1.Location = new System.Drawing.Point(-10, -3);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(6);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(1822, 121);
+            this.textBox1.TabIndex = 75;
+            this.textBox1.Text = "Price Change";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // frmRegisterBusiness
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(192F, 192F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1924, 1522);
+            this.ClientSize = new System.Drawing.Size(1807, 1302);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lblSelectBusiness);
             this.Controls.Add(this.cmbSelectBusiness);
             this.Controls.Add(this.btnSave);
@@ -389,6 +407,7 @@
             this.Controls.Add(this.lblCity);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnReturntoMainMenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(8, 10, 8, 10);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -429,6 +448,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox cmbSelectBusiness;
         private System.Windows.Forms.Label lblSelectBusiness;
+        private System.Windows.Forms.TextBox textBox1;
         //private System.Windows.Forms.TextBox textBox1;
     }
 }
