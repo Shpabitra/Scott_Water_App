@@ -26,6 +26,9 @@ namespace Scott_Water_App
         public frmRegisterBusiness(int addNewBusiness = 99)
         {
             InitializeComponent();
+
+            this.Size = new Size(900, 700);
+
             this.Load += frmRegisterBusiness_Load;
             this.FormClosed += frmRegisterBusiness_FormClosed;
             this.cmbSelectBusiness.SelectedIndexChanged += cmbBizID_SelectedIndexChanged;

@@ -370,7 +370,7 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(1822, 121);
             this.textBox1.TabIndex = 75;
-            this.textBox1.Text = "Price Change";
+            this.textBox1.Text = "Business Maintanence";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // frmRegisterBusiness
@@ -407,13 +407,12 @@
             this.Controls.Add(this.lblCity);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnReturntoMainMenu);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(8, 10, 8, 10);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmRegisterBusiness";
             this.Text = "Register_New_Business";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
