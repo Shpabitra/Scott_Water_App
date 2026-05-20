@@ -55,7 +55,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.cmbSelectBusiness = new System.Windows.Forms.ComboBox();
             this.lblSelectBusiness = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTopBorderBizMain = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -331,7 +331,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(350, 180);
             this.btnSave.TabIndex = 26;
-            this.btnSave.Text = "SAVE";
+            this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -357,21 +357,21 @@
             this.lblSelectBusiness.Text = "Select Business:";
             this.lblSelectBusiness.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // textBox1
+            // txtTopBorderBizMain
             // 
-            this.textBox1.BackColor = System.Drawing.Color.Teal;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.SystemColors.Window;
-            this.textBox1.Location = new System.Drawing.Point(-10, -3);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(6);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(1822, 121);
-            this.textBox1.TabIndex = 75;
-            this.textBox1.Text = "Business Maintanence";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtTopBorderBizMain.BackColor = System.Drawing.Color.Teal;
+            this.txtTopBorderBizMain.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTopBorderBizMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTopBorderBizMain.ForeColor = System.Drawing.SystemColors.Window;
+            this.txtTopBorderBizMain.Location = new System.Drawing.Point(-10, -3);
+            this.txtTopBorderBizMain.Margin = new System.Windows.Forms.Padding(6);
+            this.txtTopBorderBizMain.Multiline = true;
+            this.txtTopBorderBizMain.Name = "txtTopBorderBizMain";
+            this.txtTopBorderBizMain.ReadOnly = true;
+            this.txtTopBorderBizMain.Size = new System.Drawing.Size(1822, 121);
+            this.txtTopBorderBizMain.TabIndex = 75;
+            this.txtTopBorderBizMain.Text = "Business Maintanence";
+            this.txtTopBorderBizMain.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // frmRegisterBusiness
             // 
@@ -379,7 +379,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1807, 1302);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtTopBorderBizMain);
             this.Controls.Add(this.lblSelectBusiness);
             this.Controls.Add(this.cmbSelectBusiness);
             this.Controls.Add(this.btnSave);
@@ -447,7 +447,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox cmbSelectBusiness;
         private System.Windows.Forms.Label lblSelectBusiness;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtTopBorderBizMain;
         //private System.Windows.Forms.TextBox textBox1;
     }
 }

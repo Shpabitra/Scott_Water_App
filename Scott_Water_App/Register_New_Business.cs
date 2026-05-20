@@ -28,6 +28,10 @@ namespace Scott_Water_App
             InitializeComponent();
 
             this.Size = new Size(900, 700);
+            // Center text horizontally and add vertical padding
+            txtTopBorderBizMain.TextAlign = HorizontalAlignment.Center;
+            txtTopBorderBizMain.Padding = new Padding(0, 30, 0, 0); // Top padding = 5 pixels
+
 
             this.Load += frmRegisterBusiness_Load;
             this.FormClosed += frmRegisterBusiness_FormClosed;
